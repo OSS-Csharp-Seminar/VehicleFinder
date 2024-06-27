@@ -7,7 +7,7 @@
         public string Description { get; set; }
         public float Price { get; set; }
         public bool IsSold { get; set; }
-        public int UserId { get; set; }
+        public string UserId { get; set; }
         public int VehicleId { get; set; }
     }
 }
