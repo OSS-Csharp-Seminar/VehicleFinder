@@ -38,30 +38,30 @@ namespace VehicleFinder.Controllers
         }
 
         // POST: api/Listings
-        [HttpPost]
-        public async Task<ActionResult<CreateListingDTO>> PostListing(CreateListingDTO listingDto)
-        {
-            var createdListing = await _listingService.CreateListingAsync(listingDto);
-            return CreatedAtAction(nameof(GetListing), new { id = createdListing.Id }, createdListing);
-        }
+        //[HttpPost]
+        //public async Task<ActionResult<CreateListingDTO>> PostListing(CreateListingDTO listingDto)
+        //{
+        //    var createdListing = await _listingService.CreateListingAsync(listingDto);
+        //    return Ok();
+        //}
 
-        // PUT: api/Listings/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutListing(int id, CreateListingDTO listingDto)
-        {
-            if (id != listingDto.Id)
-            {
-                return BadRequest();
-            }
+        //// PUT: api/Listings/5
+        //[HttpPut("{id}")]
+        //public async Task<IActionResult> PutListing(int id, CreateListingDTO listingDto)
+        //{
+        //    if (id != listingDto.Id)
+        //    {
+        //        return BadRequest();
+        //    }
 
-            var result = await _listingService.UpdateListingAsync(id, listingDto);
-            if (!result)
-            {
-                return NotFound();
-            }
+        //    var result = await _listingService.UpdateListingAsync(id, listingDto);
+        //    if (!result)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return NoContent();
-        }
+        //    return NoContent();
+        //}
 
         // DELETE: api/Listings/5
         [HttpDelete("{id}")]

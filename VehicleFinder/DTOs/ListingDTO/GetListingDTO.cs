@@ -1,13 +1,8 @@
 ﻿namespace VehicleFinder.DTOs.ListingDTO
 {
-    public class GetListingDTO
+    public class GetListingDTO : BaseListingDTO
     {
-        public DateTime CreationDate { get; set; }
-        public string Title { get; set; }
-        public string Description { get; set; }
-        public float Price { get; set; }
+        public int Id { get; set; }
         public bool IsSold { get; set; }
-        public string UserId { get; set; }
-        public int VehicleId { get; set; }
     }
 }

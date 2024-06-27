@@ -1,12 +1,49 @@
 ﻿@page
-@model IndexModel
+@model VehicleFinder.Pages.IndexModel
 @{
     ViewData["Title"] = "Home page";
 }
 
 <h1>Hello !!!</h1>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <!-- Sidebar with filters -->
+            <div>
+                <h2>Filters</h2>
+                <form method="get">
+                    <div class="form-group">
+                        <label for="priceMin">Min Price</label>
+                        <input type="number" class="form-control" id="priceMin" name="priceMin" />
+                    </div>
+                    <div class="form-group">
+                        <label for="priceMax">Max Price</label>
+                        <input type="number" class="form-control" id="priceMax" name="priceMax" />
+                    </div>
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input type="text" class="form-control" id="title" name="title" />
+                    </div>
+                    <button type="submit" class="btn btn-primary">Apply Filters</button>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <!-- Main site that displays listings -->
+            <div>
+                <h2>Listings</h2>
+                <ul>
+                    @foreach (var listing in Model.Listings)
+                    {
+                        <li>
+                            <h3>@listing.Title</h3>
+                            <p>@listing.Description</p>
+                            <p>Price: @listing.Price</p>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
 </div>

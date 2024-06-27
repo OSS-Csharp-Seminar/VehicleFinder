@@ -1,8 +1,12 @@
 using Microsoft.EntityFrameworkCore;
 using VehicleFinder.Infrastructure;
-using VehicleFinder.Services;
-using Microsoft.AspNetCore.Identity;
 using VehicleFinder.Entities;
+using VehicleFinder.Infrastructure.Repositories;
+using VehicleFinder.Services;
+using VehicleFinder.Infrastructure.Repositories.Interfaces;
+using VehicleFinder.Infrastructure.Repositories.Implementation;
+using VehicleFinder.Services.Interface;
+using VehicleFinder.Services.Implementation;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,10 +16,14 @@ builder.Services.AddControllers();
 builder.Services.AddDbContext<DatabaseContext>(o => o.UseNpgsql(builder.Configuration.GetConnectionString("VehicleFinderDB")));
 
 builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = false).AddEntityFrameworkStores<DatabaseContext>();
+builder.Services.AddScoped<IListingRepository, ListingRepository>();
 builder.Services.AddScoped<IListingService, ListingService>();
+builder.Services.AddScoped<IVehicleRepository, VehicleRepository>();
+builder.Services.AddScoped<IVehicleService, VehicleService>();
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Configure the HTTP request pipeline.Q
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");

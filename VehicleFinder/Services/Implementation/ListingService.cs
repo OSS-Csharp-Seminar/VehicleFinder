@@ -1,38 +1,39 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using VehicleFinder.Infrastructure;
-using VehicleFinder.Entities;
 using VehicleFinder.DTOs.ListingDTO;
+using VehicleFinder.Entities;
+using VehicleFinder.Infrastructure.Repositories;
 
 namespace VehicleFinder.Services
 {
     public class ListingService : IListingService
     {
-        private readonly DatabaseContext _context;
+        private readonly IListingRepository _listingRepository;
 
-        public ListingService(DatabaseContext context)
+        public ListingService(IListingRepository listingRepository)
         {
-            _context = context;
+            _listingRepository = listingRepository;
         }
 
         public async Task<IEnumerable<GetListingDTO>> GetListingsAsync()
         {
-            return await _context.Listings
-                .Select(listing => new GetListingDTO
-                {
-                    CreationDate = listing.CreationDate,
-                    Title = listing.Title,
-                    Description = listing.Description,
-                    Price = listing.Price,
-                    IsSold = listing.IsSold,
-                    UserId = listing.UserId,
-                    VehicleId = listing.VehicleId
-                })
-                .ToListAsync();
+            var listings = await _listingRepository.GetListingsAsync();
+
+            return listings.Select(listing => new GetListingDTO
+            {
+                Id = listing.Id,
+                CreationDate = listing.CreationDate,
+                Title = listing.Title,
+                Description = listing.Description,
+                Price = listing.Price,
+                IsSold = listing.IsSold,
+                UserId = listing.UserId,
+                VehicleId = listing.VehicleId
+            }).ToList();
         }
 
         public async Task<GetListingDTO> GetListingByIdAsync(int id)
         {
-            var listing = await _context.Listings.FindAsync(id);
+            var listing = await _listingRepository.GetListingByIdAsync(id);
 
             if (listing == null)
             {
@@ -41,6 +42,7 @@ namespace VehicleFinder.Services
 
             return new GetListingDTO
             {
+                Id = listing.Id,
                 CreationDate = listing.CreationDate,
                 Title = listing.Title,
                 Description = listing.Description,
@@ -51,7 +53,7 @@ namespace VehicleFinder.Services
             };
         }
 
-        public async Task<CreateListingDTO> CreateListingAsync(CreateListingDTO listingDto)
+        public async Task<CreateListingDTO> CreateListingAsync(CreateListingDTO listingDto, Vehicle vehicle)
         {
             var listing = new Listing
             {
@@ -61,18 +63,17 @@ namespace VehicleFinder.Services
                 Price = listingDto.Price,
                 IsSold = listingDto.IsSold,
                 UserId = listingDto.UserId,
-                VehicleId = listingDto.VehicleId
+                VehicleId = vehicle.Id
             };
 
-            _context.Listings.Add(listing);
-            await _context.SaveChangesAsync();
+            await _listingRepository.AddListingAsync(listing);
 
             return listingDto;
         }
 
         public async Task<bool> UpdateListingAsync(int id, CreateListingDTO listingDto)
         {
-            var listing = await _context.Listings.FindAsync(id);
+            var listing = await _listingRepository.GetListingByIdAsync(id);
             if (listing == null)
             {
                 return false;
@@ -82,20 +83,17 @@ namespace VehicleFinder.Services
             listing.Title = listingDto.Title;
             listing.Description = listingDto.Description;
             listing.Price = listingDto.Price;
-            listing.IsSold = listingDto.IsSold;
             listing.UserId = listingDto.UserId;
-            listing.VehicleId = listingDto.VehicleId;
-
-            _context.Entry(listing).State = EntityState.Modified;
+            //listing.VehicleId = listingDto.VehicleId;
 
             try
             {
-                await _context.SaveChangesAsync();
+                await _listingRepository.UpdateListingAsync(listing);
                 return true;
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ListingExists(id))
+                if (!_listingRepository.ListingExists(id))
                 {
                     return false;
                 }
@@ -108,21 +106,15 @@ namespace VehicleFinder.Services
 
         public async Task<bool> DeleteListingAsync(int id)
         {
-            var listing = await _context.Listings.FindAsync(id);
+            var listing = await _listingRepository.GetListingByIdAsync(id);
             if (listing == null)
             {
                 return false;
             }
 
-            _context.Listings.Remove(listing);
-            await _context.SaveChangesAsync();
+            await _listingRepository.DeleteListingAsync(id);
 
             return true;
-        }
-
-        private bool ListingExists(int id)
-        {
-            return _context.Listings.Any(e => e.Id == id);
         }
     }
 }
