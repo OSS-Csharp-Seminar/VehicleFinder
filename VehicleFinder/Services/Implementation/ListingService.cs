@@ -1,22 +1,34 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using VehicleFinder.DTOs.ListingDTO;
+using VehicleFinder.DTOs.VehicleDTO;
 using VehicleFinder.Entities;
 using VehicleFinder.Infrastructure.Repositories;
+using VehicleFinder.Services.Interface;
 
 namespace VehicleFinder.Services
 {
     public class ListingService : IListingService
     {
         private readonly IListingRepository _listingRepository;
+        private readonly IVehicleService _vehicleService;
 
-        public ListingService(IListingRepository listingRepository)
+        public ListingService(IListingRepository listingRepository, IVehicleService vehicleService)
         {
             _listingRepository = listingRepository;
+            _vehicleService = vehicleService;
         }
 
         public async Task<IEnumerable<GetListingDTO>> GetListingsAsync()
         {
             var listings = await _listingRepository.GetListingsAsync();
+            var vehicles = await _vehicleService.GetAllVehiclesAsync();
+
+            if (vehicles == null)
+            {
+                return null!;
+            }
+
+            var vehicleDict = vehicles.ToDictionary(v => v.Id);
 
             return listings.Select(listing => new GetListingDTO
             {
@@ -25,9 +37,9 @@ namespace VehicleFinder.Services
                 Title = listing.Title,
                 Description = listing.Description,
                 Price = listing.Price,
-                IsSold = listing.IsSold,
                 UserId = listing.UserId,
-                VehicleId = listing.VehicleId
+                IsSold = listing.IsSold,
+                Vehicle = vehicleDict[listing.VehicleId]
             }).ToList();
         }
 
@@ -37,7 +49,7 @@ namespace VehicleFinder.Services
 
             if (listing == null)
             {
-                return null;
+                return null!;
             }
 
             return new GetListingDTO
@@ -47,9 +59,18 @@ namespace VehicleFinder.Services
                 Title = listing.Title,
                 Description = listing.Description,
                 Price = listing.Price,
-                IsSold = listing.IsSold,
                 UserId = listing.UserId,
-                VehicleId = listing.VehicleId
+                IsSold = listing.IsSold,
+                Vehicle = new GetVehicleDTO
+                {
+                    Id = listing.Vehicle.Id,
+                    Brand = listing.Vehicle.Brand,
+                    Model = listing.Vehicle.Model,
+                    Kilometers = listing.Vehicle.Kilometers,
+                    ManufacturingYear = listing.Vehicle.ManufacturingYear,
+                    RegistrationUntil = listing.Vehicle.RegistrationUntil,
+                    NumberOfPreviousOwners = listing.Vehicle.NumberOfPreviousOwners
+                }
             };
         }
 

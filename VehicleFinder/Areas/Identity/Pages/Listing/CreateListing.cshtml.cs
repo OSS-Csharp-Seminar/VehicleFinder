@@ -43,23 +43,20 @@ namespace VehicleFinder.Pages
             if (user == null)
             {
                 _logger.LogWarning("User is not authenticated");
-                return Challenge(); // Redirect to login if the user is not authenticated
+                return Challenge();
             }
 
             Listing.UserId = user.Id;
-            Listing.CreationDate = DateTime.UtcNow; // Ensure CreationDate is in UTC
+            Listing.CreationDate = DateTime.UtcNow;
 
-            // Explicitly revalidate the ModelState after setting UserId
             ModelState.ClearValidationState(nameof(Listing));
-            TryValidateModel(Listing);
+            TryValidateModel(Listing, nameof(Listing));
 
             if (!ModelState.IsValid)
             {
-                // Inspect ModelState for errors
                 var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();
                 foreach (var error in errors)
                 {
-                    // Log or display the error messages for debugging
                     System.Diagnostics.Debug.WriteLine(error);
                 }
                 return Page();
@@ -67,7 +64,6 @@ namespace VehicleFinder.Pages
 
             _logger.LogInformation("Creating vehicle for listing");
 
-            // Create the vehicle
             var vehicleDto = new CreateVehicleDTO
             {
                 Brand = Listing.Vehicle.Brand,
@@ -82,24 +78,11 @@ namespace VehicleFinder.Pages
 
             _logger.LogInformation("Vehicle created with ID: {VehicleId}", createdVehicle.Id);
 
-            // Create the listing
             _logger.LogInformation("Creating listing");
             await _listingService.CreateListingAsync(Listing, createdVehicle);
 
             _logger.LogInformation("Listing created successfully");
             return RedirectToPage("/Index");
-        }
-
-        private void LogModelStateErrors()
-        {
-            foreach (var key in ModelState.Keys)
-            {
-                var state = ModelState[key];
-                foreach (var error in state.Errors)
-                {
-                    _logger.LogWarning("Validation error in '{Key}': {ErrorMessage}", key, error.ErrorMessage);
-                }
-            }
         }
     }
 }

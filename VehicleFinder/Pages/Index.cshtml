@@ -4,7 +4,7 @@
     ViewData["Title"] = "Home page";
 }
 
-<h1>Hello !!!</h1>
+<h1>Welcome to VehicleFinder</h1>
 
 <div class="container">
     <div class="row">
@@ -31,19 +31,57 @@
         </div>
         <div class="col-md-9">
             <!-- Main site that displays listings -->
-            <div>
-                <h2>Listings</h2>
-                <ul>
-                    @foreach (var listing in Model.Listings)
-                    {
-                        <li>
-                            <h3>@listing.Title</h3>
-                            <p>@listing.Description</p>
-                            <p>Price: @listing.Price</p>
-                        </li>
-                    }
-                </ul>
+            <h2>Listings</h2>
+            <div class="row">
+                @foreach (var listing in Model.Listings)
+                {
+                    <div class="col-md-6">
+                        <div class="card mb-4 shadow-sm">
+                           @*  <img src="@listing.Vehicle.ImageUrl" class="card-img-top" alt="@listing.Title">  placeholder za sliku*@
+                            <div class="card-body">
+                                <h5 class="card-title">@listing.Title</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">@listing.Vehicle.Brand @listing.Vehicle.Model (@listing.Vehicle.ManufacturingYear)</h6>
+                                <p class="card-text">@listing.Description</p>
+                                <ul class="list-unstyled">
+                                    <li><strong>Price:</strong> $@listing.Price</li>
+                                    <li><strong>Kilometers:</strong> @listing.Vehicle.Kilometers km</li>
+                                    <li><strong>Registration Until:</strong> @listing.Vehicle.RegistrationUntil</li>
+                                    <li><strong>Number of Previous Owners:</strong> @listing.Vehicle.NumberOfPreviousOwners</li>
+                                    <li><strong>Is Sold:</strong> @(listing.IsSold ? "Yes" : "No")</li>
+                                </ul>
+                                <a href="#" class="btn btn-primary">View Details</a>
+                                @if (Model.CurrentUserId == listing.UserId)
+                                {
+                                    <a href="/EditListing?id=@listing.Id" class="btn btn-warning">Edit</a>
+                                    <button class="btn btn-danger" onclick="confirmMarkAsSold('@listing.Id')">Mark as Sold</button>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
             </div>
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        function confirmMarkAsSold(listingId) {
+            if (confirm("Are you sure you want to mark this listing as sold?")) {
+                fetch(`/MarkAsSold?id=${listingId}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'RequestVerificationToken': $('input[name="__RequestVerificationToken"]').val()
+                    }
+                }).then(response => {
+                    if (response.ok) {
+                        location.reload();
+                    } else {
+                        alert('Failed to mark as sold.');
+                    }
+                });
+            }
+        }
+    </script>
+}

@@ -12,18 +12,19 @@ namespace VehicleFinder.DTOs.VehicleDTO
         public string Model { get; set; }
 
         [Required]
-        [Range(1886, 2100, ErrorMessage = "Please enter a valid manufacturing year")]
+        [Range(1886, 2025, ErrorMessage = "Please enter a valid manufacturing year.")]
         public int ManufacturingYear { get; set; }
 
         [Required]
+        [DateAfter("ManufacturingYear", ErrorMessage = "The registration date must be after the manufacturing year.")]
         public DateOnly RegistrationUntil { get; set; }
 
         [Required]
-        [Range(0, int.MaxValue, ErrorMessage = "Please enter a valid kilometer")]
+        [Range(0, int.MaxValue, ErrorMessage = "Please enter valid amount of kilometers.")]
         public int Kilometers { get; set; }
 
         [Required]
-        [Range(0, int.MaxValue, ErrorMessage = "Please enter a valid number of previous owners")]
+        [Range(0, int.MaxValue, ErrorMessage = "Please enter a valid number of previous owners.")]
         public int NumberOfPreviousOwners { get; set; }
     }
 }

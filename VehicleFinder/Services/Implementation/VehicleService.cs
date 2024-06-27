@@ -15,6 +15,21 @@ namespace VehicleFinder.Services.Implementation
             _vehicleRepository = vehicleRepository;
         }
 
+        public async Task<IEnumerable<GetVehicleDTO>> GetAllVehiclesAsync()
+        {
+            var vehicles = await _vehicleRepository.GetAllVehiclesAsync();
+
+            return vehicles.Select(vehicle => new GetVehicleDTO
+            {
+                Id = vehicle.Id,
+                Brand = vehicle.Brand,
+                Model = vehicle.Model,
+                Kilometers = vehicle.Kilometers,
+                ManufacturingYear = vehicle.ManufacturingYear,
+                RegistrationUntil = vehicle.RegistrationUntil,
+                NumberOfPreviousOwners = vehicle.NumberOfPreviousOwners
+            }).ToList();
+        }
         public async Task<Vehicle> CreateVehicleAsync(CreateVehicleDTO model)
         {
             var vehicle = new Vehicle
@@ -28,6 +43,27 @@ namespace VehicleFinder.Services.Implementation
             };
 
             return await _vehicleRepository.CreateVehicleAsync(vehicle);
+        }
+
+
+        public async Task<GetVehicleDTO> GetVehicleByIdAsync(int vehicleId)
+        {
+            var vehicle = await _vehicleRepository.GetVehicleByIdAsync(vehicleId);
+            if (vehicle == null)
+            {
+                return null;
+            }
+
+            return new GetVehicleDTO
+            {
+                Id = vehicle.Id,
+                Brand = vehicle.Brand,
+                Model = vehicle.Model,
+                Kilometers = vehicle.Kilometers,
+                ManufacturingYear = vehicle.ManufacturingYear,
+                RegistrationUntil = vehicle.RegistrationUntil,
+                NumberOfPreviousOwners = vehicle.NumberOfPreviousOwners
+            };
         }
     }
 }

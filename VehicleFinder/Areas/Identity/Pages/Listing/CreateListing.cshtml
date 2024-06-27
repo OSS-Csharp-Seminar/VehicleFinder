@@ -7,7 +7,6 @@
 <h1>Create Listing</h1>
 
 <form method="post">
-    <!-- Listing details -->
     <div class="form-group">
         <label asp-for="Listing.Title" class="control-label"></label>
         <input asp-for="Listing.Title" class="form-control" />
@@ -23,8 +22,6 @@
         <input asp-for="Listing.Price" class="form-control" />
         <span asp-validation-for="Listing.Price" class="text-danger"></span>
     </div>
-
-    <!-- Vehicle details -->
     <div class="form-group">
         <label asp-for="Listing.Vehicle.Brand" class="control-label"></label>
         <input asp-for="Listing.Vehicle.Brand" class="form-control" />
@@ -34,6 +31,11 @@
         <label asp-for="Listing.Vehicle.Model" class="control-label"></label>
         <input asp-for="Listing.Vehicle.Model" class="form-control" />
         <span asp-validation-for="Listing.Vehicle.Model" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Listing.Vehicle.Kilometers" class="control-label"></label>
+        <input asp-for="Listing.Vehicle.Kilometers" class="form-control" />
+        <span asp-validation-for="Listing.Vehicle.Kilometers" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="Listing.Vehicle.ManufacturingYear" class="control-label"></label>
@@ -46,15 +48,9 @@
         <span asp-validation-for="Listing.Vehicle.RegistrationUntil" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="Listing.Vehicle.Kilometers" class="control-label"></label>
-        <input asp-for="Listing.Vehicle.Kilometers" class="form-control" />
-        <span asp-validation-for="Listing.Vehicle.Kilometers" class="text-danger"></span>
-    </div>
-    <div class="form-group">
         <label asp-for="Listing.Vehicle.NumberOfPreviousOwners" class="control-label"></label>
         <input asp-for="Listing.Vehicle.NumberOfPreviousOwners" class="form-control" />
         <span asp-validation-for="Listing.Vehicle.NumberOfPreviousOwners" class="text-danger"></span>
     </div>
-
     <button type="submit" class="btn btn-primary">Create</button>
 </form>

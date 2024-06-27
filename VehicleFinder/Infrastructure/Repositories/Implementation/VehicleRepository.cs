@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 using VehicleFinder.Entities;
 using VehicleFinder.Infrastructure.Repositories.Interfaces;
 
@@ -18,6 +19,14 @@ namespace VehicleFinder.Infrastructure.Repositories.Implementation
             _context.Vehicles.Add(vehicle);
             await _context.SaveChangesAsync();
             return vehicle;
+        }
+        public async Task<Vehicle> GetVehicleByIdAsync(int vehicleId)
+        {
+            return await _context.Vehicles.FindAsync(vehicleId);
+        }
+        public async Task<IEnumerable<Vehicle>> GetAllVehiclesAsync()
+        {
+            return await _context.Vehicles.ToListAsync();
         }
     }
 }
