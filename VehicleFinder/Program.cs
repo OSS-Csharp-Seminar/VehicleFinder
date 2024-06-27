@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using VehicleFinder.Infrastructure;
 using VehicleFinder.Services;
+using Microsoft.AspNetCore.Identity;
+using VehicleFinder.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +10,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddControllers();
 builder.Services.AddDbContext<DatabaseContext>(o => o.UseNpgsql(builder.Configuration.GetConnectionString("VehicleFinderDB")));
+
+builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = false).AddEntityFrameworkStores<DatabaseContext>();
 builder.Services.AddScoped<IListingService, ListingService>();
 var app = builder.Build();
 

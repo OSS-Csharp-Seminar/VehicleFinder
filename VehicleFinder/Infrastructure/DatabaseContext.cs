@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using VehicleFinder.Entities;
 
@@ -14,6 +15,14 @@ namespace VehicleFinder.Infrastructure
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            var userRole = new IdentityRole("USER");
+            userRole.NormalizedName = "USER";
+
+            var adminRole = new IdentityRole("ADMIN");
+            adminRole.NormalizedName = "ADMIN";
+
+            modelBuilder.Entity<IdentityRole>().HasData(userRole, adminRole);
 
             modelBuilder.UseSerialColumns();
 
