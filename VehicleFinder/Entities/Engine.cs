@@ -1,12 +1,15 @@
 ﻿using VehicleFinder.Entities.BaseEntity;
+using VehicleFinder.Enums;
 
 namespace VehicleFinder.Entities
 {
     public class Engine : BEntity
     {
-        //placeholder values
-        public string EngineType { get; set; } = string.Empty;
+        public string Name { get; set; } = string.Empty;
+        public FuelType FuelType { get; set; }
         public int Horsepower { get; set; }
-
+        public DrivetrainType DrivetrainType { get; set; }
+        public int EngineCapacity { get; set; }
+        public virtual ICollection<Vehicle> Vehicles { get; set; } = new List<Vehicle>();
     }
 }

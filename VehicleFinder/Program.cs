@@ -21,6 +21,12 @@ builder.Services.AddScoped<IListingService, ListingService>();
 builder.Services.AddScoped<IVehicleRepository, VehicleRepository>();
 builder.Services.AddScoped<IVehicleService, VehicleService>();
 
+builder.Services.AddScoped<IEngineRepository, EngineRepository>();
+builder.Services.AddScoped<IEngineService, EngineService>();
+
+builder.Services.AddScoped<IBodyRepository, BodyRepository>();
+builder.Services.AddScoped<IBodyService, BodyService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.Q

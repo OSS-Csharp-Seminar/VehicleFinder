@@ -11,6 +11,6 @@ namespace VehicleFinder.DTOs.ListingDTO
         public float Price { get; set; }
         public string UserId { get; set; }
         public bool IsSold { get; set; }
-        public GetVehicleDTO Vehicle { get; set; }
+        public GetEngineDTO Vehicle { get; set; }
     }
 }

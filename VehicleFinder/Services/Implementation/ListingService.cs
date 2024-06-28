@@ -61,7 +61,7 @@ namespace VehicleFinder.Services
                 Price = listing.Price,
                 UserId = listing.UserId,
                 IsSold = listing.IsSold,
-                Vehicle = new GetVehicleDTO
+                Vehicle = new GetEngineDTO
                 {
                     Id = listing.Vehicle.Id,
                     Brand = listing.Vehicle.Brand,
@@ -74,7 +74,7 @@ namespace VehicleFinder.Services
             };
         }
 
-        public async Task<CreateListingDTO> CreateListingAsync(CreateListingDTO listingDto, Vehicle vehicle)
+        public async Task<CreateListingDTO> CreateListingAsync(CreateListingDTO listingDto)
         {
             var listing = new Listing
             {
@@ -84,7 +84,7 @@ namespace VehicleFinder.Services
                 Price = listingDto.Price,
                 IsSold = listingDto.IsSold,
                 UserId = listingDto.UserId,
-                VehicleId = vehicle.Id
+                VehicleId = listingDto.VehicleId
             };
 
             await _listingRepository.AddListingAsync(listing);

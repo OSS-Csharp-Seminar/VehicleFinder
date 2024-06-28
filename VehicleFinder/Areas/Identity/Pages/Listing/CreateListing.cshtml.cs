@@ -2,10 +2,10 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
-using VehicleFinder.DTOs.ListingDTO;
-using VehicleFinder.DTOs.VehicleDTO;
+using VehicleFinder.DTOs.General;
 using VehicleFinder.Entities;
 using VehicleFinder.Services;
 using VehicleFinder.Services.Interface;
@@ -16,19 +16,23 @@ namespace VehicleFinder.Pages
     {
         private readonly IListingService _listingService;
         private readonly IVehicleService _vehicleService;
+        private readonly IEngineService _engineService;
+        private readonly IBodyService _bodyService;
         private readonly UserManager<User> _userManager;
         private readonly ILogger<CreateListingModel> _logger;
 
-        public CreateListingModel(IListingService listingService, IVehicleService vehicleService, UserManager<User> userManager, ILogger<CreateListingModel> logger)
+        public CreateListingModel(IListingService listingService, IVehicleService vehicleService, IEngineService engineService, IBodyService bodyService, UserManager<User> userManager, ILogger<CreateListingModel> logger)
         {
             _listingService = listingService;
             _vehicleService = vehicleService;
+            _engineService = engineService;
+            _bodyService = bodyService;
             _userManager = userManager;
             _logger = logger;
         }
 
         [BindProperty]
-        public CreateListingDTO Listing { get; set; }
+        public CreateGeneralListingDTO GeneralListing { get; set; }
 
         public IActionResult OnGet()
         {
@@ -46,42 +50,54 @@ namespace VehicleFinder.Pages
                 return Challenge();
             }
 
-            Listing.UserId = user.Id;
-            Listing.CreationDate = DateTime.UtcNow;
+            GeneralListing.Listing.UserId = user.Id;
+            GeneralListing.Listing.CreationDate = DateTime.UtcNow;
 
-            ModelState.ClearValidationState(nameof(Listing));
-            TryValidateModel(Listing, nameof(Listing));
+            ModelState.ClearValidationState(nameof(GeneralListing));
+            TryValidateModel(GeneralListing, nameof(GeneralListing));
 
             if (!ModelState.IsValid)
             {
                 var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();
                 foreach (var error in errors)
                 {
-                    System.Diagnostics.Debug.WriteLine(error);
+                    _logger.LogError(error);
                 }
                 return Page();
             }
 
-            _logger.LogInformation("Creating vehicle for listing");
-
-            var vehicleDto = new CreateVehicleDTO
+            try
             {
-                Brand = Listing.Vehicle.Brand,
-                Model = Listing.Vehicle.Model,
-                ManufacturingYear = Listing.Vehicle.ManufacturingYear,
-                RegistrationUntil = Listing.Vehicle.RegistrationUntil,
-                Kilometers = Listing.Vehicle.Kilometers,
-                NumberOfPreviousOwners = Listing.Vehicle.NumberOfPreviousOwners
-            };
+                _logger.LogInformation("Creating engine");
+                var engineId = await _engineService.CreateEngineAsync(GeneralListing.Engine);
+                GeneralListing.Vehicle.EngineId = engineId;
+                _logger.LogInformation("Engine created with ID: {EngineId}", engineId);
 
-            var createdVehicle = await _vehicleService.CreateVehicleAsync(vehicleDto);
+                _logger.LogInformation("Creating body");
+                var bodyId = await _bodyService.CreateBodyAsync(GeneralListing.Body);
+                GeneralListing.Vehicle.BodyId = bodyId;
+                _logger.LogInformation("Body created with ID: {BodyId}", bodyId);
 
-            _logger.LogInformation("Vehicle created with ID: {VehicleId}", createdVehicle.Id);
+                _logger.LogInformation("Engine ID set to Vehicle: {EngineId}", GeneralListing.Vehicle.EngineId);
+                _logger.LogInformation("Body ID set to Vehicle: {BodyId}", GeneralListing.Vehicle.BodyId);
 
-            _logger.LogInformation("Creating listing");
-            await _listingService.CreateListingAsync(Listing, createdVehicle);
+                _logger.LogInformation("Creating vehicle");
+                var vehicle = await _vehicleService.CreateVehicleAsync(GeneralListing.Vehicle);
+                GeneralListing.Listing.VehicleId = vehicle.Id;
+                _logger.LogInformation("Vehicle created with ID: {VehicleId}", vehicle.Id);
 
-            _logger.LogInformation("Listing created successfully");
+
+
+                _logger.LogInformation("Creating listing");
+                await _listingService.CreateListingAsync(GeneralListing.Listing);
+                _logger.LogInformation("Listing created successfully");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error occurred while creating listing, vehicle, engine, or body.");
+                throw;
+            }
+
             return RedirectToPage("/Index");
         }
     }

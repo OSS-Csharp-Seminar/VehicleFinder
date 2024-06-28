@@ -15,11 +15,11 @@ namespace VehicleFinder.Services.Implementation
             _vehicleRepository = vehicleRepository;
         }
 
-        public async Task<IEnumerable<GetVehicleDTO>> GetAllVehiclesAsync()
+        public async Task<IEnumerable<GetEngineDTO>> GetAllVehiclesAsync()
         {
             var vehicles = await _vehicleRepository.GetAllVehiclesAsync();
 
-            return vehicles.Select(vehicle => new GetVehicleDTO
+            return vehicles.Select(vehicle => new GetEngineDTO
             {
                 Id = vehicle.Id,
                 Brand = vehicle.Brand,
@@ -39,14 +39,16 @@ namespace VehicleFinder.Services.Implementation
                 ManufacturingYear = model.ManufacturingYear,
                 RegistrationUntil = model.RegistrationUntil,
                 Kilometers = model.Kilometers,
-                NumberOfPreviousOwners = model.NumberOfPreviousOwners
+                NumberOfPreviousOwners = model.NumberOfPreviousOwners,
+                EngineId = model.EngineId,
+                BodyId = model.BodyId,
             };
 
             return await _vehicleRepository.CreateVehicleAsync(vehicle);
         }
 
 
-        public async Task<GetVehicleDTO> GetVehicleByIdAsync(int vehicleId)
+        public async Task<GetEngineDTO> GetVehicleByIdAsync(int vehicleId)
         {
             var vehicle = await _vehicleRepository.GetVehicleByIdAsync(vehicleId);
             if (vehicle == null)
@@ -54,7 +56,7 @@ namespace VehicleFinder.Services.Implementation
                 return null;
             }
 
-            return new GetVehicleDTO
+            return new GetEngineDTO
             {
                 Id = vehicle.Id,
                 Brand = vehicle.Brand,

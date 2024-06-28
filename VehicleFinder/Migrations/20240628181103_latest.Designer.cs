@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using VehicleFinder.Infrastructure;
@@ -11,9 +12,11 @@ using VehicleFinder.Infrastructure;
 namespace VehicleFinder.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20240628181103_latest")]
+    partial class latest
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,13 +53,13 @@ namespace VehicleFinder.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "991bdcdf-b272-4d3a-83a7-83c2d10b9211",
+                            Id = "8778fa3e-2274-42dc-99f2-4332230f0c32",
                             Name = "USER",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "ab807dda-8bca-494c-b5e9-759a1aef0e88",
+                            Id = "3c6fee9a-1e61-4c5a-9f41-ac9db6dd0907",
                             Name = "ADMIN",
                             NormalizedName = "ADMIN"
                         });
@@ -198,7 +201,7 @@ namespace VehicleFinder.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Bodies");
+                    b.ToTable("Body");
                 });
 
             modelBuilder.Entity("VehicleFinder.Entities.Engine", b =>
@@ -227,7 +230,7 @@ namespace VehicleFinder.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Engines");
+                    b.ToTable("Engine");
                 });
 
             modelBuilder.Entity("VehicleFinder.Entities.Listing", b =>
@@ -391,8 +394,7 @@ namespace VehicleFinder.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BodyId")
-                        .IsUnique();
+                    b.HasIndex("BodyId");
 
                     b.HasIndex("EngineId");
 
@@ -472,8 +474,8 @@ namespace VehicleFinder.Migrations
             modelBuilder.Entity("VehicleFinder.Entities.Vehicle", b =>
                 {
                     b.HasOne("VehicleFinder.Entities.Body", "Body")
-                        .WithOne("Vehicle")
-                        .HasForeignKey("VehicleFinder.Entities.Vehicle", "BodyId")
+                        .WithMany()
+                        .HasForeignKey("BodyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -486,12 +488,6 @@ namespace VehicleFinder.Migrations
                     b.Navigation("Body");
 
                     b.Navigation("Engine");
-                });
-
-            modelBuilder.Entity("VehicleFinder.Entities.Body", b =>
-                {
-                    b.Navigation("Vehicle")
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("VehicleFinder.Entities.Engine", b =>

@@ -1,6 +1,6 @@
 ﻿namespace VehicleFinder.DTOs.VehicleDTO
 {
-    public class GetVehicleDTO : CreateVehicleDTO
+    public class GetEngineDTO : CreateVehicleDTO
     {
         public int Id { get; set; }
     }

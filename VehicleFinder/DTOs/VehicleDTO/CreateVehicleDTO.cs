@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using VehicleFinder.Enums;
 
 namespace VehicleFinder.DTOs.VehicleDTO
 {
@@ -26,5 +27,21 @@ namespace VehicleFinder.DTOs.VehicleDTO
         [Required]
         [Range(0, int.MaxValue, ErrorMessage = "Please enter a valid number of previous owners.")]
         public int NumberOfPreviousOwners { get; set; }
+
+        [Required]
+        public ShifterType ShifterType { get; set; }
+
+        [Required]
+        [Range(0, 20, ErrorMessage = "Vehicle should have between 0 and 20 gears.")]
+        public int GearCount { get; set; }
+
+        [Required]
+        [Range(0.00, 50.0, ErrorMessage = "Consumption should be between 0 and 50L per 100km. ")]
+        public decimal AverageConsumption { get; set; }
+        [Required]
+        public int EngineId { get; set; }
+        [Required]
+        public int BodyId { get; set; }
+
     }
 }

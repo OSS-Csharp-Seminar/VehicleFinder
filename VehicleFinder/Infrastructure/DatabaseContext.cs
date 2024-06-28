@@ -35,10 +35,19 @@ namespace VehicleFinder.Infrastructure
                 .HasMany(u => u.Listings)
                 .WithOne(l => l.User)
                 .HasForeignKey(l => l.UserId);
+
+            modelBuilder.Entity<Vehicle>().HasOne(b => b.Body).WithOne(v => v.Vehicle).HasForeignKey<Vehicle>(b => b.BodyId);
+
+            modelBuilder.Entity<Vehicle>()
+                .HasOne(e => e.Engine)
+                .WithMany(v => v.Vehicles)
+                .HasForeignKey(v => v.EngineId);
         }
 
         public DbSet<Listing> Listings { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Vehicle> Vehicles { get; set; }
+        public DbSet<Engine> Engines { get; set; }
+        public DbSet<Body> Bodies { get; set; }
     }
 }

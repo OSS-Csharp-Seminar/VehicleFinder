@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using VehicleFinder.DTOs.VehicleDTO;
 
 namespace VehicleFinder.DTOs.ListingDTO
 {
@@ -22,6 +21,6 @@ namespace VehicleFinder.DTOs.ListingDTO
         [Required]
         public DateTime CreationDate { get; set; }
         [Required]
-        public CreateVehicleDTO Vehicle { get; set; }
+        public int VehicleId { get; set; }
     }
 }

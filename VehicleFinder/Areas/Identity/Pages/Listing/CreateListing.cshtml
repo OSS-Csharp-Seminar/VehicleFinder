@@ -7,50 +7,135 @@
 <h1>Create Listing</h1>
 
 <form method="post">
+    <!-- Listing Information -->
     <div class="form-group">
-        <label asp-for="Listing.Title" class="control-label"></label>
-        <input asp-for="Listing.Title" class="form-control" />
-        <span asp-validation-for="Listing.Title" class="text-danger"></span>
+        <label asp-for="GeneralListing.Listing.Title" class="control-label"></label>
+        <input asp-for="GeneralListing.Listing.Title" class="form-control" />
+        <span asp-validation-for="GeneralListing.Listing.Title" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="Listing.Description" class="control-label"></label>
-        <input asp-for="Listing.Description" class="form-control" />
-        <span asp-validation-for="Listing.Description" class="text-danger"></span>
+        <label asp-for="GeneralListing.Listing.Description" class="control-label"></label>
+        <textarea asp-for="GeneralListing.Listing.Description" class="form-control"></textarea>
+        <span asp-validation-for="GeneralListing.Listing.Description" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="Listing.Price" class="control-label"></label>
-        <input asp-for="Listing.Price" class="form-control" />
-        <span asp-validation-for="Listing.Price" class="text-danger"></span>
+        <label asp-for="GeneralListing.Listing.Price" class="control-label"></label>
+        <input asp-for="GeneralListing.Listing.Price" class="form-control" />
+        <span asp-validation-for="GeneralListing.Listing.Price" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="Listing.Vehicle.Brand" class="control-label"></label>
-        <input asp-for="Listing.Vehicle.Brand" class="form-control" />
-        <span asp-validation-for="Listing.Vehicle.Brand" class="text-danger"></span>
+        <label asp-for="GeneralListing.Listing.IsSold" class="control-label"></label>
+        <input asp-for="GeneralListing.Listing.IsSold" class="form-control" />
+        <span asp-validation-for="GeneralListing.Listing.IsSold" class="text-danger"></span>
+    </div>
+
+    <!-- Vehicle Information -->
+    <h2>Vehicle Information</h2>
+    <div class="form-group">
+        <label asp-for="GeneralListing.Vehicle.Brand" class="control-label"></label>
+        <input asp-for="GeneralListing.Vehicle.Brand" class="form-control" />
+        <span asp-validation-for="GeneralListing.Vehicle.Brand" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="Listing.Vehicle.Model" class="control-label"></label>
-        <input asp-for="Listing.Vehicle.Model" class="form-control" />
-        <span asp-validation-for="Listing.Vehicle.Model" class="text-danger"></span>
+        <label asp-for="GeneralListing.Vehicle.Model" class="control-label"></label>
+        <input asp-for="GeneralListing.Vehicle.Model" class="form-control" />
+        <span asp-validation-for="GeneralListing.Vehicle.Model" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="Listing.Vehicle.Kilometers" class="control-label"></label>
-        <input asp-for="Listing.Vehicle.Kilometers" class="form-control" />
-        <span asp-validation-for="Listing.Vehicle.Kilometers" class="text-danger"></span>
+        <label asp-for="GeneralListing.Vehicle.ManufacturingYear" class="control-label"></label>
+        <input asp-for="GeneralListing.Vehicle.ManufacturingYear" class="form-control" />
+        <span asp-validation-for="GeneralListing.Vehicle.ManufacturingYear" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="Listing.Vehicle.ManufacturingYear" class="control-label"></label>
-        <input asp-for="Listing.Vehicle.ManufacturingYear" class="form-control" />
-        <span asp-validation-for="Listing.Vehicle.ManufacturingYear" class="text-danger"></span>
+        <label asp-for="GeneralListing.Vehicle.RegistrationUntil" class="control-label"></label>
+        <input asp-for="GeneralListing.Vehicle.RegistrationUntil" class="form-control" />
+        <span asp-validation-for="GeneralListing.Vehicle.RegistrationUntil" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="Listing.Vehicle.RegistrationUntil" class="control-label"></label>
-        <input asp-for="Listing.Vehicle.RegistrationUntil" type="date" class="form-control" />
-        <span asp-validation-for="Listing.Vehicle.RegistrationUntil" class="text-danger"></span>
+        <label asp-for="GeneralListing.Vehicle.Kilometers" class="control-label"></label>
+        <input asp-for="GeneralListing.Vehicle.Kilometers" class="form-control" />
+        <span asp-validation-for="GeneralListing.Vehicle.Kilometers" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="Listing.Vehicle.NumberOfPreviousOwners" class="control-label"></label>
-        <input asp-for="Listing.Vehicle.NumberOfPreviousOwners" class="form-control" />
-        <span asp-validation-for="Listing.Vehicle.NumberOfPreviousOwners" class="text-danger"></span>
+        <label asp-for="GeneralListing.Vehicle.NumberOfPreviousOwners" class="control-label"></label>
+        <input asp-for="GeneralListing.Vehicle.NumberOfPreviousOwners" class="form-control" />
+        <span asp-validation-for="GeneralListing.Vehicle.NumberOfPreviousOwners" class="text-danger"></span>
     </div>
+    <div class="form-group">
+        <label asp-for="GeneralListing.Vehicle.ShifterType" class="control-label"></label>
+        <select asp-for="GeneralListing.Vehicle.ShifterType" class="form-control" asp-items="Html.GetEnumSelectList<VehicleFinder.Enums.ShifterType>()"></select>
+        <span asp-validation-for="GeneralListing.Vehicle.ShifterType" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="GeneralListing.Vehicle.GearCount" class="control-label"></label>
+        <input asp-for="GeneralListing.Vehicle.GearCount" class="form-control" />
+        <span asp-validation-for="GeneralListing.Vehicle.GearCount" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="GeneralListing.Vehicle.AverageConsumption" class="control-label"></label>
+        <input asp-for="GeneralListing.Vehicle.AverageConsumption" class="form-control" />
+        <span asp-validation-for="GeneralListing.Vehicle.AverageConsumption" class="text-danger"></span>
+    </div>
+
+    <!-- Engine Information -->
+    <h2>Engine Information</h2>
+    <div class="form-group">
+        <label asp-for="GeneralListing.Engine.Name" class="control-label"></label>
+        <input asp-for="GeneralListing.Engine.Name" class="form-control" />
+        <span asp-validation-for="GeneralListing.Engine.Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="GeneralListing.Engine.FuelType" class="control-label"></label>
+        <select asp-for="GeneralListing.Engine.FuelType" class="form-control" asp-items="Html.GetEnumSelectList<VehicleFinder.Enums.FuelType>()"></select>
+        <span asp-validation-for="GeneralListing.Engine.FuelType" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="GeneralListing.Engine.Horsepower" class="control-label"></label>
+        <input asp-for="GeneralListing.Engine.Horsepower" class="form-control" />
+        <span asp-validation-for="GeneralListing.Engine.Horsepower" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="GeneralListing.Engine.DrivetrainType" class="control-label"></label>
+        <select asp-for="GeneralListing.Engine.DrivetrainType" class="form-control" asp-items="Html.GetEnumSelectList<VehicleFinder.Enums.DrivetrainType>()"></select>
+        <span asp-validation-for="GeneralListing.Engine.DrivetrainType" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="GeneralListing.Engine.EngineCapacity" class="control-label"></label>
+        <input asp-for="GeneralListing.Engine.EngineCapacity" class="form-control" />
+        <span asp-validation-for="GeneralListing.Engine.EngineCapacity" class="text-danger"></span>
+    </div>
+
+    <!-- Body Information -->
+    <h2>Body Information</h2>
+    <div class="form-group">
+        <label asp-for="GeneralListing.Body.DoorCount" class="control-label"></label>
+        <input asp-for="GeneralListing.Body.DoorCount" class="form-control" />
+        <span asp-validation-for="GeneralListing.Body.DoorCount" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="GeneralListing.Body.SeatCount" class="control-label"></label>
+        <input asp-for="GeneralListing.Body.SeatCount" class="form-control" />
+        <span asp-validation-for="GeneralListing.Body.SeatCount" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="GeneralListing.Body.ACType" class="control-label"></label>
+        <select asp-for="GeneralListing.Body.ACType" class="form-control" asp-items="Html.GetEnumSelectList<VehicleFinder.Enums.ACType>()"></select>
+        <span asp-validation-for="GeneralListing.Body.ACType" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="GeneralListing.Body.Color" class="control-label"></label>
+        <input asp-for="GeneralListing.Body.Color" class="form-control" />
+        <span asp-validation-for="GeneralListing.Body.Color" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="GeneralListing.Body.BodyShape" class="control-label"></label>
+        <select asp-for="GeneralListing.Body.BodyShape" class="form-control" asp-items="Html.GetEnumSelectList<VehicleFinder.Enums.BodyShape>()"></select>
+        <span asp-validation-for="GeneralListing.Body.BodyShape" class="text-danger"></span>
+    </div>
+
     <button type="submit" class="btn btn-primary">Create</button>
 </form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
