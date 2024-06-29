@@ -42,6 +42,8 @@ namespace VehicleFinder.Services.Implementation
                 NumberOfPreviousOwners = model.NumberOfPreviousOwners,
                 EngineId = model.EngineId,
                 BodyId = model.BodyId,
+                GearCount = model.GearCount,
+                AverageConsumption = model.AverageConsumption,
             };
 
             return await _vehicleRepository.CreateVehicleAsync(vehicle);
