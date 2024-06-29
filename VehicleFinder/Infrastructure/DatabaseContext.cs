@@ -16,13 +16,7 @@ namespace VehicleFinder.Infrastructure
         {
             base.OnModelCreating(modelBuilder);
 
-            var userRole = new IdentityRole("USER");
-            userRole.NormalizedName = "USER";
-
-            var adminRole = new IdentityRole("ADMIN");
-            adminRole.NormalizedName = "ADMIN";
-
-            modelBuilder.Entity<IdentityRole>().HasData(userRole, adminRole);
+            ConfigureRoles(modelBuilder);
 
             modelBuilder.UseSerialColumns();
 
@@ -49,5 +43,17 @@ namespace VehicleFinder.Infrastructure
         public DbSet<Vehicle> Vehicles { get; set; }
         public DbSet<Engine> Engines { get; set; }
         public DbSet<Body> Bodies { get; set; }
+
+        private void ConfigureRoles(ModelBuilder modelBuilder)
+        {
+            var userRole = new IdentityRole("USER");
+            userRole.NormalizedName = "USER";
+
+            var adminRole = new IdentityRole("ADMIN");
+            adminRole.NormalizedName = "ADMIN";
+
+            modelBuilder.Entity<IdentityRole>().HasData(userRole, adminRole);
+        }
     }
+
 }

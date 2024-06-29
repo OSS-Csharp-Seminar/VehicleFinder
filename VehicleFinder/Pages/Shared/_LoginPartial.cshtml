@@ -7,17 +7,38 @@
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
 {
-     <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle text-dark" href="#" role="button" data-bs-toggle="dropdown">User</a>
-        
-        <ul class="dropdown-menu">
-            <li><a class="dropdown-item" asp-area="Identity" asp-page="/Listing/CreateListing">Create listing</a></li>
-            <li><a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index">Profile</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" asp-area="Identity" asp-page="/Account/Logout">Logout</a></li>
-        </ul>
+        if (User.IsInRole("ADMIN"))
+        {
+            <li class="nav-item dropdown">
 
-    </li>
+                <a class="nav-link dropdown-toggle text-dark" href="#" role="button" data-bs-toggle="dropdown">
+                    Admin
+                </a>
+        
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" asp-area="Identity" asp-page="/Listing/CreateListing">Create listing</a></li>
+                    <li><a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index">Profile</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" asp-area="Identity" asp-page="/Account/Logout">Logout</a></li>
+                </ul>
+            </li>
+        }
+        if (User.IsInRole("USER"))
+        {
+            <li class="nav-item dropdown">
+
+                <a class="nav-link dropdown-toggle text-dark" href="#" role="button" data-bs-toggle="dropdown">
+                    User
+                </a>
+
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" asp-area="Identity" asp-page="/Listing/CreateListing">Create listing</a></li>
+                    <li><a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index">Profile</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" asp-area="Identity" asp-page="/Account/Logout">Logout</a></li>
+                </ul>
+            </li>
+        }
 }
 else
 {
