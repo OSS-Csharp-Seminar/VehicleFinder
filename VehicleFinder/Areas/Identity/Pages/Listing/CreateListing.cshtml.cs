@@ -54,6 +54,7 @@ namespace VehicleFinder.Pages
 
             GeneralListing.Listing.UserId = user.Id;
             GeneralListing.Listing.CreationDate = DateTime.UtcNow;
+            GeneralListing.Listing.IsSold = false;
 
             ModelState.ClearValidationState(nameof(GeneralListing));
             TryValidateModel(GeneralListing, nameof(GeneralListing));
@@ -139,9 +140,9 @@ namespace VehicleFinder.Pages
             GeneralListing.Vehicle.AverageConsumption = 1000;
 
             GeneralListing.Engine.Name = "Random Engine " + random.Next(1, 1000);
-            GeneralListing.Engine.FuelType = (FuelType)random.Next(Enum.GetValues(typeof(FuelType)).Length);
+            GeneralListing.Engine.FuelType = "Gasoline";
             GeneralListing.Engine.Horsepower = random.Next(100, 500);
-            GeneralListing.Engine.DrivetrainType = (DrivetrainType)random.Next(Enum.GetValues(typeof(DrivetrainType)).Length);
+            GeneralListing.Engine.DrivetrainType = DrivetrainType.RWD;
             GeneralListing.Engine.EngineCapacity = 1000;
 
             GeneralListing.Body.DoorCount = random.Next(2, 5);

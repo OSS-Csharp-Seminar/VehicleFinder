@@ -19,6 +19,7 @@ namespace VehicleFinder.Services.Implementation
             {
                 DoorCount = model.DoorCount,
                 SeatCount = model.SeatCount,
+                DrivetrainType = model.DrivetrainType,
                 ACType = model.ACType,
                 Color = model.Color,
                 BodyShape = model.BodyShape

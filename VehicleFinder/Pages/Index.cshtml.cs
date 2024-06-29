@@ -1,8 +1,11 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using VehicleFinder.DTOs;
 using VehicleFinder.DTOs.ListingDTO;
 using VehicleFinder.Entities;
+using VehicleFinder.Enums;
 using VehicleFinder.Services;
 
 namespace VehicleFinder.Pages
@@ -23,32 +26,88 @@ namespace VehicleFinder.Pages
         [BindProperty(SupportsGet = true)]
         public string Title { get; set; }
         [BindProperty(SupportsGet = true)]
+        public string Brand { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public string Model { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public int? YearMin { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public int? YearMax { get; set; }
+        [BindProperty(SupportsGet = true)]
         public float? PriceMin { get; set; }
         [BindProperty(SupportsGet = true)]
         public float? PriceMax { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public bool? IsSold { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public string? FuelType { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public int? HorsepowerMin { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public int? HorsepowerMax { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public int? DoorCount { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public int? SeatCount { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public BodyShape? BodyShape { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public ACType? ACType { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public DrivetrainType? DrivetrainType { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public ShifterType? ShifterType { get; set; }
 
-        public List<GetListingDTO> Listings { get; set; }
+        public IEnumerable<GetListingDTO> Listings { get; set; }
         public string CurrentUserId { get; set; }
+
+        public List<SelectListItem> FuelTypeOptions { get; set; }
+        public List<SelectListItem> BodyShapeOptions { get; set; }
+        public List<SelectListItem> ACTypeOptions { get; set; }
+        public List<SelectListItem> DrivetrainTypeOptions { get; set; }
+        public List<SelectListItem> ShifterTypeOptions { get; set; }
 
         public async Task OnGetAsync()
         {
-            Listings = (List<GetListingDTO>)await _listingService.GetListingsAsync();
-            CurrentUserId = _userManager.GetUserId(User);
-
-            if (!string.IsNullOrEmpty(Title))
+            var filter = new ListingFilterDTO
             {
-                Listings = Listings.FindAll(l => l.Title.Contains(Title));
-            }
+                Title = Title,
+                Brand = Brand,
+                Model = Model,
+                YearMin = YearMin,
+                YearMax = YearMax,
+                PriceMin = PriceMin,
+                PriceMax = PriceMax,
+                IsSold = IsSold,
+                FuelType = FuelType,
+                HorsepowerMin = HorsepowerMin,
+                HorsepowerMax = HorsepowerMax,
+                DoorCount = DoorCount,
+                SeatCount = SeatCount,
+                BodyShape = BodyShape,
+                ACType = ACType,
+                DrivetrainType = DrivetrainType,
+                ShifterType = ShifterType
+            };
 
-            if (PriceMin.HasValue)
-            {
-                Listings = Listings.FindAll(l => l.Price >= PriceMin.Value);
-            }
+            Listings = await _listingService.GetListingsByFilterAsync(filter);
 
-            if (PriceMax.HasValue)
+            //FuelTypeOptions = GetEnumSelectList<FuelType>(FuelType);
+            BodyShapeOptions = GetEnumSelectList<BodyShape>(BodyShape);
+            ACTypeOptions = GetEnumSelectList<ACType>(ACType);
+            DrivetrainTypeOptions = GetEnumSelectList<DrivetrainType>(DrivetrainType);
+            ShifterTypeOptions = GetEnumSelectList<ShifterType>(ShifterType);
+        }
+
+        private List<SelectListItem> GetEnumSelectList<TEnum>(TEnum? selectedValue) where TEnum : struct
+        {
+            var enumValues = Enum.GetValues(typeof(TEnum)).Cast<TEnum>();
+            return enumValues.Select(e => new SelectListItem
             {
-                Listings = Listings.FindAll(l => l.Price <= PriceMax.Value);
-            }
+                Value = e.ToString(),
+                Text = e.ToString(),
+                Selected = selectedValue.HasValue && selectedValue.Value.Equals(e)
+            }).ToList();
         }
     }
 }
