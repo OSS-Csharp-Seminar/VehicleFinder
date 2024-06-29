@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using VehicleFinder.Infrastructure;
@@ -11,9 +12,11 @@ using VehicleFinder.Infrastructure;
 namespace VehicleFinder.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20240629100140_latest6")]
+    partial class latest6
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,13 +53,13 @@ namespace VehicleFinder.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "2967d04f-1a83-4482-94f9-1cbbfc49e7c2",
+                            Id = "e3a10132-77d8-457e-92c7-cf763b0c0488",
                             Name = "USER",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "c91d8f39-bfe4-4052-b59b-c0af168294d9",
+                            Id = "3914d22c-c0fa-4432-be16-f875930faec9",
                             Name = "ADMIN",
                             NormalizedName = "ADMIN"
                         });
@@ -149,18 +152,6 @@ namespace VehicleFinder.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            UserId = "f81acd5a-16a4-4b25-9c69-5cbe7a32893c",
-                            RoleId = "2967d04f-1a83-4482-94f9-1cbbfc49e7c2"
-                        },
-                        new
-                        {
-                            UserId = "23b88651-cdae-45a1-8ea9-bca9d86a7d0f",
-                            RoleId = "c91d8f39-bfe4-4052-b59b-c0af168294d9"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -360,9 +351,9 @@ namespace VehicleFinder.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "f81acd5a-16a4-4b25-9c69-5cbe7a32893c",
+                            Id = "cb6bcc23-5c1a-46e2-a554-8d5df2407f78",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "efdfbf9a-fc6c-4f9e-aed0-71d0d2ad9b69",
+                            ConcurrencyStamp = "b5a7a906-e2ac-49c4-a0b6-353e0ce44fca",
                             Email = "user@user",
                             EmailConfirmed = false,
                             FirstName = "user",
@@ -370,18 +361,18 @@ namespace VehicleFinder.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "USER@USER",
                             NormalizedUserName = "USER@USER",
-                            PasswordHash = "AQAAAAIAAYagAAAAEEAvcmDfDjPuLT4GmVG8g0+MhhxzPzIHSrs1q8DBceiTnyhYKK8VAW1LdkK2bwzOkg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEOHA5KHuRFbVIwNcmiwM4q567Zsj/EGr2yzccSAx/Es/U6befHj76Z6dZxyVZcYChA==",
                             PhoneNumber = "1234567890",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "f798c986-6872-4238-a099-85c20e61924e",
+                            SecurityStamp = "5d28430c-e2b9-4382-b941-0de4a88660fd",
                             TwoFactorEnabled = false,
                             UserName = "user@user"
                         },
                         new
                         {
-                            Id = "23b88651-cdae-45a1-8ea9-bca9d86a7d0f",
+                            Id = "678c2b9c-5148-499b-9155-3a41061e2058",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "46f9c2b2-f2fc-404a-a8b8-579500297bcf",
+                            ConcurrencyStamp = "812c3983-7c35-4ffe-9474-654951444a5d",
                             Email = "admin@eadmin",
                             EmailConfirmed = false,
                             FirstName = "admin",
@@ -389,10 +380,10 @@ namespace VehicleFinder.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@ADMIN",
                             NormalizedUserName = "ADMIN@ADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAEEA86KRQbB+I4M3mvhRKdJzgSns3kwolUwrNtegsdAu9ojDJRrLW+LRccMH6z4vSLg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEBM13ZScixh+Wu5DMxAbx2QBZvQWrCqFyhajWAa1Isjm5A4sXOUCF6gR+4tQyMQ+YA==",
                             PhoneNumber = "1234567890",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "d139620d-d079-420a-9aee-9408d7a0285d",
+                            SecurityStamp = "9623dfb1-1703-4c55-a3e1-28b56d1ddacc",
                             TwoFactorEnabled = false,
                             UserName = "admin@eadmin"
                         });

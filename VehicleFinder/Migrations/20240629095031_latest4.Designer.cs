@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using VehicleFinder.Infrastructure;
@@ -11,9 +12,11 @@ using VehicleFinder.Infrastructure;
 namespace VehicleFinder.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20240629095031_latest4")]
+    partial class latest4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,13 +53,13 @@ namespace VehicleFinder.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "2967d04f-1a83-4482-94f9-1cbbfc49e7c2",
+                            Id = "f19649d9-88a2-4c70-b61e-c60cce7b6166",
                             Name = "USER",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "c91d8f39-bfe4-4052-b59b-c0af168294d9",
+                            Id = "7ec1bda5-19e9-4e1c-8e31-bdc93371099c",
                             Name = "ADMIN",
                             NormalizedName = "ADMIN"
                         });
@@ -149,18 +152,6 @@ namespace VehicleFinder.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            UserId = "f81acd5a-16a4-4b25-9c69-5cbe7a32893c",
-                            RoleId = "2967d04f-1a83-4482-94f9-1cbbfc49e7c2"
-                        },
-                        new
-                        {
-                            UserId = "23b88651-cdae-45a1-8ea9-bca9d86a7d0f",
-                            RoleId = "c91d8f39-bfe4-4052-b59b-c0af168294d9"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -356,46 +347,6 @@ namespace VehicleFinder.Migrations
                         .HasDatabaseName("UserNameIndex");
 
                     b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "f81acd5a-16a4-4b25-9c69-5cbe7a32893c",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "efdfbf9a-fc6c-4f9e-aed0-71d0d2ad9b69",
-                            Email = "user@user",
-                            EmailConfirmed = false,
-                            FirstName = "user",
-                            LastName = "user",
-                            LockoutEnabled = false,
-                            NormalizedEmail = "USER@USER",
-                            NormalizedUserName = "USER@USER",
-                            PasswordHash = "AQAAAAIAAYagAAAAEEAvcmDfDjPuLT4GmVG8g0+MhhxzPzIHSrs1q8DBceiTnyhYKK8VAW1LdkK2bwzOkg==",
-                            PhoneNumber = "1234567890",
-                            PhoneNumberConfirmed = true,
-                            SecurityStamp = "f798c986-6872-4238-a099-85c20e61924e",
-                            TwoFactorEnabled = false,
-                            UserName = "user@user"
-                        },
-                        new
-                        {
-                            Id = "23b88651-cdae-45a1-8ea9-bca9d86a7d0f",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "46f9c2b2-f2fc-404a-a8b8-579500297bcf",
-                            Email = "admin@eadmin",
-                            EmailConfirmed = false,
-                            FirstName = "admin",
-                            LastName = "admin",
-                            LockoutEnabled = false,
-                            NormalizedEmail = "ADMIN@ADMIN",
-                            NormalizedUserName = "ADMIN@ADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAEEA86KRQbB+I4M3mvhRKdJzgSns3kwolUwrNtegsdAu9ojDJRrLW+LRccMH6z4vSLg==",
-                            PhoneNumber = "1234567890",
-                            PhoneNumberConfirmed = true,
-                            SecurityStamp = "d139620d-d079-420a-9aee-9408d7a0285d",
-                            TwoFactorEnabled = false,
-                            UserName = "admin@eadmin"
-                        });
                 });
 
             modelBuilder.Entity("VehicleFinder.Entities.Vehicle", b =>

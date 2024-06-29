@@ -129,7 +129,7 @@ namespace VehicleFinder.Areas.Identity.Pages.Account
                 var user = new User()
                 {
                     FirstName = Input.FirstName,
-                    LasttName = Input.LastName,
+                    LastName = Input.LastName,
                     UserName = Input.Email,
                     Email = Input.Email,
                     PhoneNumber = Input.PhoneNumber
@@ -142,6 +142,9 @@ namespace VehicleFinder.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
+
+                    await _userManager.AddToRoleAsync(user, "USER");
+
 
                     var userId = await _userManager.GetUserIdAsync(user);
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
