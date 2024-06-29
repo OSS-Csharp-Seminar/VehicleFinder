@@ -65,9 +65,9 @@ namespace VehicleFinder.Pages
                     ManufacturingYear = DateTime.Now.Year,
                     RegistrationUntil = DateOnly.FromDateTime(DateTime.Now.AddYears(1)),
                     Kilometers = new Random().Next(0, 100000),
-                    NumberOfPreviousOwners = new Random().Next(0, 5),
+                    NumberOfPreviousOwners = new Random().Next(1, 5),
                     ShifterType = VehicleFinder.Enums.ShifterType.Automatic,
-                    GearCount = new Random().Next(0, 5),
+                    GearCount = new Random().Next(1, 5),
                     AverageConsumption = new Random().Next(3, 20),
                 },
                 Engine = new CreateEngineDTO

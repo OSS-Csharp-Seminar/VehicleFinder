@@ -8,6 +8,8 @@ using VehicleFinder.Infrastructure.Repositories.Implementation;
 using VehicleFinder.Services.Interface;
 using VehicleFinder.Services.Implementation;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Hosting;
+using VehicleFinder.Mappers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,6 +33,8 @@ builder.Services.AddScoped<IEngineService, EngineService>();
 
 builder.Services.AddScoped<IBodyRepository, BodyRepository>();
 builder.Services.AddScoped<IBodyService, BodyService>();
+
+builder.Services.AddAutoMapper(typeof(MappingProfile));
 
 var app = builder.Build();
 

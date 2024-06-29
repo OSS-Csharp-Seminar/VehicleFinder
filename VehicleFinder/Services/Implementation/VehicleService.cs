@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using AutoMapper;
+using System.Threading.Tasks;
 using VehicleFinder.DTOs.VehicleDTO;
 using VehicleFinder.Entities;
 using VehicleFinder.Infrastructure.Repositories.Interfaces;
@@ -10,9 +11,12 @@ namespace VehicleFinder.Services.Implementation
     {
         private readonly IVehicleRepository _vehicleRepository;
 
-        public VehicleService(IVehicleRepository vehicleRepository)
+        private readonly IMapper _mapper;
+
+        public VehicleService(IMapper mapper, IVehicleRepository vehicleRepository)
         {
             _vehicleRepository = vehicleRepository;
+            _mapper = mapper;
         }
 
         public async Task<IEnumerable<GetVehicleDTO>> GetAllVehiclesAsync()
@@ -32,19 +36,7 @@ namespace VehicleFinder.Services.Implementation
         }
         public async Task<Vehicle> CreateVehicleAsync(CreateVehicleDTO model)
         {
-            var vehicle = new Vehicle
-            {
-                Brand = model.Brand,
-                Model = model.Model,
-                ManufacturingYear = model.ManufacturingYear,
-                RegistrationUntil = model.RegistrationUntil,
-                Kilometers = model.Kilometers,
-                NumberOfPreviousOwners = model.NumberOfPreviousOwners,
-                EngineId = model.EngineId,
-                BodyId = model.BodyId,
-                GearCount = model.GearCount,
-                AverageConsumption = model.AverageConsumption,
-            };
+            var vehicle = _mapper.Map<Vehicle>(model);
 
             return await _vehicleRepository.CreateVehicleAsync(vehicle);
         }
