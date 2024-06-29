@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using VehicleFinder.Infrastructure;
@@ -11,9 +12,11 @@ using VehicleFinder.Infrastructure;
 namespace VehicleFinder.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20240629103834_latest8")]
+    partial class latest8
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,13 +53,13 @@ namespace VehicleFinder.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "307bb627-e0cb-4b5d-93fe-663c537ce6d9",
+                            Id = "7b144ad7-941d-43ea-8b97-2c0f9519a29d",
                             Name = "USER",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "f7a43b03-c5ea-4798-9db8-6708139bb83b",
+                            Id = "4b39d665-dffd-4fe7-aae4-c9ebdac0f2a6",
                             Name = "ADMIN",
                             NormalizedName = "ADMIN"
                         });
@@ -153,13 +156,13 @@ namespace VehicleFinder.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "2dccf688-3288-411b-b7ec-80482c75b388",
-                            RoleId = "307bb627-e0cb-4b5d-93fe-663c537ce6d9"
+                            UserId = "e400a1ac-f0ed-4b71-922a-3bd9c7cb58d8",
+                            RoleId = "7b144ad7-941d-43ea-8b97-2c0f9519a29d"
                         },
                         new
                         {
-                            UserId = "e5ef9e99-a7d5-4648-9bbd-9089fabf91ed",
-                            RoleId = "f7a43b03-c5ea-4798-9db8-6708139bb83b"
+                            UserId = "68eff8a9-9adb-4f82-b7b2-7d134ae5417d",
+                            RoleId = "4b39d665-dffd-4fe7-aae4-c9ebdac0f2a6"
                         });
                 });
 
@@ -229,10 +232,6 @@ namespace VehicleFinder.Migrations
 
                     b.Property<int>("FuelType")
                         .HasColumnType("integer");
-
-                    b.Property<string>("FuelTypeString")
-                        .IsRequired()
-                        .HasColumnType("text");
 
                     b.Property<int>("Horsepower")
                         .HasColumnType("integer");
@@ -364,9 +363,9 @@ namespace VehicleFinder.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "2dccf688-3288-411b-b7ec-80482c75b388",
+                            Id = "e400a1ac-f0ed-4b71-922a-3bd9c7cb58d8",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ca155eef-bc3b-4362-b82b-e140a4e552d3",
+                            ConcurrencyStamp = "c136702c-4ed3-44a0-bd55-a37408fbdfd8",
                             Email = "user@user",
                             EmailConfirmed = false,
                             FirstName = "user",
@@ -374,18 +373,18 @@ namespace VehicleFinder.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "USER@USER",
                             NormalizedUserName = "USER@USER",
-                            PasswordHash = "AQAAAAIAAYagAAAAEMxELlIu99OZKFjP0+mOzosBnrPkTjDxM0OMJayEXvCWHDDVS7moxnF7nM0bXbpdpQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEB64e/CTCZluDWTiJxhHH2WW+Xdvb9Ih7cCm4yBg/puNBCba0mx9ywatWaxF91LA4g==",
                             PhoneNumber = "1234567890",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "7ab977cb-b3b1-4286-b5be-1cdcdcd6281a",
+                            SecurityStamp = "d3820d03-0c9e-4501-bfef-f27c047c2098",
                             TwoFactorEnabled = false,
                             UserName = "user@user"
                         },
                         new
                         {
-                            Id = "e5ef9e99-a7d5-4648-9bbd-9089fabf91ed",
+                            Id = "68eff8a9-9adb-4f82-b7b2-7d134ae5417d",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "f229d5e9-0c68-4fc0-b610-064da42fa495",
+                            ConcurrencyStamp = "dd897a3d-47a7-41cf-a790-7cd7144efb7d",
                             Email = "admin@eadmin",
                             EmailConfirmed = false,
                             FirstName = "admin",
@@ -393,10 +392,10 @@ namespace VehicleFinder.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@ADMIN",
                             NormalizedUserName = "ADMIN@ADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAEAxr6BvogHm5r6Es6QSW3auCSdQ5BQV4/3ZX9XHCbrZ6LmlYbopyo/e2mdxRPiAu5A==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEO4mqvp2iMARnY6+N/Zqosz4zg6Jvqa3O8msXehMVvn5RwcnCqB/aJOZaorgNn1i1w==",
                             PhoneNumber = "1234567890",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "aa91944d-874f-4d7d-8cdc-0fc8aefcfa40",
+                            SecurityStamp = "c2af0a25-747a-4b5e-9c0e-b472cd6d4348",
                             TwoFactorEnabled = false,
                             UserName = "admin@eadmin"
                         });
