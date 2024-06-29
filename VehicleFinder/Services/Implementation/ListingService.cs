@@ -1,4 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using VehicleFinder.DTOs;
+using VehicleFinder.DTOs.BodyDTO;
+using VehicleFinder.DTOs.EngineDTO;
 using VehicleFinder.DTOs.ListingDTO;
 using VehicleFinder.DTOs.VehicleDTO;
 using VehicleFinder.Entities;
@@ -42,8 +45,51 @@ namespace VehicleFinder.Services
                 Vehicle = vehicleDict[listing.VehicleId]
             }).ToList();
         }
+        public async Task<IEnumerable<GetListingDTO>> GetListingsByFilterAsync(ListingFilterDTO filter)
+        {
+            var listings = await _listingRepository.GetListingsByFilterAsync(filter);
 
-        public async Task<GetListingDTO> GetListingByIdAsync(int id)
+            return listings.Select(l => new GetListingDTO
+            {
+                Id = l.Id,
+                Title = l.Title,
+                Description = l.Description,
+                Price = l.Price,
+                IsSold = l.IsSold,
+                UserId = l.UserId,
+                CreationDate = l.CreationDate,
+                Vehicle = new GetVehicleDTO
+                {
+                    Id = l.Vehicle.Id,
+                    Brand = l.Vehicle.Brand,
+                    Model = l.Vehicle.Model,
+                    ManufacturingYear = l.Vehicle.ManufacturingYear,
+                    Kilometers = l.Vehicle.Kilometers,
+                    RegistrationUntil = l.Vehicle.RegistrationUntil,
+                    NumberOfPreviousOwners = l.Vehicle.NumberOfPreviousOwners,
+                    Engine = new GetEngineDTO
+                    {
+                        Id = l.Vehicle.Engine.Id,
+                        Name = l.Vehicle.Engine.Name,
+                        FuelType = l.Vehicle.Engine.FuelType,
+                        Horsepower = l.Vehicle.Engine.Horsepower,
+                        EngineCapacity = l.Vehicle.Engine.EngineCapacity
+                    },
+                    Body = new GetBodyDTO
+                    {
+                        Id = l.Vehicle.Body.Id,
+                        DoorCount = l.Vehicle.Body.DoorCount,
+                        SeatCount = l.Vehicle.Body.SeatCount,
+                        ACType = l.Vehicle.Body.ACType,
+                        Color = l.Vehicle.Body.Color,
+                        DrivetrainType = l.Vehicle.Body.DrivetrainType,
+                        BodyShape = l.Vehicle.Body.BodyShape
+                    }
+                }
+            }).ToList();
+        }
+
+    public async Task<GetListingDTO> GetListingByIdAsync(int id)
         {
             var listing = await _listingRepository.GetListingByIdAsync(id);
 
@@ -61,7 +107,7 @@ namespace VehicleFinder.Services
                 Price = listing.Price,
                 UserId = listing.UserId,
                 IsSold = listing.IsSold,
-                Vehicle = new GetEngineDTO
+                Vehicle = new GetVehicleDTO
                 {
                     Id = listing.Vehicle.Id,
                     Brand = listing.Vehicle.Brand,
@@ -137,5 +183,7 @@ namespace VehicleFinder.Services
 
             return true;
         }
+
+
     }
 }

@@ -36,11 +36,6 @@
         <input asp-for="GeneralListing.Listing.Price" class="form-control" />
         <span asp-validation-for="GeneralListing.Listing.Price" class="text-danger"></span>
     </div>
-    <div class="form-group">
-        <label asp-for="GeneralListing.Listing.IsSold" class="control-label"></label>
-        <input asp-for="GeneralListing.Listing.IsSold" class="form-control" />
-        <span asp-validation-for="GeneralListing.Listing.IsSold" class="text-danger"></span>
-    </div>
 
     <!-- Vehicle Information -->
     <h2>Vehicle Information</h2>
@@ -108,11 +103,6 @@
         <span asp-validation-for="GeneralListing.Engine.Horsepower" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label asp-for="GeneralListing.Engine.DrivetrainType" class="control-label"></label>
-        <select asp-for="GeneralListing.Engine.DrivetrainType" class="form-control" asp-items="Html.GetEnumSelectList<VehicleFinder.Enums.DrivetrainType>()"></select>
-        <span asp-validation-for="GeneralListing.Engine.DrivetrainType" class="text-danger"></span>
-    </div>
-    <div class="form-group">
         <label asp-for="GeneralListing.Engine.EngineCapacity" class="control-label"></label>
         <input asp-for="GeneralListing.Engine.EngineCapacity" class="form-control" />
         <span asp-validation-for="GeneralListing.Engine.EngineCapacity" class="text-danger"></span>
@@ -139,6 +129,11 @@
         <label asp-for="GeneralListing.Body.Color" class="control-label"></label>
         <input asp-for="GeneralListing.Body.Color" class="form-control" />
         <span asp-validation-for="GeneralListing.Body.Color" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="GeneralListing.Body.DrivetrainType" class="control-label"></label>
+        <select asp-for="GeneralListing.Body.DrivetrainType" class="form-control" asp-items="Html.GetEnumSelectList<VehicleFinder.Enums.DrivetrainType>()"></select>
+        <span asp-validation-for="GeneralListing.Body.DrivetrainType" class="text-danger"></span>
     </div>
     <div class="form-group">
         <label asp-for="GeneralListing.Body.BodyShape" class="control-label"></label>
