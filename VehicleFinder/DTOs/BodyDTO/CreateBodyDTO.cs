@@ -22,5 +22,8 @@ namespace VehicleFinder.DTOs.BodyDTO
 
         [Required]
         public BodyShape BodyShape { get; set; }
+
+        [Required]
+        public DrivetrainType DrivetrainType { get; set; }
     }
 }

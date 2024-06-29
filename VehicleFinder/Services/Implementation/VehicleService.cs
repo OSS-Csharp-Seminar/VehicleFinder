@@ -15,11 +15,11 @@ namespace VehicleFinder.Services.Implementation
             _vehicleRepository = vehicleRepository;
         }
 
-        public async Task<IEnumerable<GetEngineDTO>> GetAllVehiclesAsync()
+        public async Task<IEnumerable<GetVehicleDTO>> GetAllVehiclesAsync()
         {
             var vehicles = await _vehicleRepository.GetAllVehiclesAsync();
 
-            return vehicles.Select(vehicle => new GetEngineDTO
+            return vehicles.Select(vehicle => new GetVehicleDTO
             {
                 Id = vehicle.Id,
                 Brand = vehicle.Brand,
@@ -48,7 +48,7 @@ namespace VehicleFinder.Services.Implementation
         }
 
 
-        public async Task<GetEngineDTO> GetVehicleByIdAsync(int vehicleId)
+        public async Task<GetVehicleDTO> GetVehicleByIdAsync(int vehicleId)
         {
             var vehicle = await _vehicleRepository.GetVehicleByIdAsync(vehicleId);
             if (vehicle == null)
@@ -56,7 +56,7 @@ namespace VehicleFinder.Services.Implementation
                 return null;
             }
 
-            return new GetEngineDTO
+            return new GetVehicleDTO
             {
                 Id = vehicle.Id,
                 Brand = vehicle.Brand,
