@@ -114,6 +114,14 @@ namespace VehicleFinder.Infrastructure
                 }
             );
         }
+
+        public void ExecuteSqlScript(string sqlScriptFilePath)
+        {
+            string sqlScript = File.ReadAllText(sqlScriptFilePath);
+
+            Database.ExecuteSqlRaw(sqlScript);
+        }
+
     }
 
 }

@@ -19,7 +19,6 @@ namespace VehicleFinder.Services.Implementation
             var engine = new Engine
             {
                 Name = model.Name,
-                DrivetrainType = model.DrivetrainType,
                 EngineCapacity = model.EngineCapacity,
                 FuelType = model.FuelType,
                 Horsepower = model.Horsepower 
