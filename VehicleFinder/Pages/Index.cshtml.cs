@@ -40,7 +40,7 @@ namespace VehicleFinder.Pages
         [BindProperty(SupportsGet = true)]
         public bool? IsSold { get; set; }
         [BindProperty(SupportsGet = true)]
-        public string? FuelType { get; set; }
+        public FuelType? FuelType { get; set; }
         [BindProperty(SupportsGet = true)]
         public int? HorsepowerMin { get; set; }
         [BindProperty(SupportsGet = true)]
@@ -92,7 +92,7 @@ namespace VehicleFinder.Pages
 
             Listings = await _listingService.GetListingsByFilterAsync(filter);
 
-            //FuelTypeOptions = GetEnumSelectList<FuelType>(FuelType);
+            FuelTypeOptions = GetEnumSelectList<FuelType>(FuelType);
             BodyShapeOptions = GetEnumSelectList<BodyShape>(BodyShape);
             ACTypeOptions = GetEnumSelectList<ACType>(ACType);
             DrivetrainTypeOptions = GetEnumSelectList<DrivetrainType>(DrivetrainType);

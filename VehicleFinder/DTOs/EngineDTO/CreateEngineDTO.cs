@@ -11,7 +11,7 @@ namespace VehicleFinder.DTOs.EngineDTO
         public string Name { get; set; } = string.Empty;
 
         [Required]
-        public string FuelType { get; set; }
+        public FuelType FuelType { get; set; }
 
         [Required]
         [Range(1, 2000, ErrorMessage = "Horsepower must be between 1 and 2000.")]

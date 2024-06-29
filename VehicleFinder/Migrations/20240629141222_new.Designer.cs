@@ -12,8 +12,8 @@ using VehicleFinder.Infrastructure;
 namespace VehicleFinder.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20240629084438_latest3")]
-    partial class latest3
+    [Migration("20240629141222_new")]
+    partial class @new
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -53,13 +53,13 @@ namespace VehicleFinder.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "01b0a53a-4845-4d5a-9403-f9b759a580b0",
+                            Id = "d3008fcd-3f85-4e10-ba2a-46c3621e5c19",
                             Name = "USER",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "c9ff91fa-f4da-4a53-af40-1b3f802b9abd",
+                            Id = "ff33c9aa-d4b6-433f-8320-078da3e86ee5",
                             Name = "ADMIN",
                             NormalizedName = "ADMIN"
                         });
@@ -152,6 +152,18 @@ namespace VehicleFinder.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "b15d269e-e091-4baa-b63c-139b0a1bbc61",
+                            RoleId = "d3008fcd-3f85-4e10-ba2a-46c3621e5c19"
+                        },
+                        new
+                        {
+                            UserId = "8dff4125-94bf-46cd-8415-e0bf6e360eb2",
+                            RoleId = "ff33c9aa-d4b6-433f-8320-078da3e86ee5"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -183,11 +195,13 @@ namespace VehicleFinder.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseSerialColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("ACType")
-                        .HasColumnType("integer");
+                    b.Property<string>("ACType")
+                        .IsRequired()
+                        .HasColumnType("text");
 
-                    b.Property<int>("BodyShape")
-                        .HasColumnType("integer");
+                    b.Property<string>("BodyShape")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("Color")
                         .IsRequired()
@@ -195,6 +209,10 @@ namespace VehicleFinder.Migrations
 
                     b.Property<int>("DoorCount")
                         .HasColumnType("integer");
+
+                    b.Property<string>("DrivetrainType")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<int>("SeatCount")
                         .HasColumnType("integer");
@@ -212,14 +230,12 @@ namespace VehicleFinder.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseSerialColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("DrivetrainType")
-                        .HasColumnType("integer");
-
                     b.Property<int>("EngineCapacity")
                         .HasColumnType("integer");
 
-                    b.Property<int>("FuelType")
-                        .HasColumnType("integer");
+                    b.Property<string>("FuelType")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<int>("Horsepower")
                         .HasColumnType("integer");
@@ -347,6 +363,46 @@ namespace VehicleFinder.Migrations
                         .HasDatabaseName("UserNameIndex");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "b15d269e-e091-4baa-b63c-139b0a1bbc61",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "16a76f50-2700-472c-8ee9-fa6de443da97",
+                            Email = "user@user",
+                            EmailConfirmed = false,
+                            FirstName = "user",
+                            LastName = "user",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "USER@USER",
+                            NormalizedUserName = "USER@USER",
+                            PasswordHash = "AQAAAAIAAYagAAAAEMtP4UgnAZ7VunlsxAFk1K16Ya7CZwj8HplQsqNs+DkvzKGCTocjPfjgaKqK3Hc7Dw==",
+                            PhoneNumber = "1234567890",
+                            PhoneNumberConfirmed = true,
+                            SecurityStamp = "eeabca89-09d0-4fc3-ac86-8ff989699ea3",
+                            TwoFactorEnabled = false,
+                            UserName = "user@user"
+                        },
+                        new
+                        {
+                            Id = "8dff4125-94bf-46cd-8415-e0bf6e360eb2",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "139ba13c-7ba5-439c-ab21-8f12748de033",
+                            Email = "admin@eadmin",
+                            EmailConfirmed = false,
+                            FirstName = "admin",
+                            LastName = "admin",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ADMIN@ADMIN",
+                            NormalizedUserName = "ADMIN@ADMIN",
+                            PasswordHash = "AQAAAAIAAYagAAAAEINYmEy54Jfn9zJ4sp8R5RdRwAhq8epbIQ/cyxJ5p4r6y9VtP33TaUTWv3oQO0mbrw==",
+                            PhoneNumber = "1234567890",
+                            PhoneNumberConfirmed = true,
+                            SecurityStamp = "faef92fd-6179-4bf2-be8e-854da4144188",
+                            TwoFactorEnabled = false,
+                            UserName = "admin@eadmin"
+                        });
                 });
 
             modelBuilder.Entity("VehicleFinder.Entities.Vehicle", b =>
@@ -389,8 +445,9 @@ namespace VehicleFinder.Migrations
                     b.Property<DateOnly>("RegistrationUntil")
                         .HasColumnType("date");
 
-                    b.Property<int>("ShifterType")
-                        .HasColumnType("integer");
+                    b.Property<string>("ShifterType")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 

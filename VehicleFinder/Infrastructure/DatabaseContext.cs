@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using VehicleFinder.Entities;
+using VehicleFinder.Enums;
 
 
 namespace VehicleFinder.Infrastructure
@@ -35,9 +36,34 @@ namespace VehicleFinder.Infrastructure
             modelBuilder.Entity<Vehicle>().HasOne(b => b.Body).WithOne(v => v.Vehicle).HasForeignKey<Vehicle>(b => b.BodyId);
 
             modelBuilder.Entity<Vehicle>()
-                .HasOne(e => e.Engine)
-                .WithMany(v => v.Vehicles)
-                .HasForeignKey(v => v.EngineId);
+                .Property(v => v.ShifterType)
+                .HasConversion(
+                    v => v.ToString(),
+                    v => (ShifterType)Enum.Parse(typeof(ShifterType), v));
+
+            modelBuilder.Entity<Body>()
+                .Property(b => b.DrivetrainType)
+                .HasConversion(
+                    b => b.ToString(),
+                    b => (DrivetrainType)Enum.Parse(typeof(DrivetrainType), b));
+
+            modelBuilder.Entity<Body>()
+                .Property(b => b.ACType)
+                .HasConversion(
+                    b => b.ToString(),
+                    b => (ACType)Enum.Parse(typeof(ACType), b));
+
+            modelBuilder.Entity<Body>()
+                .Property(b => b.BodyShape)
+                .HasConversion(
+                    b => b.ToString(),
+                    b => (BodyShape)Enum.Parse(typeof(BodyShape), b));
+
+            modelBuilder.Entity<Engine>()
+                .Property(e => e.FuelType)
+                .HasConversion(
+                    e => e.ToString(),
+                    e => (FuelType)Enum.Parse(typeof(FuelType), e));
         }
 
         public DbSet<Listing> Listings { get; set; }

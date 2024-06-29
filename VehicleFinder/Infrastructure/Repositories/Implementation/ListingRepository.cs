@@ -62,7 +62,7 @@ namespace VehicleFinder.Infrastructure.Repositories
                 query = query.Where(l => l.IsSold == filter.IsSold.Value);
             }
 
-            if (!filter.FuelType.IsNullOrEmpty())
+            if (filter.FuelType.HasValue)
             {
                 query = query.Where(l => l.Vehicle.Engine.FuelType == filter.FuelType);
             }

@@ -140,9 +140,9 @@ namespace VehicleFinder.Pages
             GeneralListing.Vehicle.AverageConsumption = 1000;
 
             GeneralListing.Engine.Name = "Random Engine " + random.Next(1, 1000);
-            GeneralListing.Engine.FuelType = "Gasoline";
+            GeneralListing.Engine.FuelType = FuelType.Gasoline;
             GeneralListing.Engine.Horsepower = random.Next(100, 500);
-            GeneralListing.Engine.DrivetrainType = DrivetrainType.RWD;
+            GeneralListing.Body.DrivetrainType = DrivetrainType.RWD;
             GeneralListing.Engine.EngineCapacity = 1000;
 
             GeneralListing.Body.DoorCount = random.Next(2, 5);
