@@ -18,9 +18,6 @@ namespace VehicleFinder.DTOs.EngineDTO
         public int Horsepower { get; set; }
 
         [Required]
-        public DrivetrainType DrivetrainType { get; set; }
-
-        [Required]
         [Range(500, 8000, ErrorMessage = "Engine capacity must be between 500 and 8000 cc.")]
         public int EngineCapacity { get; set; }
     }

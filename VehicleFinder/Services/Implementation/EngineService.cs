@@ -1,6 +1,5 @@
 ﻿using VehicleFinder.DTOs.EngineDTO;
 using VehicleFinder.Entities;
-using VehicleFinder.Infrastructure.Repositories.Implementation;
 using VehicleFinder.Infrastructure.Repositories.Interfaces;
 using VehicleFinder.Services.Interface;
 
@@ -19,7 +18,6 @@ namespace VehicleFinder.Services.Implementation
             var engine = new Engine
             {
                 Name = model.Name,
-                DrivetrainType = model.DrivetrainType,
                 EngineCapacity = model.EngineCapacity,
                 FuelType = model.FuelType,
                 Horsepower = model.Horsepower 

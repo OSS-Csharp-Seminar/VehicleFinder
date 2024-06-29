@@ -1,31 +1,121 @@
 ﻿@page
 @model VehicleFinder.Pages.IndexModel
+@using VehicleFinder.Enums
 @{
     ViewData["Title"] = "Home page";
 }
 
 <h1>Welcome to VehicleFinder</h1>
 
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <div class="col-md-3">
-            <!-- Sidebar with filters -->
-            <div>
+            <div class="sidebar bg-light p-3">
                 <h2>Filters</h2>
                 <form method="get">
                     <div class="form-group">
+                        <label for="title">Title</label>
+                        <input type="text" class="form-control" id="title" name="title" value="@Model.Title" placeholder="Search by Title" />
+                    </div>
+                    <div class="form-group">
+                        <label for="brand">Brand</label>
+                        <input type="text" class="form-control" id="brand" name="brand" value="@Model.Brand" placeholder="Vehicle Brand" />
+                    </div>
+                    <div class="form-group">
+                        <label for="model">Model</label>
+                        <input type="text" class="form-control" id="model" name="model" value="@Model.Model" placeholder="Vehicle Model" />
+                    </div>
+                    <div class="form-group">
+                        <label for="yearMin">Min Manufacturing Year</label>
+                        <input type="number" class="form-control" id="yearMin" name="yearMin" value="@Model.YearMin" placeholder="Minimum Year" />
+                    </div>
+                    <div class="form-group">
+                        <label for="yearMax">Max Manufacturing Year</label>
+                        <input type="number" class="form-control" id="yearMax" name="yearMax" value="@Model.YearMax" placeholder="Maximum Year" />
+                    </div>
+                    <div class="form-group">
                         <label for="priceMin">Min Price</label>
-                        <input type="number" class="form-control" id="priceMin" name="priceMin" />
+                        <input type="number" class="form-control" id="priceMin" name="priceMin" value="@Model.PriceMin" placeholder="Minimum Price" />
                     </div>
                     <div class="form-group">
                         <label for="priceMax">Max Price</label>
-                        <input type="number" class="form-control" id="priceMax" name="priceMax" />
+                        <input type="number" class="form-control" id="priceMax" name="priceMax" value="@Model.PriceMax" placeholder="Maximum Price" />
                     </div>
                     <div class="form-group">
-                        <label for="title">Title</label>
-                        <input type="text" class="form-control" id="title" name="title" />
+                        <label for="isSold">Is Sold</label>
+                        <select class="form-control" id="isSold" name="isSold">
+                            <option value="">Any</option>
+                            <option value="true" selected=@(Model.IsSold.HasValue && Model.IsSold.Value ? "selected" : "")>Yes</option>
+                            <option value="false" selected=@(Model.IsSold.HasValue && !Model.IsSold.Value ? "selected" : "")>No</option>
+                        </select>
                     </div>
-                    <button type="submit" class="btn btn-primary">Apply Filters</button>
+                    <div class="form-group">
+                        <label for="fuelType">Fuel Type</label>
+                        <select class="form-control" id="fuelType" name="fuelType">
+                            <option value="">Any</option>
+                            @foreach (var option in Model.FuelTypeOptions)
+                            {
+                                <option value="@option.Value" selected="@option.Selected">@option.Text</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="horsepowerMin">Min Horsepower</label>
+                        <input type="number" class="form-control" id="horsepowerMin" name="horsepowerMin" value="@Model.HorsepowerMin" placeholder="Minimum Horsepower" />
+                    </div>
+                    <div class="form-group">
+                        <label for="horsepowerMax">Max Horsepower</label>
+                        <input type="number" class="form-control" id="horsepowerMax" name="horsepowerMax" value="@Model.HorsepowerMax" placeholder="Maximum Horsepower" />
+                    </div>
+                    <div class="form-group">
+                        <label for="doorCount">Door Count</label>
+                        <input type="number" class="form-control" id="doorCount" name="doorCount" value="@Model.DoorCount" placeholder="Door Count" />
+                    </div>
+                    <div class="form-group">
+                        <label for="seatCount">Seat Count</label>
+                        <input type="number" class="form-control" id="seatCount" name="seatCount" value="@Model.SeatCount" placeholder="Seat Count" />
+                    </div>
+                    <div class="form-group">
+                        <label for="bodyShape">Body Shape</label>
+                        <select class="form-control" id="bodyShape" name="bodyShape">
+                            <option value="">Any</option>
+                            @foreach (var option in Model.BodyShapeOptions)
+                            {
+                                <option value="@option.Value" selected="@option.Selected">@option.Text</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="acType">AC Type</label>
+                        <select class="form-control" id="acType" name="acType">
+                            <option value="">Any</option>
+                            @foreach (var option in Model.ACTypeOptions)
+                            {
+                                <option value="@option.Value" selected="@option.Selected">@option.Text</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="drivetrainType">Drivetrain Type</label>
+                        <select class="form-control" id="drivetrainType" name="drivetrainType">
+                            <option value="">Any</option>
+                            @foreach (var option in Model.DrivetrainTypeOptions)
+                            {
+                                <option value="@option.Value" selected="@option.Selected">@option.Text</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="shifterType">Shifter Type</label>
+                        <select class="form-control" id="shifterType" name="shifterType">
+                            <option value="">Any</option>
+                            @foreach (var option in Model.ShifterTypeOptions)
+                            {
+                                <option value="@option.Value" selected="@option.Selected">@option.Text</option>
+                            }
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Apply Filters</button>
                 </form>
             </div>
         </div>
@@ -37,7 +127,6 @@
                 {
                     <div class="col-md-6">
                         <div class="card mb-4 shadow-sm">
-                           @*  <img src="@listing.Vehicle.ImageUrl" class="card-img-top" alt="@listing.Title">  placeholder za sliku*@
                             <div class="card-body">
                                 <h5 class="card-title">@listing.Title</h5>
                                 <h6 class="card-subtitle mb-2 text-muted">@listing.Vehicle.Brand @listing.Vehicle.Model (@listing.Vehicle.ManufacturingYear)</h6>

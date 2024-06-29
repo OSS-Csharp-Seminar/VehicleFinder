@@ -52,6 +52,7 @@ namespace VehicleFinder.Pages
 
             GeneralListing.Listing.UserId = user.Id;
             GeneralListing.Listing.CreationDate = DateTime.UtcNow;
+            GeneralListing.Listing.IsSold = false;
 
             ModelState.ClearValidationState(nameof(GeneralListing));
             TryValidateModel(GeneralListing, nameof(GeneralListing));

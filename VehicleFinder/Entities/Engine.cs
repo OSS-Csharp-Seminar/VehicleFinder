@@ -8,7 +8,6 @@ namespace VehicleFinder.Entities
         public string Name { get; set; } = string.Empty;
         public FuelType FuelType { get; set; }
         public int Horsepower { get; set; }
-        public DrivetrainType DrivetrainType { get; set; }
         public int EngineCapacity { get; set; }
         public virtual ICollection<Vehicle> Vehicles { get; set; } = new List<Vehicle>();
     }
