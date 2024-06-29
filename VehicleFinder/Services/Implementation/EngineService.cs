@@ -20,7 +20,7 @@ namespace VehicleFinder.Services.Implementation
             {
                 Name = model.Name,
                 EngineCapacity = model.EngineCapacity,
-                FuelType = model.FuelType,
+                FuelType = model.FuelType.ToString(),
                 Horsepower = model.Horsepower 
             };
 

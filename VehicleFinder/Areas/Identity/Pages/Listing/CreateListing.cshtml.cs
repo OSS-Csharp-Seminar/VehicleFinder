@@ -3,10 +3,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using VehicleFinder.DTOs.General;
 using VehicleFinder.Entities;
+using VehicleFinder.Enums;
 using VehicleFinder.Services;
 using VehicleFinder.Services.Interface;
 
@@ -99,6 +101,54 @@ namespace VehicleFinder.Pages
             }
 
             return RedirectToPage("/Index");
+        }
+
+        public IActionResult OnPostPopulateAsync()
+        {
+            // Populate with random values
+            PopulateWithRandomValues();
+
+            // Return to the same page
+            return Page();
+        }
+
+        private void PopulateWithRandomValues()
+        {
+            // Example: Generate random values
+            var random = new Random();
+            GeneralListing.Listing.Title = "Random Title " + random.Next(1, 1000);
+            GeneralListing.Listing.Description = "Random Description " + random.Next(1, 1000);
+            GeneralListing.Listing.Price = random.Next(1000, 10000);
+            GeneralListing.Listing.IsSold = random.Next(0, 2) == 1;
+
+            GeneralListing.Vehicle.Brand = "Random Brand " + random.Next(1, 1000);
+            GeneralListing.Vehicle.Model = "Random Model " + random.Next(1, 1000);
+            GeneralListing.Vehicle.ManufacturingYear = random.Next(1990, 2023);
+
+            string dateStr = "1.1.2024";
+            DateOnly registrationDate;
+
+            if (DateOnly.TryParseExact(dateStr, "d.M.yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out registrationDate))
+            {
+                GeneralListing.Vehicle.RegistrationUntil = registrationDate;
+            }
+            GeneralListing.Vehicle.Kilometers = random.Next(0, 200000);
+            GeneralListing.Vehicle.NumberOfPreviousOwners = random.Next(0, 5);
+            GeneralListing.Vehicle.ShifterType = (ShifterType)random.Next(Enum.GetValues(typeof(ShifterType)).Length);
+            GeneralListing.Vehicle.GearCount = random.Next(4, 10);
+            GeneralListing.Vehicle.AverageConsumption = 1000;
+
+            GeneralListing.Engine.Name = "Random Engine " + random.Next(1, 1000);
+            GeneralListing.Engine.FuelType = (FuelType)random.Next(Enum.GetValues(typeof(FuelType)).Length);
+            GeneralListing.Engine.Horsepower = random.Next(100, 500);
+            GeneralListing.Engine.DrivetrainType = (DrivetrainType)random.Next(Enum.GetValues(typeof(DrivetrainType)).Length);
+            GeneralListing.Engine.EngineCapacity = 1000;
+
+            GeneralListing.Body.DoorCount = random.Next(2, 5);
+            GeneralListing.Body.SeatCount = random.Next(2, 7);
+            GeneralListing.Body.ACType = (ACType)random.Next(Enum.GetValues(typeof(ACType)).Length);
+            GeneralListing.Body.Color = "Random Color " + random.Next(1, 1000);
+            GeneralListing.Body.BodyShape = (BodyShape)random.Next(Enum.GetValues(typeof(BodyShape)).Length);
         }
     }
 }
