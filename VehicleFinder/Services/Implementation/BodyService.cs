@@ -1,4 +1,5 @@
-﻿using VehicleFinder.DTOs.BodyDTO;
+﻿using AutoMapper;
+using VehicleFinder.DTOs.BodyDTO;
 using VehicleFinder.Entities;
 using VehicleFinder.Infrastructure.Repositories.Interfaces;
 using VehicleFinder.Services.Interface;
@@ -8,24 +9,18 @@ namespace VehicleFinder.Services.Implementation
     public class BodyService : IBodyService
     {
         private readonly IBodyRepository _bodyRepository;
+        private readonly IMapper _mapper;
 
-        public BodyService(IBodyRepository bodyRepository)
+        public BodyService(IMapper mapper, IBodyRepository bodyRepository)
         {
+            _mapper = mapper;
             _bodyRepository = bodyRepository;
         }
         public async Task<int> CreateBodyAsync(CreateBodyDTO model)
         {
-            var body = new Body
-            {
-                DoorCount = model.DoorCount,
-                SeatCount = model.SeatCount,
-                DrivetrainType = model.DrivetrainType,
-                ACType = model.ACType,
-                Color = model.Color,
-                BodyShape = model.BodyShape
-            };
+            var body = _mapper.Map<Body>(model);
 
-        return await _bodyRepository.CreateBodyAsync(body);
+            return await _bodyRepository.CreateBodyAsync(body);
         }
     }
 }

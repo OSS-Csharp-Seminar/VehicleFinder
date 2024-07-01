@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using System.Threading.Tasks;
 using VehicleFinder.DTOs.VehicleDTO;
 using VehicleFinder.Entities;
 using VehicleFinder.Infrastructure.Repositories.Interfaces;
@@ -10,37 +9,25 @@ namespace VehicleFinder.Services.Implementation
     public class VehicleService : IVehicleService
     {
         private readonly IVehicleRepository _vehicleRepository;
-
         private readonly IMapper _mapper;
 
         public VehicleService(IMapper mapper, IVehicleRepository vehicleRepository)
         {
-            _vehicleRepository = vehicleRepository;
             _mapper = mapper;
+            _vehicleRepository = vehicleRepository;
         }
 
         public async Task<IEnumerable<GetVehicleDTO>> GetAllVehiclesAsync()
         {
             var vehicles = await _vehicleRepository.GetAllVehiclesAsync();
-
-            return vehicles.Select(vehicle => new GetVehicleDTO
-            {
-                Id = vehicle.Id,
-                Brand = vehicle.Brand,
-                Model = vehicle.Model,
-                Kilometers = vehicle.Kilometers,
-                ManufacturingYear = vehicle.ManufacturingYear,
-                RegistrationUntil = vehicle.RegistrationUntil,
-                NumberOfPreviousOwners = vehicle.NumberOfPreviousOwners
-            }).ToList();
+            return _mapper.Map<IEnumerable<GetVehicleDTO>>(vehicles);
         }
+
         public async Task<Vehicle> CreateVehicleAsync(CreateVehicleDTO model)
         {
             var vehicle = _mapper.Map<Vehicle>(model);
-
             return await _vehicleRepository.CreateVehicleAsync(vehicle);
         }
-
 
         public async Task<GetVehicleDTO> GetVehicleByIdAsync(int vehicleId)
         {
@@ -49,17 +36,7 @@ namespace VehicleFinder.Services.Implementation
             {
                 return null;
             }
-
-            return new GetVehicleDTO
-            {
-                Id = vehicle.Id,
-                Brand = vehicle.Brand,
-                Model = vehicle.Model,
-                Kilometers = vehicle.Kilometers,
-                ManufacturingYear = vehicle.ManufacturingYear,
-                RegistrationUntil = vehicle.RegistrationUntil,
-                NumberOfPreviousOwners = vehicle.NumberOfPreviousOwners
-            };
+            return _mapper.Map<GetVehicleDTO>(vehicle);
         }
     }
 }
