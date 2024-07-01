@@ -8,125 +8,164 @@
 
 <form method="post">
     <!-- Listing Information -->
-    <div class="form-group">
-        <label asp-for="GeneralListing.Listing.Title" class="control-label"></label>
-        <input asp-for="GeneralListing.Listing.Title" class="form-control" />
-        <span asp-validation-for="GeneralListing.Listing.Title" class="text-danger"></span>
+    <div class="form-group row">
+        <label asp-for="GeneralListing.Listing.Title" class="col-sm-2 col-form-label">Title:</label>
+        <div class="col-sm-10">
+            <input asp-for="GeneralListing.Listing.Title" class="form-control mb-3" />
+            <span asp-validation-for="GeneralListing.Listing.Title" class="text-danger"></span>
+        </div>
     </div>
-    <div class="form-group">
-        <label asp-for="GeneralListing.Listing.Description" class="control-label"></label>
-        <textarea asp-for="GeneralListing.Listing.Description" class="form-control"></textarea>
-        <span asp-validation-for="GeneralListing.Listing.Description" class="text-danger"></span>
+    <div class="form-group row">
+        <label asp-for="GeneralListing.Listing.Description" class="col-sm-2 col-form-label">Description:</label>
+        <div class="col-sm-10">
+            <textarea asp-for="GeneralListing.Listing.Description" class="form-control mb-3"></textarea>
+            <span asp-validation-for="GeneralListing.Listing.Description" class="text-danger"></span>
+        </div>
     </div>
-    <div class="form-group">
-        <label asp-for="GeneralListing.Listing.Price" class="control-label"></label>
-        <input asp-for="GeneralListing.Listing.Price" class="form-control" />
-        <span asp-validation-for="GeneralListing.Listing.Price" class="text-danger"></span>
+    <div class="form-group row">
+        <label asp-for="GeneralListing.Listing.Price" class="col-sm-2 col-form-label">Price in EUR:</label>
+        <div class="col-sm-10">
+            <input asp-for="GeneralListing.Listing.Price" class="form-control mb-3" />
+            <span asp-validation-for="GeneralListing.Listing.Price" class="text-danger"></span>
+        </div>
     </div>
 
     <!-- Vehicle Information -->
-    <h2>Vehicle Information</h2>
-    <div class="form-group">
-        <label asp-for="GeneralListing.Vehicle.Brand" class="control-label"></label>
-        <input asp-for="GeneralListing.Vehicle.Brand" class="form-control" />
-        <span asp-validation-for="GeneralListing.Vehicle.Brand" class="text-danger"></span>
+    <h3 class="mt-4 mb-3">Vehicle Information</h3>
+    <div class="form-group row">
+        <label asp-for="GeneralListing.Vehicle.Brand" class="col-sm-2 col-form-label">Brand:</label>
+        <div class="col-sm-10">
+            <input asp-for="GeneralListing.Vehicle.Brand" class="form-control mb-3" />
+            <span asp-validation-for="GeneralListing.Vehicle.Brand" class="text-danger"></span>
+        </div>
     </div>
-    <div class="form-group">
-        <label asp-for="GeneralListing.Vehicle.Model" class="control-label"></label>
-        <input asp-for="GeneralListing.Vehicle.Model" class="form-control" />
-        <span asp-validation-for="GeneralListing.Vehicle.Model" class="text-danger"></span>
+    <div class="form-group row">
+        <label asp-for="GeneralListing.Vehicle.Model" class="col-sm-2 col-form-label">Model:</label>
+        <div class="col-sm-10">
+            <input asp-for="GeneralListing.Vehicle.Model" class="form-control mb-3" />
+            <span asp-validation-for="GeneralListing.Vehicle.Model" class="text-danger"></span>
+        </div>
     </div>
-    <div class="form-group">
-        <label asp-for="GeneralListing.Vehicle.ManufacturingYear" class="control-label"></label>
-        <input asp-for="GeneralListing.Vehicle.ManufacturingYear" class="form-control" />
-        <span asp-validation-for="GeneralListing.Vehicle.ManufacturingYear" class="text-danger"></span>
+    <div class="form-group row">
+        <label asp-for="GeneralListing.Vehicle.ManufacturingYear" class="col-sm-2 col-form-label">Manufacturing Year:</label>
+        <div class="col-sm-10">
+            <input asp-for="GeneralListing.Vehicle.ManufacturingYear" class="form-control mb-3" />
+            <span asp-validation-for="GeneralListing.Vehicle.ManufacturingYear" class="text-danger"></span>
+        </div>
     </div>
-    <div class="form-group">
-        <label asp-for="GeneralListing.Vehicle.RegistrationUntil" class="control-label"></label>
-        <input asp-for="GeneralListing.Vehicle.RegistrationUntil" class="form-control" />
-        <span asp-validation-for="GeneralListing.Vehicle.RegistrationUntil" class="text-danger"></span>
+    <div class="form-group row">
+        <label asp-for="GeneralListing.Vehicle.RegistrationUntil" class="col-sm-2 col-form-label">Registration Until:</label>
+        <div class="col-sm-10">
+            <input asp-for="GeneralListing.Vehicle.RegistrationUntil" class="form-control mb-3" />
+            <span asp-validation-for="GeneralListing.Vehicle.RegistrationUntil" class="text-danger"></span>
+        </div>
     </div>
-    <div class="form-group">
-        <label asp-for="GeneralListing.Vehicle.Kilometers" class="control-label"></label>
-        <input asp-for="GeneralListing.Vehicle.Kilometers" class="form-control" />
-        <span asp-validation-for="GeneralListing.Vehicle.Kilometers" class="text-danger"></span>
+    <div class="form-group row">
+        <label asp-for="GeneralListing.Vehicle.Kilometers" class="col-sm-2 col-form-label">Kilometers:</label>
+        <div class="col-sm-10">
+            <input asp-for="GeneralListing.Vehicle.Kilometers" class="form-control mb-3" />
+            <span asp-validation-for="GeneralListing.Vehicle.Kilometers" class="text-danger"></span>
+        </div>
     </div>
-    <div class="form-group">
-        <label asp-for="GeneralListing.Vehicle.NumberOfPreviousOwners" class="control-label"></label>
-        <input asp-for="GeneralListing.Vehicle.NumberOfPreviousOwners" class="form-control" />
-        <span asp-validation-for="GeneralListing.Vehicle.NumberOfPreviousOwners" class="text-danger"></span>
+    <div class="form-group row">
+        <label asp-for="GeneralListing.Vehicle.NumberOfPreviousOwners" class="col-sm-2 col-form-label">Number of Previous Owners:</label>
+        <div class="col-sm-10">
+            <input asp-for="GeneralListing.Vehicle.NumberOfPreviousOwners" class="form-control mb-3" />
+            <span asp-validation-for="GeneralListing.Vehicle.NumberOfPreviousOwners" class="text-danger"></span>
+        </div>
     </div>
-    <div class="form-group">
-        <label asp-for="GeneralListing.Vehicle.ShifterType" class="control-label"></label>
-        <select asp-for="GeneralListing.Vehicle.ShifterType" class="form-control" asp-items="Html.GetEnumSelectList<VehicleFinder.Enums.ShifterType>()"></select>
-        <span asp-validation-for="GeneralListing.Vehicle.ShifterType" class="text-danger"></span>
+    <div class="form-group row">
+        <label asp-for="GeneralListing.Vehicle.ShifterType" class="col-sm-2 col-form-label">Shifter Type:</label>
+        <div class="col-sm-10">
+            <select asp-for="GeneralListing.Vehicle.ShifterType" class="form-control mb-3" asp-items="Html.GetEnumSelectList<VehicleFinder.Enums.ShifterType>()"></select>
+            <span asp-validation-for="GeneralListing.Vehicle.ShifterType" class="text-danger"></span>
+        </div>
     </div>
-    <div class="form-group">
-        <label asp-for="GeneralListing.Vehicle.GearCount" class="control-label"></label>
-        <input asp-for="GeneralListing.Vehicle.GearCount" class="form-control" />
-        <span asp-validation-for="GeneralListing.Vehicle.GearCount" class="text-danger"></span>
+    <div class="form-group row">
+        <label asp-for="GeneralListing.Vehicle.GearCount" class="col-sm-2 col-form-label">Gear Count:</label>
+        <div class="col-sm-10">
+            <input asp-for="GeneralListing.Vehicle.GearCount" class="form-control mb-3" />
+            <span asp-validation-for="GeneralListing.Vehicle.GearCount" class="text-danger"></span>
+        </div>
     </div>
-    <div class="form-group">
-        <label asp-for="GeneralListing.Vehicle.AverageConsumption" class="control-label"></label>
-        <input asp-for="GeneralListing.Vehicle.AverageConsumption" class="form-control" />
-        <span asp-validation-for="GeneralListing.Vehicle.AverageConsumption" class="text-danger"></span>
+    <div class="form-group row">
+        <label asp-for="GeneralListing.Vehicle.AverageConsumption" class="col-sm-2 col-form-label">Average Consumption:</label>
+        <div class="col-sm-10">
+            <input asp-for="GeneralListing.Vehicle.AverageConsumption" class="form-control mb-3" />
+            <span asp-validation-for="GeneralListing.Vehicle.AverageConsumption" class="text-danger"></span>
+        </div>
     </div>
 
     <!-- Engine Information -->
-    <h2>Engine Information</h2>
-    <div class="form-group">
-        <label asp-for="GeneralListing.Engine.Name" class="control-label"></label>
-        <input asp-for="GeneralListing.Engine.Name" class="form-control" />
-        <span asp-validation-for="GeneralListing.Engine.Name" class="text-danger"></span>
+    <h3 class="mt-4 mb-3">Engine Information</h3>
+    <div class="form-group row">
+        <label asp-for="GeneralListing.Engine.Name" class="col-sm-2 col-form-label">Engine Name:</label>
+        <div class="col-sm-10">
+            <input asp-for="GeneralListing.Engine.Name" class="form-control mb-3" />
+            <span asp-validation-for="GeneralListing.Engine.Name" class="text-danger"></span>
+        </div>
     </div>
-    <div class="form-group">
-        <label asp-for="GeneralListing.Engine.FuelType" class="control-label"></label>
-        <select asp-for="GeneralListing.Engine.FuelType" class="form-control" asp-items="Html.GetEnumSelectList<VehicleFinder.Enums.FuelType>()"></select>
-        <span asp-validation-for="GeneralListing.Engine.FuelType" class="text-danger"></span>
+    <div class="form-group row">
+        <label asp-for="GeneralListing.Engine.FuelType" class="col-sm-2 col-form-label">Fuel Type:</label>
+        <div class="col-sm-10">
+            <select asp-for="GeneralListing.Engine.FuelType" class="form-control mb-3" asp-items="Html.GetEnumSelectList<VehicleFinder.Enums.FuelType>()"></select>
+            <span asp-validation-for="GeneralListing.Engine.FuelType" class="text-danger"></span>
+        </div>
     </div>
-    <div class="form-group">
-        <label asp-for="GeneralListing.Engine.Horsepower" class="control-label"></label>
-        <input asp-for="GeneralListing.Engine.Horsepower" class="form-control" />
-        <span asp-validation-for="GeneralListing.Engine.Horsepower" class="text-danger"></span>
+    <div class="form-group row">
+        <label asp-for="GeneralListing.Engine.Horsepower" class="col-sm-2 col-form-label">Horsepower:</label>
+        <div class="col-sm-10">
+            <input asp-for="GeneralListing.Engine.Horsepower" class="form-control mb-3" />
+            <span asp-validation-for="GeneralListing.Engine.Horsepower" class="text-danger"></span>
+        </div>
     </div>
-    <div class="form-group">
-        <label asp-for="GeneralListing.Engine.EngineCapacity" class="control-label"></label>
-        <input asp-for="GeneralListing.Engine.EngineCapacity" class="form-control" />
-        <span asp-validation-for="GeneralListing.Engine.EngineCapacity" class="text-danger"></span>
+    <div class="form-group row">
+        <label asp-for="GeneralListing.Engine.EngineCapacity" class="col-sm-2 col-form-label">Engine Capacity:</label>
+        <div class="col-sm-10">
+            <input asp-for="GeneralListing.Engine.EngineCapacity" class="form-control mb-3" />
+            <span asp-validation-for="GeneralListing.Engine.EngineCapacity" class="text-danger"></span>
+        </div>
     </div>
 
     <!-- Body Information -->
-    <h2>Body Information</h2>
-    <div class="form-group">
-        <label asp-for="GeneralListing.Body.DoorCount" class="control-label"></label>
-        <input asp-for="GeneralListing.Body.DoorCount" class="form-control" />
-        <span asp-validation-for="GeneralListing.Body.DoorCount" class="text-danger"></span>
+    <h3 class="mt-4 mb-3">Body Information</h3>
+    <div class="form-group row">
+        <label asp-for="GeneralListing.Body.DrivetrainType" class="col-sm-2 col-form-label">Drivetrain Type:</label>
+        <div class="col-sm-10">
+            <select asp-for="GeneralListing.Body.DrivetrainType" class="form-control mb-3" asp-items="Html.GetEnumSelectList<VehicleFinder.Enums.DrivetrainType>()"></select>
+            <span asp-validation-for="GeneralListing.Body.DrivetrainType" class="text-danger"></span>
+        </div>
     </div>
-    <div class="form-group">
-        <label asp-for="GeneralListing.Body.SeatCount" class="control-label"></label>
-        <input asp-for="GeneralListing.Body.SeatCount" class="form-control" />
-        <span asp-validation-for="GeneralListing.Body.SeatCount" class="text-danger"></span>
+    <div class="form-group row">
+        <label asp-for="GeneralListing.Body.DoorCount" class="col-sm-2 col-form-label">Door Count:</label>
+        <div class="col-sm-10">
+            <input asp-for="GeneralListing.Body.DoorCount" class="form-control mb-3" />
+            <span asp-validation-for="GeneralListing.Body.DoorCount" class="text-danger"></span>
+        </div>
     </div>
-    <div class="form-group">
-        <label asp-for="GeneralListing.Body.ACType" class="control-label"></label>
-        <select asp-for="GeneralListing.Body.ACType" class="form-control" asp-items="Html.GetEnumSelectList<VehicleFinder.Enums.ACType>()"></select>
-        <span asp-validation-for="GeneralListing.Body.ACType" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="GeneralListing.Body.Color" class="control-label"></label>
-        <input asp-for="GeneralListing.Body.Color" class="form-control" />
-        <span asp-validation-for="GeneralListing.Body.Color" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="GeneralListing.Body.DrivetrainType" class="control-label"></label>
-        <select asp-for="GeneralListing.Body.DrivetrainType" class="form-control" asp-items="Html.GetEnumSelectList<VehicleFinder.Enums.DrivetrainType>()"></select>
-        <span asp-validation-for="GeneralListing.Body.DrivetrainType" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="GeneralListing.Body.BodyShape" class="control-label"></label>
-        <select asp-for="GeneralListing.Body.BodyShape" class="form-control" asp-items="Html.GetEnumSelectList<VehicleFinder.Enums.BodyShape>()"></select>
-        <span asp-validation-for="GeneralListing.Body.BodyShape" class="text-danger"></span>
+    <div class="form-group row">
+        <label asp-for="GeneralListing.Body.SeatCount" class="col-sm-2 col-form-label">Seat Count:</label>
+        <div class="col-sm-10">
+            <input asp-for="GeneralListing.Body.SeatCount" class="form-control mb-3" />
+            <span asp-validation-for="GeneralListing.Body.SeatCount" class="text-danger"></span>
+        </div>
     </div>
 
-    <button type="submit" class="btn btn-primary">Create</button>
+    <div class="form-group row">
+        <div class="col-sm-10 offset-sm-2">
+            <button type="submit" class="btn btn-primary">Create Listing</button>
+        </div>
+    </div>
 </form>
+
+
+<style>
+    /* Custom CSS for spacing */
+    .mt-4 {
+        margin-top: 1.5rem; /* Adjust as needed */
+    }
+
+    .mb-3 {
+        margin-bottom: 1rem; /* Adjust as needed */
+    }
+</style>
