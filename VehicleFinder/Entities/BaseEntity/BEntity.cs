@@ -2,6 +2,6 @@
 {
     public abstract class BEntity
     {
-        public int Id { get; set; }
+        public string Id { get; set; } = Guid.NewGuid().ToString();
     }
 }

@@ -4,6 +4,7 @@ namespace VehicleFinder.Services.Interface
 {
     public interface IBodyService
     {
-        Task<int> CreateBodyAsync(CreateBodyDTO body);
+        Task<string> CreateBodyAsync(CreateBodyDTO body);
+        Task<GetBodyDTO> GetBodyByIdAsync(string id);
     }
 }

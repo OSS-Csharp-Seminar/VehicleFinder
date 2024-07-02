@@ -12,13 +12,11 @@ namespace VehicleFinder.Pages
 {
     public class IndexModel : PageModel
     {
-        private readonly ILogger<IndexModel> _logger;
         private readonly IListingService _listingService;
         private readonly UserManager<User> _userManager;
 
-        public IndexModel(ILogger<IndexModel> logger, IListingService listingService, UserManager<User> userManager)
+        public IndexModel(IListingService listingService, UserManager<User> userManager)
         {
-            _logger = logger;
             _listingService = listingService;
             _userManager = userManager;
         }
@@ -39,6 +37,8 @@ namespace VehicleFinder.Pages
         public float? PriceMax { get; set; }
         [BindProperty(SupportsGet = true)]
         public bool? IsSold { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public string? EngineName { get; set; }
         [BindProperty(SupportsGet = true)]
         public FuelType? FuelType { get; set; }
         [BindProperty(SupportsGet = true)]
@@ -69,6 +69,8 @@ namespace VehicleFinder.Pages
 
         public async Task OnGetAsync()
         {
+            CurrentUserId = _userManager.GetUserId(User);
+
             var filter = new ListingFilterDTO
             {
                 Title = Title,
@@ -79,6 +81,7 @@ namespace VehicleFinder.Pages
                 PriceMin = PriceMin,
                 PriceMax = PriceMax,
                 IsSold = IsSold,
+                EngineName = EngineName,
                 FuelType = FuelType,
                 HorsepowerMin = HorsepowerMin,
                 HorsepowerMax = HorsepowerMax,

@@ -11,7 +11,7 @@ namespace VehicleFinder.Entities
         public bool IsSold { get; set; }
         public string UserId { get; set; }
         public User? User { get; set; }
-        public int VehicleId { get; set; }
+        public string VehicleId { get; set; }
         public Vehicle? Vehicle { get; set; }
     }
 }

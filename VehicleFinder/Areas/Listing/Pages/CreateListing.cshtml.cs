@@ -1,11 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Globalization;
-using System.Linq;
-using System.Threading.Tasks;
 using VehicleFinder.DTOs.General;
 using VehicleFinder.DTOs.ListingDTO;
 using VehicleFinder.DTOs.VehicleDTO;
@@ -16,7 +11,7 @@ using VehicleFinder.Enums;
 using VehicleFinder.Services;
 using VehicleFinder.Services.Interface;
 
-namespace VehicleFinder.Pages
+namespace VehicleFinder.Areas.Listing.Pages
 {
     public class CreateListingModel : PageModel
     {
@@ -66,7 +61,7 @@ namespace VehicleFinder.Pages
                     RegistrationUntil = DateOnly.FromDateTime(DateTime.Now.AddYears(1)),
                     Kilometers = new Random().Next(0, 100000),
                     NumberOfPreviousOwners = new Random().Next(1, 5),
-                    ShifterType = VehicleFinder.Enums.ShifterType.Automatic,
+                    ShifterType = ShifterType.Automatic,
                     GearCount = new Random().Next(1, 5),
                     AverageConsumption = new Random().Next(3, 20),
                 },
@@ -81,10 +76,10 @@ namespace VehicleFinder.Pages
                 {
                     DoorCount = new Random().Next(3, 5),
                     SeatCount = new Random().Next(3, 5),
-                    ACType = VehicleFinder.Enums.ACType.Manual,
+                    ACType = ACType.Manual,
                     Color = "Black",
-                    DrivetrainType = VehicleFinder.Enums.DrivetrainType.FWD,
-                    BodyShape = VehicleFinder.Enums.BodyShape.Sedan
+                    DrivetrainType = DrivetrainType.FWD,
+                    BodyShape = BodyShape.Sedan
                 }
             };
         }
@@ -151,6 +146,6 @@ namespace VehicleFinder.Pages
 
             return RedirectToPage("/Index");
         }
-       
+
     }
 }

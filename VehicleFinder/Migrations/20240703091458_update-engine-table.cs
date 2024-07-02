@@ -7,7 +7,7 @@
 namespace VehicleFinder.Migrations
 {
     /// <inheritdoc />
-    public partial class migration0_addengines : Migration
+    public partial class updateenginetable : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -15,40 +15,40 @@ namespace VehicleFinder.Migrations
             migrationBuilder.DeleteData(
                 table: "AspNetUserRoles",
                 keyColumns: new[] { "RoleId", "UserId" },
-                keyValues: new object[] { "ff33c9aa-d4b6-433f-8320-078da3e86ee5", "8dff4125-94bf-46cd-8415-e0bf6e360eb2" });
+                keyValues: new object[] { "dcb84bb6-e5a0-4e9b-a15b-339edaf1a259", "7a2743e1-aeb4-458c-80d3-8ec5dce864d4" });
 
             migrationBuilder.DeleteData(
                 table: "AspNetUserRoles",
                 keyColumns: new[] { "RoleId", "UserId" },
-                keyValues: new object[] { "d3008fcd-3f85-4e10-ba2a-46c3621e5c19", "b15d269e-e091-4baa-b63c-139b0a1bbc61" });
+                keyValues: new object[] { "1d4a58fd-e971-4bf3-b248-fe257de8212f", "c44455d4-cf51-4cbf-b40b-1287e3ef1dce" });
 
             migrationBuilder.DeleteData(
                 table: "AspNetRoles",
                 keyColumn: "Id",
-                keyValue: "d3008fcd-3f85-4e10-ba2a-46c3621e5c19");
+                keyValue: "1d4a58fd-e971-4bf3-b248-fe257de8212f");
 
             migrationBuilder.DeleteData(
                 table: "AspNetRoles",
                 keyColumn: "Id",
-                keyValue: "ff33c9aa-d4b6-433f-8320-078da3e86ee5");
+                keyValue: "dcb84bb6-e5a0-4e9b-a15b-339edaf1a259");
 
             migrationBuilder.DeleteData(
                 table: "AspNetUsers",
                 keyColumn: "Id",
-                keyValue: "8dff4125-94bf-46cd-8415-e0bf6e360eb2");
+                keyValue: "7a2743e1-aeb4-458c-80d3-8ec5dce864d4");
 
             migrationBuilder.DeleteData(
                 table: "AspNetUsers",
                 keyColumn: "Id",
-                keyValue: "b15d269e-e091-4baa-b63c-139b0a1bbc61");
+                keyValue: "c44455d4-cf51-4cbf-b40b-1287e3ef1dce");
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "3c9f5206-f220-49a6-9808-dee5b71052f4", null, "ADMIN", "ADMIN" },
-                    { "87aeed15-300f-466c-a359-64c40a469fb9", null, "USER", "USER" }
+                    { "832d6a60-f164-4d8d-ab52-3b642d9de5a8", null, "USER", "USER" },
+                    { "bb08b173-3606-4f28-91a5-2abba448cd61", null, "ADMIN", "ADMIN" }
                 });
 
             migrationBuilder.InsertData(
@@ -56,8 +56,8 @@ namespace VehicleFinder.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "3b44b7da-da1a-4361-a675-bd91f7074063", 0, "11eec63a-ae48-47ca-9873-9a313d2ccffe", "admin@eadmin", false, "admin", "admin", false, null, "ADMIN@ADMIN", "ADMIN@ADMIN", "AQAAAAIAAYagAAAAEB7BokfzObhfUm+vTxAv2TMPKJ+bOrWwK+rfoptNYuaBR5rBoXZFnrDk2Jf/WmFmbA==", "1234567890", true, "2efddc18-21be-435d-8182-847e68e2a312", false, "admin@eadmin" },
-                    { "caa566d2-950d-4d44-bd7a-4653784e947d", 0, "f19a491f-09f3-4baf-a133-f888e827abf9", "user@user", false, "user", "user", false, null, "USER@USER", "USER@USER", "AQAAAAIAAYagAAAAEFapMcS41rAwJF8PIlSkpRRI5oIxLvcXPYhizIedtdHfh/TnNQ4AN4VXyO1/j5GziQ==", "1234567890", true, "8e61b3b3-3017-40a7-ac0a-bccf9ab875e1", false, "user@user" }
+                    { "2caf4f25-0046-4f59-b9d0-bc56e8fb67b2", 0, "532f0c84-2815-478d-9092-bf535175b9b4", "admin@eadmin", false, "admin", "admin", false, null, "ADMIN@ADMIN", "ADMIN@ADMIN", "AQAAAAIAAYagAAAAEEXDvbIO7TRDb6wnpaJB1ef7lHPSOjqcPaVyGcMyEHhXN0AwCPFi5XbR5jCTlzP5aw==", "1234567890", true, "0946d00d-1f19-4446-aed4-dd5bb4930ed1", false, "admin@eadmin" },
+                    { "45756045-f6a8-4d99-af37-9d06c2dd345d", 0, "2eb022e3-6fb0-4f4d-a673-f7e6b6cc7c1a", "user@user", false, "user", "user", false, null, "USER@USER", "USER@USER", "AQAAAAIAAYagAAAAEOFDZk3hrLr2hVn7FsIoNCV/ZoVdx110WS4VoGLYJl+Uuh9u8QJAkwJM9zylpzZmOw==", "1234567890", true, "820335f7-018d-446d-b07d-0234c75fc692", false, "user@user" }
                 });
 
             migrationBuilder.InsertData(
@@ -65,8 +65,8 @@ namespace VehicleFinder.Migrations
                 columns: new[] { "RoleId", "UserId" },
                 values: new object[,]
                 {
-                    { "3c9f5206-f220-49a6-9808-dee5b71052f4", "3b44b7da-da1a-4361-a675-bd91f7074063" },
-                    { "87aeed15-300f-466c-a359-64c40a469fb9", "caa566d2-950d-4d44-bd7a-4653784e947d" }
+                    { "bb08b173-3606-4f28-91a5-2abba448cd61", "2caf4f25-0046-4f59-b9d0-bc56e8fb67b2" },
+                    { "832d6a60-f164-4d8d-ab52-3b642d9de5a8", "45756045-f6a8-4d99-af37-9d06c2dd345d" }
                 });
 
             ExecuteSqlScript(migrationBuilder);
@@ -103,40 +103,40 @@ namespace VehicleFinder.Migrations
             migrationBuilder.DeleteData(
                 table: "AspNetUserRoles",
                 keyColumns: new[] { "RoleId", "UserId" },
-                keyValues: new object[] { "3c9f5206-f220-49a6-9808-dee5b71052f4", "3b44b7da-da1a-4361-a675-bd91f7074063" });
+                keyValues: new object[] { "bb08b173-3606-4f28-91a5-2abba448cd61", "2caf4f25-0046-4f59-b9d0-bc56e8fb67b2" });
 
             migrationBuilder.DeleteData(
                 table: "AspNetUserRoles",
                 keyColumns: new[] { "RoleId", "UserId" },
-                keyValues: new object[] { "87aeed15-300f-466c-a359-64c40a469fb9", "caa566d2-950d-4d44-bd7a-4653784e947d" });
+                keyValues: new object[] { "832d6a60-f164-4d8d-ab52-3b642d9de5a8", "45756045-f6a8-4d99-af37-9d06c2dd345d" });
 
             migrationBuilder.DeleteData(
                 table: "AspNetRoles",
                 keyColumn: "Id",
-                keyValue: "3c9f5206-f220-49a6-9808-dee5b71052f4");
+                keyValue: "832d6a60-f164-4d8d-ab52-3b642d9de5a8");
 
             migrationBuilder.DeleteData(
                 table: "AspNetRoles",
                 keyColumn: "Id",
-                keyValue: "87aeed15-300f-466c-a359-64c40a469fb9");
+                keyValue: "bb08b173-3606-4f28-91a5-2abba448cd61");
 
             migrationBuilder.DeleteData(
                 table: "AspNetUsers",
                 keyColumn: "Id",
-                keyValue: "3b44b7da-da1a-4361-a675-bd91f7074063");
+                keyValue: "2caf4f25-0046-4f59-b9d0-bc56e8fb67b2");
 
             migrationBuilder.DeleteData(
                 table: "AspNetUsers",
                 keyColumn: "Id",
-                keyValue: "caa566d2-950d-4d44-bd7a-4653784e947d");
+                keyValue: "45756045-f6a8-4d99-af37-9d06c2dd345d");
 
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "d3008fcd-3f85-4e10-ba2a-46c3621e5c19", null, "USER", "USER" },
-                    { "ff33c9aa-d4b6-433f-8320-078da3e86ee5", null, "ADMIN", "ADMIN" }
+                    { "1d4a58fd-e971-4bf3-b248-fe257de8212f", null, "USER", "USER" },
+                    { "dcb84bb6-e5a0-4e9b-a15b-339edaf1a259", null, "ADMIN", "ADMIN" }
                 });
 
             migrationBuilder.InsertData(
@@ -144,8 +144,8 @@ namespace VehicleFinder.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "8dff4125-94bf-46cd-8415-e0bf6e360eb2", 0, "139ba13c-7ba5-439c-ab21-8f12748de033", "admin@eadmin", false, "admin", "admin", false, null, "ADMIN@ADMIN", "ADMIN@ADMIN", "AQAAAAIAAYagAAAAEINYmEy54Jfn9zJ4sp8R5RdRwAhq8epbIQ/cyxJ5p4r6y9VtP33TaUTWv3oQO0mbrw==", "1234567890", true, "faef92fd-6179-4bf2-be8e-854da4144188", false, "admin@eadmin" },
-                    { "b15d269e-e091-4baa-b63c-139b0a1bbc61", 0, "16a76f50-2700-472c-8ee9-fa6de443da97", "user@user", false, "user", "user", false, null, "USER@USER", "USER@USER", "AQAAAAIAAYagAAAAEMtP4UgnAZ7VunlsxAFk1K16Ya7CZwj8HplQsqNs+DkvzKGCTocjPfjgaKqK3Hc7Dw==", "1234567890", true, "eeabca89-09d0-4fc3-ac86-8ff989699ea3", false, "user@user" }
+                    { "7a2743e1-aeb4-458c-80d3-8ec5dce864d4", 0, "a32af43e-a38b-4260-9b06-176e9088f641", "admin@eadmin", false, "admin", "admin", false, null, "ADMIN@ADMIN", "ADMIN@ADMIN", "AQAAAAIAAYagAAAAENmpfrKOfdjgm1SH+9wG1y3+GTxR8HN8teI0o7qXVqIX+pFneSA1yPihYxMT0kcvTg==", "1234567890", true, "e30ab696-3d69-4a01-9482-2d8d00a2c5b7", false, "admin@eadmin" },
+                    { "c44455d4-cf51-4cbf-b40b-1287e3ef1dce", 0, "3f491782-ee1a-4fe4-b749-0e2eb9ebffda", "user@user", false, "user", "user", false, null, "USER@USER", "USER@USER", "AQAAAAIAAYagAAAAEHmqwgKMI7SpAUC+tDcV+fpH1RYCNYa77HSM33/8gDN8L3V0+CIOe9DdrarqfRSh5g==", "1234567890", true, "c802ac62-6585-4fbe-8e4d-5deaf2980f5e", false, "user@user" }
                 });
 
             migrationBuilder.InsertData(
@@ -153,8 +153,8 @@ namespace VehicleFinder.Migrations
                 columns: new[] { "RoleId", "UserId" },
                 values: new object[,]
                 {
-                    { "ff33c9aa-d4b6-433f-8320-078da3e86ee5", "8dff4125-94bf-46cd-8415-e0bf6e360eb2" },
-                    { "d3008fcd-3f85-4e10-ba2a-46c3621e5c19", "b15d269e-e091-4baa-b63c-139b0a1bbc61" }
+                    { "dcb84bb6-e5a0-4e9b-a15b-339edaf1a259", "7a2743e1-aeb4-458c-80d3-8ec5dce864d4" },
+                    { "1d4a58fd-e971-4bf3-b248-fe257de8212f", "c44455d4-cf51-4cbf-b40b-1287e3ef1dce" }
                 });
         }
     }

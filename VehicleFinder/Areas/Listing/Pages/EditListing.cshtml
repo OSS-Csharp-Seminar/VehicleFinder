@@ -1,0 +1,173 @@
+﻿@page "{id:int}"
+@model VehicleFinder.Areas.Listing.Pages.EditListingModel
+@{
+    ViewData["Title"] = "Edit Listing";
+}
+
+<h1>Edit Listing</h1>
+<form method="post">
+    <div class="form-group row">
+        <label asp-for="UpdateGeneralListing.Listing.Title" class="col-sm-2 col-form-label">Title:</label>
+        <div class="col-sm-10">
+            <input asp-for="UpdateGeneralListing.Listing.Title" class="form-control mb-3" />
+            <span asp-validation-for="UpdateGeneralListing.Listing.Title" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="UpdateGeneralListing.Listing.Description" class="col-sm-2 col-form-label">Description:</label>
+        <div class="col-sm-10">
+            <textarea asp-for="UpdateGeneralListing.Listing.Description" class="form-control mb-3"></textarea>
+            <span asp-validation-for="UpdateGeneralListing.Listing.Description" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="UpdateGeneralListing.Listing.Price" class="col-sm-2 col-form-label">Price in EUR:</label>
+        <div class="col-sm-10">
+            <input asp-for="UpdateGeneralListing.Listing.Price" class="form-control mb-3" />
+            <span asp-validation-for="UpdateGeneralListing.Listing.Price" class="text-danger"></span>
+        </div>
+    </div>
+
+    <!-- Vehicle Information -->
+    <h3 class="mt-4 mb-3">Vehicle Information</h3>
+    <div class="form-group row">
+        <label asp-for="UpdateGeneralListing.Vehicle.Brand" class="col-sm-2 col-form-label">Brand:</label>
+        <div class="col-sm-10">
+            <input asp-for="UpdateGeneralListing.Vehicle.Brand" class="form-control mb-3" />
+            <span asp-validation-for="UpdateGeneralListing.Vehicle.Brand" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="UpdateGeneralListing.Vehicle.Model" class="col-sm-2 col-form-label">Model:</label>
+        <div class="col-sm-10">
+            <input asp-for="UpdateGeneralListing.Vehicle.Model" class="form-control mb-3" />
+            <span asp-validation-for="UpdateGeneralListing.Vehicle.Model" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="UpdateGeneralListing.Vehicle.ManufacturingYear" class="col-sm-2 col-form-label">Manufacturing Year:</label>
+        <div class="col-sm-10">
+            <input asp-for="UpdateGeneralListing.Vehicle.ManufacturingYear" class="form-control mb-3" />
+            <span asp-validation-for="UpdateGeneralListing.Vehicle.ManufacturingYear" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="UpdateGeneralListing.Vehicle.RegistrationUntil" class="col-sm-2 col-form-label">Registration Until:</label>
+        <div class="col-sm-10">
+            <input asp-for="UpdateGeneralListing.Vehicle.RegistrationUntil" class="form-control mb-3" />
+            <span asp-validation-for="UpdateGeneralListing.Vehicle.RegistrationUntil" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="UpdateGeneralListing.Vehicle.Kilometers" class="col-sm-2 col-form-label">Kilometers:</label>
+        <div class="col-sm-10">
+            <input asp-for="UpdateGeneralListing.Vehicle.Kilometers" class="form-control mb-3" />
+            <span asp-validation-for="UpdateGeneralListing.Vehicle.Kilometers" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="UpdateGeneralListing.Vehicle.NumberOfPreviousOwners" class="col-sm-2 col-form-label">Number of Previous Owners:</label>
+        <div class="col-sm-10">
+            <input asp-for="UpdateGeneralListing.Vehicle.NumberOfPreviousOwners" class="form-control mb-3" />
+            <span asp-validation-for="UpdateGeneralListing.Vehicle.NumberOfPreviousOwners" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="UpdateGeneralListing.Vehicle.ShifterType" class="col-sm-2 col-form-label">Shifter Type:</label>
+        <div class="col-sm-10">
+            <select asp-for="UpdateGeneralListing.Vehicle.ShifterType" class="form-control mb-3" asp-items="Html.GetEnumSelectList<VehicleFinder.Enums.ShifterType>()"></select>
+            <span asp-validation-for="UpdateGeneralListing.Vehicle.ShifterType" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="UpdateGeneralListing.Vehicle.GearCount" class="col-sm-2 col-form-label">Gear Count:</label>
+        <div class="col-sm-10">
+            <input asp-for="UpdateGeneralListing.Vehicle.GearCount" class="form-control mb-3" />
+            <span asp-validation-for="UpdateGeneralListing.Vehicle.GearCount" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="UpdateGeneralListing.Vehicle.AverageConsumption" class="col-sm-2 col-form-label">Average Consumption:</label>
+        <div class="col-sm-10">
+            <input asp-for="UpdateGeneralListing.Vehicle.AverageConsumption" class="form-control mb-3" />
+            <span asp-validation-for="UpdateGeneralListing.Vehicle.AverageConsumption" class="text-danger"></span>
+        </div>
+    </div>
+
+    <!-- Engine Information -->
+    <h3 class="mt-4 mb-3">Engine Information</h3>
+    <div class="form-group row">
+        <label asp-for="UpdateGeneralListing.Engine.Name" class="col-sm-2 col-form-label">Engine Name:</label>
+        <div class="col-sm-10">
+            <input asp-for="UpdateGeneralListing.Engine.Name" class="form-control mb-3" />
+            <span asp-validation-for="UpdateGeneralListing.Engine.Name" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="UpdateGeneralListing.Engine.FuelType" class="col-sm-2 col-form-label">Fuel Type:</label>
+        <div class="col-sm-10">
+            <select asp-for="UpdateGeneralListing.Engine.FuelType" class="form-control mb-3" asp-items="Html.GetEnumSelectList<VehicleFinder.Enums.FuelType>()"></select>
+            <span asp-validation-for="UpdateGeneralListing.Engine.FuelType" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="UpdateGeneralListing.Engine.Horsepower" class="col-sm-2 col-form-label">Horsepower:</label>
+        <div class="col-sm-10">
+            <input asp-for="UpdateGeneralListing.Engine.Horsepower" class="form-control mb-3" />
+            <span asp-validation-for="UpdateGeneralListing.Engine.Horsepower" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="UpdateGeneralListing.Engine.EngineCapacity" class="col-sm-2 col-form-label">Engine Capacity:</label>
+        <div class="col-sm-10">
+            <input asp-for="UpdateGeneralListing.Engine.EngineCapacity" class="form-control mb-3" />
+            <span asp-validation-for="UpdateGeneralListing.Engine.EngineCapacity" class="text-danger"></span>
+        </div>
+    </div>
+
+    <!-- Body Information -->
+    <h3 class="mt-4 mb-3">Body Information</h3>
+    <div class="form-group row">
+        <label asp-for="UpdateGeneralListing.Body.DrivetrainType" class="col-sm-2 col-form-label">Drivetrain Type:</label>
+        <div class="col-sm-10">
+            <select asp-for="UpdateGeneralListing.Body.DrivetrainType" class="form-control mb-3" asp-items="Html.GetEnumSelectList<VehicleFinder.Enums.DrivetrainType>()"></select>
+            <span asp-validation-for="UpdateGeneralListing.Body.DrivetrainType" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="UpdateGeneralListing.Body.DoorCount" class="col-sm-2 col-form-label">Door Count:</label>
+        <div class="col-sm-10">
+            <input asp-for="UpdateGeneralListing.Body.DoorCount" class="form-control mb-3" />
+            <span asp-validation-for="UpdateGeneralListing.Body.DoorCount" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="UpdateGeneralListing.Body.SeatCount" class="col-sm-2 col-form-label">Seat Count:</label>
+        <div class="col-sm-10">
+            <input asp-for="UpdateGeneralListing.Body.SeatCount" class="form-control mb-3" />
+            <span asp-validation-for="UpdateGeneralListing.Body.SeatCount" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="UpdateGeneralListing.Body.Color" class="col-sm-2 col-form-label">Color:</label>
+        <div class="col-sm-10">
+            <input asp-for="UpdateGeneralListing.Body.Color" class="form-control mb-3" />
+            <span asp-validation-for="UpdateGeneralListing.Body.Color" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-10 offset-sm-2">
+            <button type="submit" class="btn btn-primary">Edit Listing</button>
+        </div>
+    </div>
+</form>
+
+<style>
+    .mt-4 {
+        margin-top: 1.5rem;
+    }
+
+    .mb-3 {
+        margin-bottom: 1rem;
+    }
+</style>

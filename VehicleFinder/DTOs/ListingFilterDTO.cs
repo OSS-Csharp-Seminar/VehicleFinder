@@ -13,6 +13,7 @@ namespace VehicleFinder.DTOs
         public float? PriceMin { get; set; }
         public float? PriceMax { get; set; }
         public bool? IsSold { get; set; }
+        public string? EngineName { get; set; } = string.Empty;
         public FuelType? FuelType { get; set; }
         public int? HorsepowerMin { get; set; }
         public int? HorsepowerMax { get; set; }

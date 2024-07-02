@@ -50,13 +50,13 @@ namespace VehicleFinder.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "87aeed15-300f-466c-a359-64c40a469fb9",
+                            Id = "832d6a60-f164-4d8d-ab52-3b642d9de5a8",
                             Name = "USER",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "3c9f5206-f220-49a6-9808-dee5b71052f4",
+                            Id = "bb08b173-3606-4f28-91a5-2abba448cd61",
                             Name = "ADMIN",
                             NormalizedName = "ADMIN"
                         });
@@ -153,13 +153,13 @@ namespace VehicleFinder.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "caa566d2-950d-4d44-bd7a-4653784e947d",
-                            RoleId = "87aeed15-300f-466c-a359-64c40a469fb9"
+                            UserId = "45756045-f6a8-4d99-af37-9d06c2dd345d",
+                            RoleId = "832d6a60-f164-4d8d-ab52-3b642d9de5a8"
                         },
                         new
                         {
-                            UserId = "3b44b7da-da1a-4361-a675-bd91f7074063",
-                            RoleId = "3c9f5206-f220-49a6-9808-dee5b71052f4"
+                            UserId = "2caf4f25-0046-4f59-b9d0-bc56e8fb67b2",
+                            RoleId = "bb08b173-3606-4f28-91a5-2abba448cd61"
                         });
                 });
 
@@ -186,11 +186,8 @@ namespace VehicleFinder.Migrations
 
             modelBuilder.Entity("VehicleFinder.Entities.Body", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseSerialColumn(b.Property<int>("Id"));
+                    b.Property<string>("Id")
+                        .HasColumnType("text");
 
                     b.Property<string>("ACType")
                         .IsRequired()
@@ -221,11 +218,8 @@ namespace VehicleFinder.Migrations
 
             modelBuilder.Entity("VehicleFinder.Entities.Engine", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseSerialColumn(b.Property<int>("Id"));
+                    b.Property<string>("Id")
+                        .HasColumnType("text");
 
                     b.Property<int>("EngineCapacity")
                         .HasColumnType("integer");
@@ -248,11 +242,8 @@ namespace VehicleFinder.Migrations
 
             modelBuilder.Entity("VehicleFinder.Entities.Listing", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseSerialColumn(b.Property<int>("Id"));
+                    b.Property<string>("Id")
+                        .HasColumnType("text");
 
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("timestamp with time zone");
@@ -275,8 +266,9 @@ namespace VehicleFinder.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("VehicleId")
-                        .HasColumnType("integer");
+                    b.Property<string>("VehicleId")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -364,9 +356,9 @@ namespace VehicleFinder.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "caa566d2-950d-4d44-bd7a-4653784e947d",
+                            Id = "45756045-f6a8-4d99-af37-9d06c2dd345d",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "f19a491f-09f3-4baf-a133-f888e827abf9",
+                            ConcurrencyStamp = "2eb022e3-6fb0-4f4d-a673-f7e6b6cc7c1a",
                             Email = "user@user",
                             EmailConfirmed = false,
                             FirstName = "user",
@@ -374,18 +366,18 @@ namespace VehicleFinder.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "USER@USER",
                             NormalizedUserName = "USER@USER",
-                            PasswordHash = "AQAAAAIAAYagAAAAEFapMcS41rAwJF8PIlSkpRRI5oIxLvcXPYhizIedtdHfh/TnNQ4AN4VXyO1/j5GziQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEOFDZk3hrLr2hVn7FsIoNCV/ZoVdx110WS4VoGLYJl+Uuh9u8QJAkwJM9zylpzZmOw==",
                             PhoneNumber = "1234567890",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "8e61b3b3-3017-40a7-ac0a-bccf9ab875e1",
+                            SecurityStamp = "820335f7-018d-446d-b07d-0234c75fc692",
                             TwoFactorEnabled = false,
                             UserName = "user@user"
                         },
                         new
                         {
-                            Id = "3b44b7da-da1a-4361-a675-bd91f7074063",
+                            Id = "2caf4f25-0046-4f59-b9d0-bc56e8fb67b2",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "11eec63a-ae48-47ca-9873-9a313d2ccffe",
+                            ConcurrencyStamp = "532f0c84-2815-478d-9092-bf535175b9b4",
                             Email = "admin@eadmin",
                             EmailConfirmed = false,
                             FirstName = "admin",
@@ -393,10 +385,10 @@ namespace VehicleFinder.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@ADMIN",
                             NormalizedUserName = "ADMIN@ADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAEB7BokfzObhfUm+vTxAv2TMPKJ+bOrWwK+rfoptNYuaBR5rBoXZFnrDk2Jf/WmFmbA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEEXDvbIO7TRDb6wnpaJB1ef7lHPSOjqcPaVyGcMyEHhXN0AwCPFi5XbR5jCTlzP5aw==",
                             PhoneNumber = "1234567890",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "2efddc18-21be-435d-8182-847e68e2a312",
+                            SecurityStamp = "0946d00d-1f19-4446-aed4-dd5bb4930ed1",
                             TwoFactorEnabled = false,
                             UserName = "admin@eadmin"
                         });
@@ -404,24 +396,23 @@ namespace VehicleFinder.Migrations
 
             modelBuilder.Entity("VehicleFinder.Entities.Vehicle", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseSerialColumn(b.Property<int>("Id"));
+                    b.Property<string>("Id")
+                        .HasColumnType("text");
 
                     b.Property<decimal>("AverageConsumption")
                         .HasColumnType("numeric");
 
-                    b.Property<int>("BodyId")
-                        .HasColumnType("integer");
+                    b.Property<string>("BodyId")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("Brand")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("EngineId")
-                        .HasColumnType("integer");
+                    b.Property<string>("EngineId")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<int>("GearCount")
                         .HasColumnType("integer");

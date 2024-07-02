@@ -20,7 +20,7 @@ namespace VehicleFinder.DTOs.ListingDTO
         public string UserId { get; set; } = string.Empty;
         [Required]
         public DateTime CreationDate { get; set; }
-        [Required]
-        public int VehicleId { get; set; }
+
+        public string? VehicleId { get; set; } = Guid.NewGuid().ToString();
     }
 }

@@ -1,11 +1,14 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using VehicleFinder.DTOs.BodyDTO;
+using VehicleFinder.DTOs.EngineDTO;
 using VehicleFinder.Enums;
 
 namespace VehicleFinder.DTOs.VehicleDTO
 {
-    public class CreateVehicleDTO
+    public class UpdateVehicleDTO
     {
+        public string Id { get; set; }
+
         [Required]
         public string Brand { get; set; }
 
@@ -17,7 +20,6 @@ namespace VehicleFinder.DTOs.VehicleDTO
         public int ManufacturingYear { get; set; }
 
         [Required]
-        [DateAfter("ManufacturingYear", ErrorMessage = "The registration date must be after the manufacturing year.")]
         public DateOnly RegistrationUntil { get; set; }
 
         [Required]
@@ -36,12 +38,17 @@ namespace VehicleFinder.DTOs.VehicleDTO
         public int GearCount { get; set; }
 
         [Required]
-        [Range(0.00, 50.0, ErrorMessage = "Consumption should be between 0 and 50L per 100km. ")]
+        [Range(0.00, 50.0, ErrorMessage = "Consumption should be between 0 and 50L per 100km.")]
         public decimal AverageConsumption { get; set; }
-        
-        public string? EngineId { get; set; } = Guid.NewGuid().ToString();
 
-        public string? BodyId { get; set; } = Guid.NewGuid().ToString();
+        [Required]
+        public string EngineId { get; set; }
 
+        [Required]
+        public string BodyId { get; set; }
+
+        public UpdateEngineDTO Engine { get; set; }
+
+        public UpdateBodyDTO Body { get; set; }
     }
 }

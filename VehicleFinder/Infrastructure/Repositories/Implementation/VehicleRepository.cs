@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 using System.Threading.Tasks;
 using VehicleFinder.Entities;
 using VehicleFinder.Infrastructure.Repositories.Interfaces;
@@ -20,13 +21,23 @@ namespace VehicleFinder.Infrastructure.Repositories.Implementation
             await _context.SaveChangesAsync();
             return vehicle;
         }
-        public async Task<Vehicle> GetVehicleByIdAsync(int vehicleId)
+        public async Task<Vehicle> GetVehicleByIdAsync(string vehicleId)
         {
             return await _context.Vehicles.FindAsync(vehicleId);
         }
         public async Task<IEnumerable<Vehicle>> GetAllVehiclesAsync()
         {
             return await _context.Vehicles.ToListAsync();
+        }
+        public bool VehicleExists(string id)
+        {
+            return _context.Vehicles.Any(e => e.Id == id);
+        }
+
+        public async Task UpdateVehicleAsync(Vehicle vehicle)
+        {
+            _context.Entry(vehicle).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
         }
     }
 }

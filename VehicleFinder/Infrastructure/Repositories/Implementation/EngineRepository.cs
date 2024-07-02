@@ -22,7 +22,7 @@ namespace VehicleFinder.Infrastructure.Repositories.Implementation
             return engines;
         }
 
-        public async Task<Engine> GetEngineByIdAsync(int Id)
+        public async Task<Engine> GetEngineByIdAsync(string Id)
         {
             var engine = await _context.Engines.FindAsync(Id);
             if (engine == null)
@@ -31,11 +31,21 @@ namespace VehicleFinder.Infrastructure.Repositories.Implementation
             }
             return engine;
         }
-        public async Task<int> CreateEngineAsync(Engine model)
+        public async Task<string> CreateEngineAsync(Engine model)
         {
             _context.Engines.Add(model);
             await _context.SaveChangesAsync();
             return model.Id;
+        }
+        public bool EngineExists(string id)
+        {
+            return _context.Engines.Any(e => e.Id == id);
+        }
+
+        public async Task UpdateEngineAsync(Engine engine)
+        {
+            _context.Entry(engine).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
         }
     }
 }

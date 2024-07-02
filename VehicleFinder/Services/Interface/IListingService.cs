@@ -1,4 +1,5 @@
 ﻿using VehicleFinder.DTOs;
+using VehicleFinder.DTOs.BodyDTO;
 using VehicleFinder.DTOs.ListingDTO;
 using VehicleFinder.Entities;
 
@@ -8,9 +9,11 @@ namespace VehicleFinder.Services
     {
         Task<IEnumerable<GetListingDTO>> GetListingsAsync();
         Task<IEnumerable<GetListingDTO>> GetListingsByFilterAsync(ListingFilterDTO filter);
-        Task<GetListingDTO> GetListingByIdAsync(int id);
+        Task<GetListingDTO> GetListingByIdAsync(string id);
         Task<CreateListingDTO> CreateListingAsync(CreateListingDTO listingDto);
-        Task<bool> UpdateListingAsync(int id, CreateListingDTO listingDto);
-        Task<bool> DeleteListingAsync(int id);
+        Task<GetGeneralListingDTO> GetGeneralListingByIdAsync(string id);
+        Task<bool> UpdateListingAsync(string id, CreateListingDTO listingDto);
+        Task<bool> UpdateListingAsync(UpdateGeneralListingDTO listingDto);
+        Task<bool> DeleteListingAsync(string id);
     }
 }

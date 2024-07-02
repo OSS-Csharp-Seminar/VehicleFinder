@@ -20,21 +20,29 @@ namespace VehicleFinder.Infrastructure.Repositories
         }
         public async Task<IEnumerable<Listing>> GetListingsByFilterAsync(ListingFilterDTO filter)
         {
-            var query = _context.Listings.Include(l => l.Vehicle).ThenInclude(v => v.Engine).Include(l => l.Vehicle).ThenInclude(v => v.Body).AsQueryable();
+            var query = _context.Listings
+                                .Include(l => l.Vehicle)
+                                .ThenInclude(v => v.Engine)
+                                .Include(l => l.Vehicle)
+                                .ThenInclude(v => v.Body)
+                                .AsQueryable();
 
             if (!string.IsNullOrEmpty(filter.Title))
             {
-                query = query.Where(l => l.Title.Contains(filter.Title));
+                string lowerTitle = filter.Title.ToLower();
+                query = query.Where(l => l.Title.ToLower().Contains(lowerTitle));
             }
 
             if (!string.IsNullOrEmpty(filter.Brand))
             {
-                query = query.Where(l => l.Vehicle.Brand.Contains(filter.Brand));
+                string lowerBrand = filter.Brand.ToLower();
+                query = query.Where(l => l.Vehicle.Brand.ToLower().Contains(lowerBrand));
             }
 
             if (!string.IsNullOrEmpty(filter.Model))
             {
-                query = query.Where(l => l.Vehicle.Model.Contains(filter.Model));
+                string lowerModel = filter.Model.ToLower();
+                query = query.Where(l => l.Vehicle.Model.ToLower().Contains(lowerModel));
             }
 
             if (filter.YearMin.HasValue)
@@ -62,9 +70,15 @@ namespace VehicleFinder.Infrastructure.Repositories
                 query = query.Where(l => l.IsSold == filter.IsSold.Value);
             }
 
+            if (!string.IsNullOrEmpty(filter.EngineName))
+            {
+                string lowerEngineName = filter.EngineName.ToLower();
+                query = query.Where(l => l.Vehicle.Engine.Name.ToLower().Contains(lowerEngineName));
+            }
+
             if (filter.FuelType.HasValue)
             {
-                query = query.Where(l => l.Vehicle.Engine.FuelType == filter.FuelType);
+                query = query.Where(l => l.Vehicle.Engine.FuelType == filter.FuelType.Value);
             }
 
             if (filter.HorsepowerMin.HasValue)
@@ -110,9 +124,14 @@ namespace VehicleFinder.Infrastructure.Repositories
             return await query.ToListAsync();
         }
 
-        public async Task<Listing> GetListingByIdAsync(int id)
+        public async Task<Listing> GetListingByIdAsync(string id)
         {
-            return await _context.Listings.FindAsync(id);
+            return await _context.Listings
+                                 .Include(l => l.Vehicle)
+                                 .ThenInclude(v => v.Engine)
+                                 .Include(l => l.Vehicle)
+                                 .ThenInclude(v => v.Body)
+                                 .FirstOrDefaultAsync(l => l.Id == id);
         }
 
         public async Task AddListingAsync(Listing listing)
@@ -127,7 +146,7 @@ namespace VehicleFinder.Infrastructure.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteListingAsync(int id)
+        public async Task DeleteListingAsync(string id)
         {
             var listing = await _context.Listings.FindAsync(id);
             if (listing != null)
@@ -137,7 +156,7 @@ namespace VehicleFinder.Infrastructure.Repositories
             }
         }
 
-        public bool ListingExists(int id)
+        public bool ListingExists(string id)
         {
             return _context.Listings.Any(e => e.Id == id);
         }
