@@ -1,0 +1,83 @@
+﻿@page "{id:int}"
+@model VehicleFinder.Areas.Listing.Pages.ListingDetailsModel
+@{
+    ViewData["Title"] = "Listing Details";
+    Layout = "_Layout";
+}
+
+<h1 class="title">Listing Details</h1>
+
+@if (Model.GeneralListing != null)
+{
+    <div class="listing-details">
+        <h2>@Model.GeneralListing.Listing.Title</h2>
+        <p>@Model.GeneralListing.Listing.Description</p>
+
+        <h3>Vehicle Details</h3>
+        <p><strong>Brand:</strong> @Model.GeneralListing.Vehicle.Brand</p>
+        <p><strong>Model:</strong> @Model.GeneralListing.Vehicle.Model</p>
+        <p><strong>Year:</strong> @Model.GeneralListing.Vehicle.ManufacturingYear</p>
+        <p><strong>Kilometers:</strong> @Model.GeneralListing.Vehicle.Kilometers</p>
+        <p><strong>Number of Previous Owners:</strong> @Model.GeneralListing.Vehicle.NumberOfPreviousOwners</p>
+        <p><strong>Shifter Type:</strong> @Model.GeneralListing.Vehicle.ShifterType</p>
+        <p><strong>Gear Count:</strong> @Model.GeneralListing.Vehicle.GearCount</p>
+        <p><strong>Average Consumption:</strong> @Model.GeneralListing.Vehicle.AverageConsumption</p>
+
+        <h3>Engine Details</h3>
+        <p><strong>Name:</strong> @Model.GeneralListing.Engine.Name</p>
+        <p><strong>Fuel Type:</strong> @Model.GeneralListing.Engine.FuelType</p>
+        <p><strong>Horsepower:</strong> @Model.GeneralListing.Engine.Horsepower</p>
+        <p><strong>Engine Capacity:</strong> @Model.GeneralListing.Engine.EngineCapacity</p>
+
+        <h3>Body Details</h3>
+        <p><strong>Door Count:</strong> @Model.GeneralListing.Body.DoorCount</p>
+        <p><strong>Seat Count:</strong> @Model.GeneralListing.Body.SeatCount</p>
+        <p><strong>AC Type:</strong> @Model.GeneralListing.Body.ACType</p>
+        <p><strong>Color:</strong> @Model.GeneralListing.Body.Color</p>
+        <p><strong>Drivetrain Type:</strong> @Model.GeneralListing.Body.DrivetrainType</p>
+        <p><strong>Body Shape:</strong> @Model.GeneralListing.Body.BodyShape</p>
+    </div>
+}
+else
+{
+    <p>Listing not found.</p>
+}
+
+<style>
+    .title {
+        font-size: 2em;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .listing-details {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        background-color: #f9f9f9;
+    }
+
+        .listing-details h2 {
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .listing-details h3 {
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+
+        .listing-details p {
+            margin: 5px 0;
+            line-height: 1.6;
+        }
+
+            .listing-details p strong {
+                display: inline-block;
+                width: 200px;
+                font-weight: bold;
+            }
+</style>

@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using System.Threading.Tasks;
+using VehicleFinder.DTOs.BodyDTO;
 using VehicleFinder.DTOs.EngineDTO;
 using VehicleFinder.Entities;
+using VehicleFinder.Infrastructure.Repositories.Implementation;
 using VehicleFinder.Infrastructure.Repositories.Interfaces;
 using VehicleFinder.Services.Interface;
 
@@ -22,6 +24,16 @@ namespace VehicleFinder.Services.Implementation
         {
             var engine = _mapper.Map<Engine>(model);
             return await _engineRepository.CreateEngineAsync(engine);
+        }
+
+        public async Task<GetEngineDTO> GetEngineByIdAsync(int Id)
+        {
+            var engine = await _engineRepository.GetEngineByIdAsync(Id);
+            if (engine == null)
+            {
+                return null;
+            }
+            return _mapper.Map<GetEngineDTO>(engine);
         }
     }
 }

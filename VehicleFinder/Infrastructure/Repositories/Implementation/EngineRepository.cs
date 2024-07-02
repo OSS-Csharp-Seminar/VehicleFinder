@@ -37,5 +37,15 @@ namespace VehicleFinder.Infrastructure.Repositories.Implementation
             await _context.SaveChangesAsync();
             return model.Id;
         }
+        public bool EngineExists(int id)
+        {
+            return _context.Engines.Any(e => e.Id == id);
+        }
+
+        public async Task UpdateEngineAsync(Engine engine)
+        {
+            _context.Entry(engine).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+        }
     }
 }

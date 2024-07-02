@@ -8,5 +8,7 @@ namespace VehicleFinder.Infrastructure.Repositories.Interfaces
         Task<IEnumerable<Engine>> GetAllEnginesAsync();
         Task<Engine> GetEngineByIdAsync(int Id);
         Task<int> CreateEngineAsync(Engine model);
+        Task UpdateEngineAsync(Engine engine);
+        public bool EngineExists(int id);
     }
 }

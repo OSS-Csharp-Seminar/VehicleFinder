@@ -5,8 +5,7 @@ namespace VehicleFinder.Services.Interface
 {
     public interface IEngineService
     {
-        //Task<IEnumerable<GetEngineDTO>> GetListingsAsync();
-        //Task<GetEngineDTO> GetListingByIdAsync(int Id);
+        Task<GetEngineDTO> GetEngineByIdAsync(int Id);
         Task<int> CreateEngineAsync(CreateEngineDTO model);
     }
 }
