@@ -260,8 +260,8 @@ namespace VehicleFinder.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "67d57be0-040b-4be5-af5a-9803b0173f14", null, "USER", "USER" },
-                    { "a45657f0-33c2-4dd2-ac1e-28eef0852e2e", null, "ADMIN", "ADMIN" }
+                    { "5d1bf0ee-415a-439d-88df-e8277a274b33", null, "ADMIN", "ADMIN" },
+                    { "a4c3d22c-f298-42ec-92f6-f0f56b24937c", null, "USER", "USER" }
                 });
 
             migrationBuilder.InsertData(
@@ -269,8 +269,8 @@ namespace VehicleFinder.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "a0bbc4c5-2778-4d9e-9e14-2000cf2ef105", 0, "8683d8d6-5fbd-42a7-9d3a-7cb12f6e4248", "user@user", false, "user", "user", false, null, "USER@USER", "USER@USER", "AQAAAAIAAYagAAAAEJbfH22uPDPSIAT73q5S96+3vDfP0/tGmAvNeapK3rN4DWwW1uDG1JodvE1PFbXO5g==", "1234567890", true, "49076d9e-38ce-4383-823c-ccfe9b59441d", false, "user@user" },
-                    { "e5a561e3-6176-4fd9-b33d-9b17df2dba1f", 0, "dd2d69a8-7f6f-41e2-b08d-acef0ad1e958", "admin@eadmin", false, "admin", "admin", false, null, "ADMIN@ADMIN", "ADMIN@ADMIN", "AQAAAAIAAYagAAAAEEe96t6WiGzLwphuHQ/Wan+F4I4Pfz9EFyXucN5CpxtMeBe3TPO4shpONLNdSbnDLA==", "1234567890", true, "43cc6df5-d8a5-409c-b799-821a3c12423b", false, "admin@eadmin" }
+                    { "2faded21-8809-49d7-a499-34010df36d08", 0, "7cee75d8-ed54-4c28-a7b0-b05b7e8cb683", "admin@eadmin", false, "admin", "admin", false, null, "ADMIN@ADMIN", "ADMIN@ADMIN", "AQAAAAIAAYagAAAAEAGqIoO6/iDmknCDd1Wd+N3YXJVxMufbJdq5N8aYlzTgV+ZDgIee0x3AmnkF5RumOg==", "1234567890", true, "0d6abe44-470f-4e95-9f0b-cc0f0081eb0c", false, "admin@eadmin" },
+                    { "ed9197d5-f21a-4801-96bc-348889ef3e01", 0, "7815ee89-a62d-426b-a95c-18fb4581e618", "user@user", false, "user", "user", false, null, "USER@USER", "USER@USER", "AQAAAAIAAYagAAAAECWsBCKP+OzzMLM39YOP0CmYJSzeNZlWKATEzD3UThUaRH30F3JpujRoBi1dyY4epA==", "1234567890", true, "9230fe0f-fe6b-45a0-948c-66d57f4a194c", false, "user@user" }
                 });
 
             migrationBuilder.InsertData(
@@ -278,8 +278,8 @@ namespace VehicleFinder.Migrations
                 columns: new[] { "RoleId", "UserId" },
                 values: new object[,]
                 {
-                    { "67d57be0-040b-4be5-af5a-9803b0173f14", "a0bbc4c5-2778-4d9e-9e14-2000cf2ef105" },
-                    { "a45657f0-33c2-4dd2-ac1e-28eef0852e2e", "e5a561e3-6176-4fd9-b33d-9b17df2dba1f" }
+                    { "5d1bf0ee-415a-439d-88df-e8277a274b33", "2faded21-8809-49d7-a499-34010df36d08" },
+                    { "a4c3d22c-f298-42ec-92f6-f0f56b24937c", "ed9197d5-f21a-4801-96bc-348889ef3e01" }
                 });
 
             migrationBuilder.CreateIndex(

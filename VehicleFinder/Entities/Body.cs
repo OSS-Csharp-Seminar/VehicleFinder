@@ -11,7 +11,5 @@ namespace VehicleFinder.Entities
         public ACType ACType { get; set; }
         public string Color { get; set; } = string.Empty;
         public BodyShape BodyShape { get; set; }
-        public Vehicle Vehicle { get; set; }
-
     }
 }

@@ -10,7 +10,6 @@ namespace VehicleFinder.Entities
         public float Price { get; set; }
         public bool IsSold { get; set; }
         public string? UserId { get; set; }
-        public User? User { get; set; }
         public string? VehicleId { get; set; }
         public Vehicle? Vehicle { get; set; }
     }

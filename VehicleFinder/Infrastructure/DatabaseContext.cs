@@ -30,10 +30,10 @@ namespace VehicleFinder.Infrastructure
 
             modelBuilder.Entity<User>()
                 .HasMany(u => u.Listings)
-                .WithOne(l => l.User)
+                .WithOne()
                 .HasForeignKey(l => l.UserId);
 
-            modelBuilder.Entity<Vehicle>().HasOne(b => b.Body).WithOne(v => v.Vehicle).HasForeignKey<Vehicle>(b => b.BodyId);
+            modelBuilder.Entity<Vehicle>().HasOne(b => b.Body).WithOne().HasForeignKey<Vehicle>(b => b.BodyId);
 
             modelBuilder.Entity<Vehicle>()
                 .Property(v => v.ShifterType)

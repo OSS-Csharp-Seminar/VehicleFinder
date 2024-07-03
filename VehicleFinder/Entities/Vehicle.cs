@@ -19,7 +19,6 @@ namespace VehicleFinder.Entities
         public string EngineId { get; set; }
         public Engine? Engine { get; set; }
         public string BodyId { get; set; }
-
         public Body? Body { get; set; }
 
     }
