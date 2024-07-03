@@ -7,7 +7,7 @@ namespace VehicleFinder.DTOs.VehicleDTO
 {
     public class UpdateVehicleDTO
     {
-        public string Id { get; set; }
+        public string? Id { get; set; }
 
         [Required]
         public string Brand { get; set; }
@@ -41,14 +41,12 @@ namespace VehicleFinder.DTOs.VehicleDTO
         [Range(0.00, 50.0, ErrorMessage = "Consumption should be between 0 and 50L per 100km.")]
         public decimal AverageConsumption { get; set; }
 
-        [Required]
-        public string EngineId { get; set; }
+        public string? EngineId { get; set; }
 
-        [Required]
-        public string BodyId { get; set; }
+        public string? BodyId { get; set; }
 
-        public UpdateEngineDTO Engine { get; set; }
+        public UpdateEngineDTO? Engine { get; set; }
 
-        public UpdateBodyDTO Body { get; set; }
+        public UpdateBodyDTO? Body { get; set; }
     }
 }

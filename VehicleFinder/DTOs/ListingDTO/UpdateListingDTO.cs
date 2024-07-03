@@ -5,7 +5,7 @@ namespace VehicleFinder.DTOs.ListingDTO
 {
     public class UpdateListingDTO
     {
-        public string Id { get; set; }
+        public string? Id { get; set; }
 
         [Required]
         public string Title { get; set; }
@@ -21,10 +21,7 @@ namespace VehicleFinder.DTOs.ListingDTO
 
         public bool IsSold { get; set; }
 
-        [Required]
-        public string UserId { get; set; }
-
-        [Required]
-        public string VehicleId { get; set; }
+        public string? UserId { get; set; }
+        public string? VehicleId { get; set; }
     }
 }

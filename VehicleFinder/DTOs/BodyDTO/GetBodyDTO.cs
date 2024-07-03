@@ -2,6 +2,6 @@
 {
     public class GetBodyDTO : CreateBodyDTO
     {
-        public string Id { get; set; }
+        public string? Id { get; set; }
     }
 }

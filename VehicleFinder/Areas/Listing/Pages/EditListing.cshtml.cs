@@ -122,7 +122,7 @@ namespace VehicleFinder.Areas.Listing.Pages
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(int id)
+        public async Task<IActionResult> OnPostAsync(string id)
         {
             var user = await _userManager.GetUserAsync(User);
             if (user == null)

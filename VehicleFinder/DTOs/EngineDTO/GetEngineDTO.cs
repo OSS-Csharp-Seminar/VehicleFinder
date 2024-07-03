@@ -2,6 +2,6 @@
 {
     public class GetEngineDTO : CreateEngineDTO
     {
-        public string Id { get; set; }
+        public string? Id { get; set; }
     }
 }
