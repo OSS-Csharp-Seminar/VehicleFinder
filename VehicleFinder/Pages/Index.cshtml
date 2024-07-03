@@ -142,7 +142,7 @@
                                     <li><strong>Is Sold:</strong> @(listing.IsSold ? "Yes" : "No")</li>
                                 </ul>
                                 <a asp-area="Listing" asp-page="/ListingDetails" asp-route-id="@listing.Id" class="btn btn-primary">View Details</a>
-                                @if (Model.CurrentUserId == listing.UserId)
+                                @if (Model.CurrentUserId == listing.UserId && listing.IsSold == false)
                                 {
                                     <a asp-area="Listing" asp-page="/EditListing" asp-route-id="@listing.Id" class="btn btn-warning">Edit</a>
                                     <button class="btn btn-danger" onclick="confirmMarkAsSold('@listing.Id')">Mark as Sold</button>
@@ -156,25 +156,51 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="confirmMarkAsSoldModal" tabindex="-1" aria-labelledby="confirmMarkAsSoldModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmMarkAsSoldModalLabel">Confirm Mark As Sold</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to mark this listing as sold?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger" id="confirmMarkAsSoldButton">Mark as Sold</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 @section Scripts {
     <script>
+        let listingIdToMarkAsSold;
+
         function confirmMarkAsSold(listingId) {
-            if (confirm("Are you sure you want to mark this listing as sold?")) {
-                fetch(`/api/Listings/MarkAsSold`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(listingId)
-                }).then(response => {
-                    if (response.ok) {
-                        location.reload();
-                    } else {
-                        alert('Failed to mark as sold.');
-                    }
-                });
-            }
+            listingIdToMarkAsSold = listingId;
+            var myModal = new bootstrap.Modal(document.getElementById('confirmMarkAsSoldModal'), {
+                keyboard: false
+            });
+            myModal.show();
         }
+
+        document.getElementById('confirmMarkAsSoldButton').addEventListener('click', function () {
+            fetch(`/api/Listings/MarkAsSold`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(listingIdToMarkAsSold)
+            }).then(response => {
+                if (response.ok) {
+                    location.reload();
+                } else {
+                    alert('Failed to mark as sold.');
+                }
+            });
+        });
     </script>
 }
