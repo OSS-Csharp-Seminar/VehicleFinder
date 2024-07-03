@@ -50,13 +50,13 @@ namespace VehicleFinder.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "832d6a60-f164-4d8d-ab52-3b642d9de5a8",
+                            Id = "1308d4d4-49f2-4f88-9e71-29277642c54c",
                             Name = "USER",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "bb08b173-3606-4f28-91a5-2abba448cd61",
+                            Id = "4434fbb4-35d5-4fce-811f-f8d8e27700a5",
                             Name = "ADMIN",
                             NormalizedName = "ADMIN"
                         });
@@ -153,13 +153,13 @@ namespace VehicleFinder.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "45756045-f6a8-4d99-af37-9d06c2dd345d",
-                            RoleId = "832d6a60-f164-4d8d-ab52-3b642d9de5a8"
+                            UserId = "d274846f-e265-4b13-a80b-a3c547c87a15",
+                            RoleId = "1308d4d4-49f2-4f88-9e71-29277642c54c"
                         },
                         new
                         {
-                            UserId = "2caf4f25-0046-4f59-b9d0-bc56e8fb67b2",
-                            RoleId = "bb08b173-3606-4f28-91a5-2abba448cd61"
+                            UserId = "c5de279e-aa1a-4ad2-a36f-cb6ef2fce2d6",
+                            RoleId = "4434fbb4-35d5-4fce-811f-f8d8e27700a5"
                         });
                 });
 
@@ -356,9 +356,9 @@ namespace VehicleFinder.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "45756045-f6a8-4d99-af37-9d06c2dd345d",
+                            Id = "d274846f-e265-4b13-a80b-a3c547c87a15",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "2eb022e3-6fb0-4f4d-a673-f7e6b6cc7c1a",
+                            ConcurrencyStamp = "63dfbc59-7232-4d12-8f47-ef86869d2cdf",
                             Email = "user@user",
                             EmailConfirmed = false,
                             FirstName = "user",
@@ -366,18 +366,18 @@ namespace VehicleFinder.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "USER@USER",
                             NormalizedUserName = "USER@USER",
-                            PasswordHash = "AQAAAAIAAYagAAAAEOFDZk3hrLr2hVn7FsIoNCV/ZoVdx110WS4VoGLYJl+Uuh9u8QJAkwJM9zylpzZmOw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEMFoLaqcaW4zDd7I6ue7G+i0wHnnccwAhSu0T8yoSHBDK1Bc5Suoridjr36PcLOAOQ==",
                             PhoneNumber = "1234567890",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "820335f7-018d-446d-b07d-0234c75fc692",
+                            SecurityStamp = "7d2e3afe-3e8b-45bf-b11d-1979a20e07dd",
                             TwoFactorEnabled = false,
                             UserName = "user@user"
                         },
                         new
                         {
-                            Id = "2caf4f25-0046-4f59-b9d0-bc56e8fb67b2",
+                            Id = "c5de279e-aa1a-4ad2-a36f-cb6ef2fce2d6",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "532f0c84-2815-478d-9092-bf535175b9b4",
+                            ConcurrencyStamp = "3fc9f155-c692-40ab-abdd-6d0c28133588",
                             Email = "admin@eadmin",
                             EmailConfirmed = false,
                             FirstName = "admin",
@@ -385,10 +385,10 @@ namespace VehicleFinder.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@ADMIN",
                             NormalizedUserName = "ADMIN@ADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAEEXDvbIO7TRDb6wnpaJB1ef7lHPSOjqcPaVyGcMyEHhXN0AwCPFi5XbR5jCTlzP5aw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEBXIa6dz2V0jD2JlTTy1HmdytxCJt8RidK9ZcLQcnmEj1ECBxCDF+djEzDdyTSXBGQ==",
                             PhoneNumber = "1234567890",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "0946d00d-1f19-4446-aed4-dd5bb4930ed1",
+                            SecurityStamp = "1e8f13c5-ea70-4901-af70-8047886a5c76",
                             TwoFactorEnabled = false,
                             UserName = "admin@eadmin"
                         });

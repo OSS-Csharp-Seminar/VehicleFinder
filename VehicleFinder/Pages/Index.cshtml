@@ -141,12 +141,13 @@
                                     <li><strong>Number of Previous Owners:</strong> @listing.Vehicle.NumberOfPreviousOwners</li>
                                     <li><strong>Is Sold:</strong> @(listing.IsSold ? "Yes" : "No")</li>
                                 </ul>
-                                <a href="/Listing/ListingDetails/@listing.Id" class="btn btn-primary">View Details</a>
+                                <a asp-area="Listing" asp-page="/ListingDetails" asp-route-id="@listing.Id" class="btn btn-primary">View Details</a>
                                 @if (Model.CurrentUserId == listing.UserId)
                                 {
-                                    <a href="/Listing/EditListing/@listing.Id" class="btn btn-warning">Edit</a>
+                                    <a asp-area="Listing" asp-page="/EditListing" asp-route-id="@listing.Id" class="btn btn-warning">Edit</a>
                                     <button class="btn btn-danger" onclick="confirmMarkAsSold('@listing.Id')">Mark as Sold</button>
                                 }
+
                             </div>
                         </div>
                     </div>
