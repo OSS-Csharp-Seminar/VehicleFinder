@@ -62,6 +62,7 @@ namespace VehicleFinder.Areas.Listing.Pages
                     CreationDate = listing.Listing.CreationDate,
                     IsSold = listing.Listing.IsSold,
                     UserId = listing.Listing.UserId,
+                    VehicleId = vehicle.Id,
                 },
                 Vehicle = new UpdateVehicleDTO
                 {

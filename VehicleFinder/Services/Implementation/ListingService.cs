@@ -100,56 +100,74 @@ namespace VehicleFinder.Services
                 return false;
             }
 
-            // Update listing properties
+            // Update listing entity
             _mapper.Map(listingDto.Listing, listing);
 
-            // Update vehicle properties
-            var vehicle = await _vehicleRepository.GetVehicleByIdAsync(listingDto.Vehicle.Id);
-            if (vehicle == null)
-            {
-                return false;
-            }
-            _mapper.Map(listingDto.Vehicle, vehicle);
+            bool updateSuccessful = true;
 
-            // Update engine properties
-            var engine = await _engineRepository.GetEngineByIdAsync(listingDto.Engine.Id);
-            if (engine == null)
+            if (!string.IsNullOrEmpty(listingDto.Vehicle.Id))
             {
-                return false;
-            }
-            _mapper.Map(listingDto.Engine, engine);
-
-            // Update body properties
-            var body = await _bodyRepository.GetBodyByIdAsync(listingDto.Body.Id);
-            if (body == null)
-            {
-                return false;
-            }
-            _mapper.Map(listingDto.Body, body);
-
-            try
-            {
-                await _listingRepository.UpdateListingAsync(listing);
-                await _vehicleRepository.UpdateVehicleAsync(vehicle);
-                await _engineRepository.UpdateEngineAsync(engine);
-                await _bodyRepository.UpdateBodyAsync(body);
-                return true;
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!_listingRepository.ListingExists(listingDto.Listing.Id) ||
-                    !_vehicleRepository.VehicleExists(listingDto.Vehicle.Id) ||
-                    !_engineRepository.EngineExists(listingDto.Engine.Id) ||
-                    !_bodyRepository.BodyExists(listingDto.Body.Id))
+                var vehicle = await _vehicleRepository.GetVehicleByIdAsync(listingDto.Vehicle.Id);
+                if (vehicle != null)
                 {
-                    return false;
+                    _mapper.Map(listingDto.Vehicle, vehicle);
+                    await _vehicleRepository.UpdateVehicleAsync(vehicle);
                 }
                 else
                 {
-                    throw;
+                    updateSuccessful = false;
                 }
             }
+
+            if (!string.IsNullOrEmpty(listingDto.Engine.Id))
+            {
+                var engine = await _engineRepository.GetEngineByIdAsync(listingDto.Engine.Id);
+                if (engine != null)
+                {
+                    _mapper.Map(listingDto.Engine, engine);
+                    await _engineRepository.UpdateEngineAsync(engine);
+                }
+                else
+                {
+                    updateSuccessful = false;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(listingDto.Body.Id))
+            {
+                var body = await _bodyRepository.GetBodyByIdAsync(listingDto.Body.Id);
+                if (body != null)
+                {
+                    _mapper.Map(listingDto.Body, body);
+                    await _bodyRepository.UpdateBodyAsync(body);
+                }
+                else
+                {
+                    updateSuccessful = false;
+                }
+            }
+
+            try
+            {
+                if (updateSuccessful)
+                {
+                    // Update the listing entity
+                    await _listingRepository.UpdateListingAsync(listing);
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                // Handle concurrency exception if needed
+                return false;
+            }
         }
+
+
 
         public async Task<bool> DeleteListingAsync(string id)
         {

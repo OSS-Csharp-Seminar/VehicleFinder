@@ -17,14 +17,17 @@ namespace VehicleFinder.Mappers
             CreateMap<Vehicle, GetVehicleDTO>()
                 .ForMember(dest => dest.Engine, opt => opt.MapFrom(src => src.Engine))
                 .ForMember(dest => dest.Body, opt => opt.MapFrom(src => src.Body));
+            CreateMap<UpdateVehicleDTO, Vehicle>();
 
             // Body mappings
             CreateMap<CreateBodyDTO, Body>();
             CreateMap<Body, GetBodyDTO>();
+            CreateMap<UpdateBodyDTO, Body>();
 
             // Engine mappings
             CreateMap<CreateEngineDTO, Engine>();
             CreateMap<Engine, GetEngineDTO>();
+            CreateMap<UpdateEngineDTO, Engine>();
 
             // Listing mappings
             CreateMap<Listing, GetListingDTO>()
@@ -32,6 +35,9 @@ namespace VehicleFinder.Mappers
 
             CreateMap<CreateListingDTO, Listing>()
                 .ForMember(dest => dest.Id, opt => opt.Ignore()); // Ignore Id for new listings
+
+            CreateMap<UpdateListingDTO, Listing>()
+                        .ForMember(dest => dest.VehicleId, opt => opt.MapFrom(src => src.VehicleId));
         }
     }
 }
