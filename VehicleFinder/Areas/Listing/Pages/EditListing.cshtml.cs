@@ -39,6 +39,7 @@ namespace VehicleFinder.Areas.Listing.Pages
         [BindProperty]
         public UpdateGeneralListingDTO UpdateGeneralListing { get; set; }
 
+        public async Task<IActionResult> OnGetAsync(string id)
         {
             var listing = await _listingService.GetGeneralListingByIdAsync(id);
             if (listing == null)
@@ -121,6 +122,7 @@ namespace VehicleFinder.Areas.Listing.Pages
             return Page();
         }
 
+        public async Task<IActionResult> OnPostAsync(int id)
         {
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
