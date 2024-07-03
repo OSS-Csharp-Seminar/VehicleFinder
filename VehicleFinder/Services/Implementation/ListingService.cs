@@ -100,9 +100,6 @@ namespace VehicleFinder.Services
                 return false;
             }
 
-            // Update listing entity
-            _mapper.Map(listingDto.Listing, listing);
-
             bool updateSuccessful = true;
 
             if (!string.IsNullOrEmpty(listingDto.Vehicle.Id))
@@ -118,6 +115,7 @@ namespace VehicleFinder.Services
                     updateSuccessful = false;
                 }
             }
+
 
             if (!string.IsNullOrEmpty(listingDto.Engine.Id))
             {
@@ -151,7 +149,7 @@ namespace VehicleFinder.Services
             {
                 if (updateSuccessful)
                 {
-                    // Update the listing entity
+                    _mapper.Map(listingDto.Listing, listing);
                     await _listingRepository.UpdateListingAsync(listing);
                     return true;
                 }
