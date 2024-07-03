@@ -13,6 +13,27 @@
             <div class="sidebar bg-light p-3">
                 <h2>Filters</h2>
                 <form method="get">
+                    <!-- Sort By -->
+                    <div class="form-group">
+                        <label for="sortBy">Sort By</label>
+                        <select class="form-control" id="sortBy" name="sortBy">
+                            <option value="">Select...</option>
+                            <option value="priceAsc" selected="@(Model.SortBy == "priceAsc" ? "selected" : null)">Price (Low to High)</option>
+                            <option value="priceDesc" selected="@(Model.SortBy == "priceDesc" ? "selected" : null)">Price (High to Low)</option>
+                            <option value="yearAsc" selected="@(Model.SortBy == "yearAsc" ? "selected" : null)">Year (Old to New)</option>
+                            <option value="yearDesc" selected="@(Model.SortBy == "yearDesc" ? "selected" : null)">Year (New to Old)</option>
+                            <option value="kilometersAsc" selected="@(Model.SortBy == "kilometersAsc" ? "selected" : null)">Kilometers (Low to High)</option>
+                            <option value="kilometersDesc" selected="@(Model.SortBy == "kilometersDesc" ? "selected" : null)">Kilometers (High to Low)</option>
+                            <option value="registrationAsc" selected="@(Model.SortBy == "registrationAsc" ? "selected" : null)">Registration (Old to New)</option>
+                            <option value="registrationDesc" selected="@(Model.SortBy == "registrationDesc" ? "selected" : null)">Registration (New to Old)</option>
+                            <option value="ownersAsc" selected="@(Model.SortBy == "ownersAsc" ? "selected" : null)">Owners (Fewest to Most)</option>
+                            <option value="ownersDesc" selected="@(Model.SortBy == "ownersDesc" ? "selected" : null)">Owners (Most to Fewest)</option>
+                            <option value="createdAsc" selected="@(Model.SortBy == "createdAsc" ? "selected" : null)">Created Date (Old to New)</option>
+                            <option value="createdDesc" selected="@(Model.SortBy == "createdDesc" ? "selected" : null)">Created Date (New to Old)</option>
+                        </select>
+                    </div>
+
+                    <!-- Filters -->
                     <div class="form-group">
                         <label for="title">Title</label>
                         <input type="text" class="form-control" id="title" name="title" value="@Model.Title" placeholder="Search by Title" />
@@ -45,12 +66,12 @@
                         <label for="isSold">Is Sold</label>
                         <select class="form-control" id="isSold" name="isSold">
                             <option value="">Any</option>
-                            <option value="true" selected=@(Model.IsSold.HasValue && Model.IsSold.Value ? "selected" : "")>Yes</option>
-                            <option value="false" selected=@(Model.IsSold.HasValue && !Model.IsSold.Value ? "selected" : "")>No</option>
+                            <option value="true" selected="@(Model.IsSold.HasValue && Model.IsSold.Value ? "selected" : null)">Yes</option>
+                            <option value="false" selected="@(Model.IsSold.HasValue && !Model.IsSold.Value ? "selected" : null)">No</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="engine-name">Engine name</label>
+                        <label for="enginename">Engine name</label>
                         <input type="text" class="form-control" id="enginename" name="enginename" value="@Model.EngineName" placeholder="Search by engine name" />
                     </div>
                     <div class="form-group">
@@ -59,7 +80,7 @@
                             <option value="">Any</option>
                             @foreach (var option in Model.FuelTypeOptions)
                             {
-                                <option value="@option.Value" selected="@option.Selected">@option.Text</option>
+                                <option value="@option.Value" selected="@(option.Selected ? "selected" : null)">@option.Text</option>
                             }
                         </select>
                     </div>
@@ -85,7 +106,7 @@
                             <option value="">Any</option>
                             @foreach (var option in Model.BodyShapeOptions)
                             {
-                                <option value="@option.Value" selected="@option.Selected">@option.Text</option>
+                                <option value="@option.Value" selected="@(option.Selected ? "selected" : null)">@option.Text</option>
                             }
                         </select>
                     </div>
@@ -95,7 +116,7 @@
                             <option value="">Any</option>
                             @foreach (var option in Model.ACTypeOptions)
                             {
-                                <option value="@option.Value" selected="@option.Selected">@option.Text</option>
+                                <option value="@option.Value" selected="@(option.Selected ? "selected" : null)">@option.Text</option>
                             }
                         </select>
                     </div>
@@ -105,7 +126,7 @@
                             <option value="">Any</option>
                             @foreach (var option in Model.DrivetrainTypeOptions)
                             {
-                                <option value="@option.Value" selected="@option.Selected">@option.Text</option>
+                                <option value="@option.Value" selected="@(option.Selected ? "selected" : null)">@option.Text</option>
                             }
                         </select>
                     </div>
@@ -115,7 +136,7 @@
                             <option value="">Any</option>
                             @foreach (var option in Model.ShifterTypeOptions)
                             {
-                                <option value="@option.Value" selected="@option.Selected">@option.Text</option>
+                                <option value="@option.Value" selected="@(option.Selected ? "selected" : null)">@option.Text</option>
                             }
                         </select>
                     </div>
@@ -132,7 +153,6 @@
                         <div class="card mb-4 shadow-sm">
                             <div class="card-body">
                                 <h5 class="card-title">@listing.Title</h5>
-                               @*  <h6 class="card-subtitle mb-2 text-muted">@listing.Vehicle.Brand @listing.Vehicle.Model (@listing.Vehicle.ManufacturingYear)</h6> *@
                                 <p class="card-text">@listing.Description</p>
                                 <ul class="list-unstyled">
                                     <li><strong>Price:</strong> $@listing.Price</li>
@@ -140,6 +160,7 @@
                                     <li><strong>Registration Until:</strong> @listing.Vehicle.RegistrationUntil</li>
                                     <li><strong>Number of Previous Owners:</strong> @listing.Vehicle.NumberOfPreviousOwners</li>
                                     <li><strong>Is Sold:</strong> @(listing.IsSold ? "Yes" : "No")</li>
+                                    <li><strong>Created Date:</strong> @listing.CreationDate.ToString("yyyy-MM-dd")</li>
                                 </ul>
                                 <a asp-area="Listing" asp-page="/ListingDetails" asp-route-id="@listing.Id" class="btn btn-primary">View Details</a>
                                 @if (Model.CurrentUserId == listing.UserId && listing.IsSold == false)
@@ -147,7 +168,6 @@
                                     <a asp-area="Listing" asp-page="/EditListing" asp-route-id="@listing.Id" class="btn btn-warning">Edit</a>
                                     <button class="btn btn-danger" onclick="confirmMarkAsSold('@listing.Id')">Mark as Sold</button>
                                 }
-
                             </div>
                         </div>
                     </div>
@@ -156,6 +176,8 @@
         </div>
     </div>
 </div>
+
+<!-- Modal for delete confirmation -->
 <div class="modal fade" id="confirmMarkAsSoldModal" tabindex="-1" aria-labelledby="confirmMarkAsSoldModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -173,7 +195,6 @@
         </div>
     </div>
 </div>
-
 
 @section Scripts {
     <script>

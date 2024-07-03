@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
+using System.Transactions;
 using VehicleFinder.DTOs;
 using VehicleFinder.DTOs.BodyDTO;
 using VehicleFinder.DTOs.EngineDTO;
@@ -189,8 +190,31 @@ namespace VehicleFinder.Services
                 return false;
             }
 
-            await _listingRepository.DeleteListingAsync(id);
-            return true;
+            var vehicle = await _vehicleRepository.GetVehicleByIdAsync(listing.VehicleId);
+            var body = await _bodyRepository.GetBodyByIdAsync(vehicle.BodyId);
+
+            using (var scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
+            {
+                try
+                {
+                    if (body != null)
+                    {
+                        await _bodyRepository.DeleteBodyAsync(body.Id);
+                    }
+                    if (vehicle != null)
+                    {
+                        await _vehicleRepository.DeleteVehicleAsync(vehicle.Id);
+                    }
+                    await _listingRepository.DeleteListingAsync(id);
+
+                    scope.Complete();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Failed to delete listing with dependencies.", ex);
+                }
+            }
         }
 
         public async Task<GetGeneralListingDTO> GetGeneralListingByIdAsync(string id)

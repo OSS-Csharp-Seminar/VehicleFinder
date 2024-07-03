@@ -1,6 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualStudio.TextTemplating;
-using VehicleFinder.DTOs.BodyDTO;
 using VehicleFinder.Entities;
 using VehicleFinder.Infrastructure.Repositories.Interfaces;
 
@@ -38,6 +36,16 @@ namespace VehicleFinder.Infrastructure.Repositories.Implementation
         {
             _context.Entry(body).State = EntityState.Modified;
             await _context.SaveChangesAsync();
+        }
+
+        public async Task DeleteBodyAsync(string Id)
+        {
+            var body = await _context.Bodies.FindAsync(Id);
+            if (body != null)
+            {
+                _context.Bodies.Remove(body);
+                await _context.SaveChangesAsync();
+            }
         }
     }
 }

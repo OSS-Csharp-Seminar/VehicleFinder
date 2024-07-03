@@ -47,5 +47,14 @@ namespace VehicleFinder.Infrastructure.Repositories.Implementation
             _context.Entry(engine).State = EntityState.Modified;
             await _context.SaveChangesAsync();
         }
+        public async Task DeleteEngineAsync(string Id)
+        {
+            var engine = await _context.Engines.FindAsync(Id);
+            if (engine != null)
+            {
+                _context.Engines.Remove(engine);
+                await _context.SaveChangesAsync();
+            }
+        }
     }
 }

@@ -8,7 +8,7 @@ namespace VehicleFinder.Infrastructure.Repositories.Interfaces
         Task<Vehicle> GetVehicleByIdAsync(string vehicleId);
         Task<IEnumerable<Vehicle>> GetAllVehiclesAsync();
         Task UpdateVehicleAsync(Vehicle vehicle);
-
+        Task DeleteVehicleAsync(string Id);
         bool VehicleExists(string id);
 
     }

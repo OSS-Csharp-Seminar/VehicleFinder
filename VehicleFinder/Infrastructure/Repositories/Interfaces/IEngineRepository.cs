@@ -9,6 +9,8 @@ namespace VehicleFinder.Infrastructure.Repositories.Interfaces
         Task<Engine> GetEngineByIdAsync(string Id);
         Task<string> CreateEngineAsync(Engine model);
         Task UpdateEngineAsync(Engine engine);
+        Task DeleteEngineAsync(string Id);
         public bool EngineExists(string id);
+
     }
 }

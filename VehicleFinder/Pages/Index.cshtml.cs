@@ -58,6 +58,9 @@ namespace VehicleFinder.Pages
         [BindProperty(SupportsGet = true)]
         public ShifterType? ShifterType { get; set; }
 
+        [BindProperty(SupportsGet = true)]
+        public string? SortBy { get; set; }
+
         public IEnumerable<GetListingDTO> Listings { get; set; }
         public string CurrentUserId { get; set; }
 
@@ -94,6 +97,7 @@ namespace VehicleFinder.Pages
             };
 
             Listings = await _listingService.GetListingsByFilterAsync(filter);
+            Listings = SortListings(Listings, SortBy);
 
             FuelTypeOptions = GetEnumSelectList<FuelType>(FuelType);
             BodyShapeOptions = GetEnumSelectList<BodyShape>(BodyShape);
@@ -101,6 +105,27 @@ namespace VehicleFinder.Pages
             DrivetrainTypeOptions = GetEnumSelectList<DrivetrainType>(DrivetrainType);
             ShifterTypeOptions = GetEnumSelectList<ShifterType>(ShifterType);
         }
+
+        private IEnumerable<GetListingDTO> SortListings(IEnumerable<GetListingDTO> listings, string sortBy)
+        {
+            return sortBy switch
+            {
+                "priceAsc" => listings.OrderBy(l => l.Price),
+                "priceDesc" => listings.OrderByDescending(l => l.Price),
+                "yearAsc" => listings.OrderBy(l => l.Vehicle.ManufacturingYear),
+                "yearDesc" => listings.OrderByDescending(l => l.Vehicle.ManufacturingYear),
+                "kilometersAsc" => listings.OrderBy(l => l.Vehicle.Kilometers),
+                "kilometersDesc" => listings.OrderByDescending(l => l.Vehicle.Kilometers),
+                "registrationAsc" => listings.OrderBy(l => l.Vehicle.RegistrationUntil),
+                "registrationDesc" => listings.OrderByDescending(l => l.Vehicle.RegistrationUntil),
+                "ownersAsc" => listings.OrderBy(l => l.Vehicle.NumberOfPreviousOwners),
+                "ownersDesc" => listings.OrderByDescending(l => l.Vehicle.NumberOfPreviousOwners),
+                "createdAsc" => listings.OrderBy(l => l.CreationDate),
+                "createdDesc" => listings.OrderByDescending(l => l.CreationDate),
+                _ => listings,
+            };
+        }
+
 
         private List<SelectListItem> GetEnumSelectList<TEnum>(TEnum? selectedValue) where TEnum : struct
         {
