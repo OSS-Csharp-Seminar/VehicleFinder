@@ -27,6 +27,10 @@ namespace VehicleFinder.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<GetListingDTO>> GetListing(string id)
         {
+            if(string.IsNullOrEmpty(id))
+            {
+                return NotFound();
+            }
             var listing = await _listingService.GetListingByIdAsync(id);
 
             if (listing == null)
@@ -35,6 +39,17 @@ namespace VehicleFinder.Controllers
             }
 
             return Ok(listing);
+        }
+
+        [HttpPost("MarkAsSold")]
+        public async Task<IActionResult> MarkAsSold([FromBody] string id)
+        {
+            var result = await _listingService.MarkAsSoldAsync(id);
+            if (result)
+            {
+                return Ok();
+            }
+            return BadRequest("Failed to mark as sold.");
         }
 
         // POST: api/Listings

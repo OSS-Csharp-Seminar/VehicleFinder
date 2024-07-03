@@ -64,6 +64,20 @@ namespace VehicleFinder.Services
             return listingDto;
         }
 
+        public async Task<bool> MarkAsSoldAsync(string id)
+        {
+            var listing = await _listingRepository.GetListingByIdAsync(id);
+            if (listing == null)
+            {
+                return false;
+            }
+
+            listing.IsSold = true;
+            await _listingRepository.UpdateListingAsync(listing);
+
+            return true;
+        }
+
         public async Task<bool> UpdateListingAsync(string id, CreateListingDTO listingDto)
         {
             var listing = await _listingRepository.GetListingByIdAsync(id);
