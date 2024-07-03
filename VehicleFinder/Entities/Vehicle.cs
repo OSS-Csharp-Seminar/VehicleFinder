@@ -1,4 +1,5 @@
-﻿using VehicleFinder.Entities.BaseEntity;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using VehicleFinder.Entities.BaseEntity;
 using VehicleFinder.Enums;
 
 namespace VehicleFinder.Entities
@@ -14,10 +15,11 @@ namespace VehicleFinder.Entities
         public ShifterType ShifterType { get; set; }
         public int GearCount { get; set; }
         public decimal AverageConsumption { get; set; }
-        public Listing Listing { get; set; }
+
         public string EngineId { get; set; }
         public Engine? Engine { get; set; }
         public string BodyId { get; set; }
+
         public Body? Body { get; set; }
 
     }

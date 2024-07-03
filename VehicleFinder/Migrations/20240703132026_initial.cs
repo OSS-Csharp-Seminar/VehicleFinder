@@ -237,8 +237,8 @@ namespace VehicleFinder.Migrations
                     Description = table.Column<string>(type: "text", nullable: false),
                     Price = table.Column<float>(type: "real", nullable: false),
                     IsSold = table.Column<bool>(type: "boolean", nullable: false),
-                    UserId = table.Column<string>(type: "text", nullable: false),
-                    VehicleId = table.Column<string>(type: "text", nullable: false)
+                    UserId = table.Column<string>(type: "text", nullable: true),
+                    VehicleId = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -247,14 +247,12 @@ namespace VehicleFinder.Migrations
                         name: "FK_Listings_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Listings_Vehicles_VehicleId",
                         column: x => x.VehicleId,
                         principalTable: "Vehicles",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.InsertData(
@@ -262,8 +260,8 @@ namespace VehicleFinder.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "1d4a58fd-e971-4bf3-b248-fe257de8212f", null, "USER", "USER" },
-                    { "dcb84bb6-e5a0-4e9b-a15b-339edaf1a259", null, "ADMIN", "ADMIN" }
+                    { "67d57be0-040b-4be5-af5a-9803b0173f14", null, "USER", "USER" },
+                    { "a45657f0-33c2-4dd2-ac1e-28eef0852e2e", null, "ADMIN", "ADMIN" }
                 });
 
             migrationBuilder.InsertData(
@@ -271,8 +269,8 @@ namespace VehicleFinder.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { "7a2743e1-aeb4-458c-80d3-8ec5dce864d4", 0, "a32af43e-a38b-4260-9b06-176e9088f641", "admin@eadmin", false, "admin", "admin", false, null, "ADMIN@ADMIN", "ADMIN@ADMIN", "AQAAAAIAAYagAAAAENmpfrKOfdjgm1SH+9wG1y3+GTxR8HN8teI0o7qXVqIX+pFneSA1yPihYxMT0kcvTg==", "1234567890", true, "e30ab696-3d69-4a01-9482-2d8d00a2c5b7", false, "admin@eadmin" },
-                    { "c44455d4-cf51-4cbf-b40b-1287e3ef1dce", 0, "3f491782-ee1a-4fe4-b749-0e2eb9ebffda", "user@user", false, "user", "user", false, null, "USER@USER", "USER@USER", "AQAAAAIAAYagAAAAEHmqwgKMI7SpAUC+tDcV+fpH1RYCNYa77HSM33/8gDN8L3V0+CIOe9DdrarqfRSh5g==", "1234567890", true, "c802ac62-6585-4fbe-8e4d-5deaf2980f5e", false, "user@user" }
+                    { "a0bbc4c5-2778-4d9e-9e14-2000cf2ef105", 0, "8683d8d6-5fbd-42a7-9d3a-7cb12f6e4248", "user@user", false, "user", "user", false, null, "USER@USER", "USER@USER", "AQAAAAIAAYagAAAAEJbfH22uPDPSIAT73q5S96+3vDfP0/tGmAvNeapK3rN4DWwW1uDG1JodvE1PFbXO5g==", "1234567890", true, "49076d9e-38ce-4383-823c-ccfe9b59441d", false, "user@user" },
+                    { "e5a561e3-6176-4fd9-b33d-9b17df2dba1f", 0, "dd2d69a8-7f6f-41e2-b08d-acef0ad1e958", "admin@eadmin", false, "admin", "admin", false, null, "ADMIN@ADMIN", "ADMIN@ADMIN", "AQAAAAIAAYagAAAAEEe96t6WiGzLwphuHQ/Wan+F4I4Pfz9EFyXucN5CpxtMeBe3TPO4shpONLNdSbnDLA==", "1234567890", true, "43cc6df5-d8a5-409c-b799-821a3c12423b", false, "admin@eadmin" }
                 });
 
             migrationBuilder.InsertData(
@@ -280,8 +278,8 @@ namespace VehicleFinder.Migrations
                 columns: new[] { "RoleId", "UserId" },
                 values: new object[,]
                 {
-                    { "dcb84bb6-e5a0-4e9b-a15b-339edaf1a259", "7a2743e1-aeb4-458c-80d3-8ec5dce864d4" },
-                    { "1d4a58fd-e971-4bf3-b248-fe257de8212f", "c44455d4-cf51-4cbf-b40b-1287e3ef1dce" }
+                    { "67d57be0-040b-4be5-af5a-9803b0173f14", "a0bbc4c5-2778-4d9e-9e14-2000cf2ef105" },
+                    { "a45657f0-33c2-4dd2-ac1e-28eef0852e2e", "e5a561e3-6176-4fd9-b33d-9b17df2dba1f" }
                 });
 
             migrationBuilder.CreateIndex(

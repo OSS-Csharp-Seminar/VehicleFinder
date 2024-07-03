@@ -24,9 +24,9 @@ namespace VehicleFinder.Infrastructure
             modelBuilder.UseSerialColumns();
 
             modelBuilder.Entity<Listing>()
-                .HasOne(v => v.Vehicle)
-                .WithOne(l => l.Listing)
-                .HasForeignKey<Listing>(v => v.VehicleId);
+                            .HasOne(l => l.Vehicle)
+                            .WithOne() // No navigation property on the other side
+                            .HasForeignKey<Listing>(l => l.VehicleId);
 
             modelBuilder.Entity<User>()
                 .HasMany(u => u.Listings)

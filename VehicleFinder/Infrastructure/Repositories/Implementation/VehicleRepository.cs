@@ -39,5 +39,6 @@ namespace VehicleFinder.Infrastructure.Repositories.Implementation
             _context.Entry(vehicle).State = EntityState.Modified;
             await _context.SaveChangesAsync();
         }
+
     }
 }

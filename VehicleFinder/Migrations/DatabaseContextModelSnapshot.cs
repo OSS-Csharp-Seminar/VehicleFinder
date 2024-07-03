@@ -50,13 +50,13 @@ namespace VehicleFinder.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "1308d4d4-49f2-4f88-9e71-29277642c54c",
+                            Id = "67d57be0-040b-4be5-af5a-9803b0173f14",
                             Name = "USER",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "4434fbb4-35d5-4fce-811f-f8d8e27700a5",
+                            Id = "a45657f0-33c2-4dd2-ac1e-28eef0852e2e",
                             Name = "ADMIN",
                             NormalizedName = "ADMIN"
                         });
@@ -153,13 +153,13 @@ namespace VehicleFinder.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "d274846f-e265-4b13-a80b-a3c547c87a15",
-                            RoleId = "1308d4d4-49f2-4f88-9e71-29277642c54c"
+                            UserId = "a0bbc4c5-2778-4d9e-9e14-2000cf2ef105",
+                            RoleId = "67d57be0-040b-4be5-af5a-9803b0173f14"
                         },
                         new
                         {
-                            UserId = "c5de279e-aa1a-4ad2-a36f-cb6ef2fce2d6",
-                            RoleId = "4434fbb4-35d5-4fce-811f-f8d8e27700a5"
+                            UserId = "e5a561e3-6176-4fd9-b33d-9b17df2dba1f",
+                            RoleId = "a45657f0-33c2-4dd2-ac1e-28eef0852e2e"
                         });
                 });
 
@@ -263,11 +263,9 @@ namespace VehicleFinder.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("UserId")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("VehicleId")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
@@ -356,9 +354,9 @@ namespace VehicleFinder.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "d274846f-e265-4b13-a80b-a3c547c87a15",
+                            Id = "a0bbc4c5-2778-4d9e-9e14-2000cf2ef105",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "63dfbc59-7232-4d12-8f47-ef86869d2cdf",
+                            ConcurrencyStamp = "8683d8d6-5fbd-42a7-9d3a-7cb12f6e4248",
                             Email = "user@user",
                             EmailConfirmed = false,
                             FirstName = "user",
@@ -366,18 +364,18 @@ namespace VehicleFinder.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "USER@USER",
                             NormalizedUserName = "USER@USER",
-                            PasswordHash = "AQAAAAIAAYagAAAAEMFoLaqcaW4zDd7I6ue7G+i0wHnnccwAhSu0T8yoSHBDK1Bc5Suoridjr36PcLOAOQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEJbfH22uPDPSIAT73q5S96+3vDfP0/tGmAvNeapK3rN4DWwW1uDG1JodvE1PFbXO5g==",
                             PhoneNumber = "1234567890",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "7d2e3afe-3e8b-45bf-b11d-1979a20e07dd",
+                            SecurityStamp = "49076d9e-38ce-4383-823c-ccfe9b59441d",
                             TwoFactorEnabled = false,
                             UserName = "user@user"
                         },
                         new
                         {
-                            Id = "c5de279e-aa1a-4ad2-a36f-cb6ef2fce2d6",
+                            Id = "e5a561e3-6176-4fd9-b33d-9b17df2dba1f",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "3fc9f155-c692-40ab-abdd-6d0c28133588",
+                            ConcurrencyStamp = "dd2d69a8-7f6f-41e2-b08d-acef0ad1e958",
                             Email = "admin@eadmin",
                             EmailConfirmed = false,
                             FirstName = "admin",
@@ -385,10 +383,10 @@ namespace VehicleFinder.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@ADMIN",
                             NormalizedUserName = "ADMIN@ADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAEBXIa6dz2V0jD2JlTTy1HmdytxCJt8RidK9ZcLQcnmEj1ECBxCDF+djEzDdyTSXBGQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEEe96t6WiGzLwphuHQ/Wan+F4I4Pfz9EFyXucN5CpxtMeBe3TPO4shpONLNdSbnDLA==",
                             PhoneNumber = "1234567890",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "1e8f13c5-ea70-4901-af70-8047886a5c76",
+                            SecurityStamp = "43cc6df5-d8a5-409c-b799-821a3c12423b",
                             TwoFactorEnabled = false,
                             UserName = "admin@eadmin"
                         });
@@ -502,15 +500,11 @@ namespace VehicleFinder.Migrations
                 {
                     b.HasOne("VehicleFinder.Entities.User", "User")
                         .WithMany("Listings")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.HasOne("VehicleFinder.Entities.Vehicle", "Vehicle")
-                        .WithOne("Listing")
-                        .HasForeignKey("VehicleFinder.Entities.Listing", "VehicleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithOne()
+                        .HasForeignKey("VehicleFinder.Entities.Listing", "VehicleId");
 
                     b.Navigation("User");
 
@@ -550,12 +544,6 @@ namespace VehicleFinder.Migrations
             modelBuilder.Entity("VehicleFinder.Entities.User", b =>
                 {
                     b.Navigation("Listings");
-                });
-
-            modelBuilder.Entity("VehicleFinder.Entities.Vehicle", b =>
-                {
-                    b.Navigation("Listing")
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

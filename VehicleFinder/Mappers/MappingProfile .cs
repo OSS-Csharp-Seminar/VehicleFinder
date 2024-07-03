@@ -37,7 +37,8 @@ namespace VehicleFinder.Mappers
                 .ForMember(dest => dest.Id, opt => opt.Ignore()); // Ignore Id for new listings
 
             CreateMap<UpdateListingDTO, Listing>()
-                        .ForMember(dest => dest.VehicleId, opt => opt.MapFrom(src => src.VehicleId));
+                        .ForMember(dest => dest.VehicleId, opt => opt.MapFrom(src => src.VehicleId))
+                        .ForMember(dest => dest.CreationDate, opt => opt.Ignore()); 
         }
     }
 }
