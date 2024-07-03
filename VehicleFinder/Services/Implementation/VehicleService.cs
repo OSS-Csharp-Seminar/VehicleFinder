@@ -29,7 +29,7 @@ namespace VehicleFinder.Services.Implementation
             return await _vehicleRepository.CreateVehicleAsync(vehicle);
         }
 
-        public async Task<GetVehicleDTO> GetVehicleByIdAsync(int vehicleId)
+        public async Task<GetVehicleDTO> GetVehicleByIdAsync(Guid vehicleId)
         {
             var vehicle = await _vehicleRepository.GetVehicleByIdAsync(vehicleId);
             if (vehicle == null)

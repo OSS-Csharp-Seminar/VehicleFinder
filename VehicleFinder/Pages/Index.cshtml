@@ -139,7 +139,7 @@
                                     <li><strong>Is Sold:</strong> @(listing.IsSold ? "Yes" : "No")</li>
                                 </ul>
                                 <a href="#" class="btn btn-primary">View Details</a>
-                                @if (Model.CurrentUserId == listing.UserId)
+                                @if (Model.CurrentUserId == listing.UserId.ToString())
                                 {
                                     <a href="/EditListing?id=@listing.Id" class="btn btn-warning">Edit</a>
                                     <button class="btn btn-danger" onclick="confirmMarkAsSold('@listing.Id')">Mark as Sold</button>

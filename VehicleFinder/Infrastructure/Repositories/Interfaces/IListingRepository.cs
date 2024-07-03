@@ -7,10 +7,10 @@ namespace VehicleFinder.Infrastructure.Repositories
     {
         Task<IEnumerable<Listing>> GetListingsAsync();
         Task<IEnumerable<Listing>> GetListingsByFilterAsync(ListingFilterDTO filter);
-        Task<Listing> GetListingByIdAsync(int id);
+        Task<Listing> GetListingByIdAsync(Guid id);
         Task AddListingAsync(Listing listing);
         Task UpdateListingAsync(Listing listing);
-        Task DeleteListingAsync(int id);
-        bool ListingExists(int id);
+        Task DeleteListingAsync(Guid id);
+        bool ListingExists(Guid id);
     }
 }

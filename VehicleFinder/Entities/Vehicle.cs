@@ -15,9 +15,9 @@ namespace VehicleFinder.Entities
         public int GearCount { get; set; }
         public decimal AverageConsumption { get; set; }
         public Listing Listing { get; set; }
-        public int EngineId { get; set; }
+        public Guid EngineId { get; set; }
         public Engine? Engine { get; set; }
-        public int BodyId { get; set; }
+        public Guid BodyId { get; set; }
         public Body? Body { get; set; }
 
     }

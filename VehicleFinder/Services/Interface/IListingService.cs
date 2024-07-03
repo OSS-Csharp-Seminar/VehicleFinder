@@ -8,9 +8,9 @@ namespace VehicleFinder.Services
     {
         Task<IEnumerable<GetListingDTO>> GetListingsAsync();
         Task<IEnumerable<GetListingDTO>> GetListingsByFilterAsync(ListingFilterDTO filter);
-        Task<GetListingDTO> GetListingByIdAsync(int id);
+        Task<GetListingDTO> GetListingByIdAsync(Guid id);
         Task<CreateListingDTO> CreateListingAsync(CreateListingDTO listingDto);
-        Task<bool> UpdateListingAsync(int id, CreateListingDTO listingDto);
-        Task<bool> DeleteListingAsync(int id);
+        Task<bool> UpdateListingAsync(Guid id, CreateListingDTO listingDto);
+        Task<bool> DeleteListingAsync(Guid id);
     }
 }

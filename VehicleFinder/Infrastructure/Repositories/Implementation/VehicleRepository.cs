@@ -20,7 +20,7 @@ namespace VehicleFinder.Infrastructure.Repositories.Implementation
             await _context.SaveChangesAsync();
             return vehicle;
         }
-        public async Task<Vehicle> GetVehicleByIdAsync(int vehicleId)
+        public async Task<Vehicle> GetVehicleByIdAsync(Guid vehicleId)
         {
             return await _context.Vehicles.FindAsync(vehicleId);
         }

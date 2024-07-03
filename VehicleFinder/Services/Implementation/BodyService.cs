@@ -16,7 +16,7 @@ namespace VehicleFinder.Services.Implementation
             _mapper = mapper;
             _bodyRepository = bodyRepository;
         }
-        public async Task<int> CreateBodyAsync(CreateBodyDTO model)
+        public async Task<Guid> CreateBodyAsync(CreateBodyDTO model)
         {
             var body = _mapper.Map<Body>(model);
 

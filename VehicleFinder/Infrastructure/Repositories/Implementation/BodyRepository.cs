@@ -12,7 +12,7 @@ namespace VehicleFinder.Infrastructure.Repositories.Implementation
         {
             _context = context;
         }
-        public async Task<int> CreateBodyAsync(Body model)
+        public async Task<Guid> CreateBodyAsync(Body model)
         {
             _context.Bodies.Add(model);
             await _context.SaveChangesAsync();

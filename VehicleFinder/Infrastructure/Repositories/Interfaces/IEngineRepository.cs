@@ -6,7 +6,7 @@ namespace VehicleFinder.Infrastructure.Repositories.Interfaces
     public interface IEngineRepository
     {
         Task<IEnumerable<Engine>> GetAllEnginesAsync();
-        Task<Engine> GetEngineByIdAsync(int Id);
-        Task<int> CreateEngineAsync(Engine model);
+        Task<Engine> GetEngineByIdAsync(Guid Id);
+        Task<Guid> CreateEngineAsync(Engine model);
     }
 }

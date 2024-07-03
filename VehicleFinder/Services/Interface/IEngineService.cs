@@ -7,6 +7,6 @@ namespace VehicleFinder.Services.Interface
     {
         //Task<IEnumerable<GetEngineDTO>> GetListingsAsync();
         //Task<GetEngineDTO> GetListingByIdAsync(int Id);
-        Task<int> CreateEngineAsync(CreateEngineDTO model);
+        Task<Guid> CreateEngineAsync(CreateEngineDTO model);
     }
 }

@@ -2,6 +2,6 @@
 {
     public class GetBodyDTO : CreateBodyDTO
     {
-        public int Id { get; set; }
+        public int Guid { get; set; }
     }
 }

@@ -21,6 +21,6 @@ namespace VehicleFinder.DTOs.ListingDTO
         [Required]
         public DateTime CreationDate { get; set; }
         [Required]
-        public int VehicleId { get; set; }
+        public Guid VehicleId { get; set; }
     }
 }

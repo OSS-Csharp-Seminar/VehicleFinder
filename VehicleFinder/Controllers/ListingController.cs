@@ -25,7 +25,7 @@ namespace VehicleFinder.Controllers
 
         // GET: api/Listings/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<GetListingDTO>> GetListing(int id)
+        public async Task<ActionResult<GetListingDTO>> GetListing(Guid id)
         {
             var listing = await _listingService.GetListingByIdAsync(id);
 
@@ -65,7 +65,7 @@ namespace VehicleFinder.Controllers
 
         // DELETE: api/Listings/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteListing(int id)
+        public async Task<IActionResult> DeleteListing(Guid id)
         {
             var result = await _listingService.DeleteListingAsync(id);
             if (!result)

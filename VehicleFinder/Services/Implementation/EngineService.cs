@@ -18,7 +18,7 @@ namespace VehicleFinder.Services.Implementation
             _engineRepository = engineRepository;
         }
 
-        public async Task<int> CreateEngineAsync(CreateEngineDTO model)
+        public async Task<Guid> CreateEngineAsync(CreateEngineDTO model)
         {
             var engine = _mapper.Map<Engine>(model);
             return await _engineRepository.CreateEngineAsync(engine);

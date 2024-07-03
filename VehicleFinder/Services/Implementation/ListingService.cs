@@ -37,7 +37,7 @@ namespace VehicleFinder.Services
             return listingDTOs;
         }
 
-        public async Task<GetListingDTO> GetListingByIdAsync(int id)
+        public async Task<GetListingDTO> GetListingByIdAsync(Guid id)
         {
             var listing = await _listingRepository.GetListingByIdAsync(id);
 
@@ -58,7 +58,7 @@ namespace VehicleFinder.Services
             return listingDto;
         }
 
-        public async Task<bool> UpdateListingAsync(int id, CreateListingDTO listingDto)
+        public async Task<bool> UpdateListingAsync(Guid id, CreateListingDTO listingDto)
         {
             var listing = await _listingRepository.GetListingByIdAsync(id);
             if (listing == null)
@@ -86,7 +86,7 @@ namespace VehicleFinder.Services
             }
         }
 
-        public async Task<bool> DeleteListingAsync(int id)
+        public async Task<bool> DeleteListingAsync(Guid id)
         {
             var listing = await _listingRepository.GetListingByIdAsync(id);
             if (listing == null)

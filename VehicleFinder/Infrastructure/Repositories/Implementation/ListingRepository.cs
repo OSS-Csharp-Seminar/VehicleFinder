@@ -110,7 +110,7 @@ namespace VehicleFinder.Infrastructure.Repositories
             return await query.ToListAsync();
         }
 
-        public async Task<Listing> GetListingByIdAsync(int id)
+        public async Task<Listing> GetListingByIdAsync(Guid id)
         {
             return await _context.Listings.FindAsync(id);
         }
@@ -127,7 +127,7 @@ namespace VehicleFinder.Infrastructure.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteListingAsync(int id)
+        public async Task DeleteListingAsync(Guid id)
         {
             var listing = await _context.Listings.FindAsync(id);
             if (listing != null)
@@ -137,7 +137,7 @@ namespace VehicleFinder.Infrastructure.Repositories
             }
         }
 
-        public bool ListingExists(int id)
+        public bool ListingExists(Guid id)
         {
             return _context.Listings.Any(e => e.Id == id);
         }
