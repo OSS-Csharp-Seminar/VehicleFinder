@@ -7,6 +7,7 @@ using VehicleFinder.DTOs.ListingDTO;
 using VehicleFinder.Entities;
 using VehicleFinder.Enums;
 using VehicleFinder.Services;
+using VehicleFinder.Helper;
 
 namespace VehicleFinder.Pages
 {
@@ -59,9 +60,15 @@ namespace VehicleFinder.Pages
         public ShifterType? ShifterType { get; set; }
 
         [BindProperty(SupportsGet = true)]
+        public string? SearchQuery { get; set; }
+
+        [BindProperty(SupportsGet = true)]
         public string? SortBy { get; set; }
 
-        public IEnumerable<GetListingDTO> Listings { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public int PageIndex { get; set; } = 1;
+        public PaginatedList<GetListingDTO> Listings { get; set; }
+        //public IEnumerable<GetListingDTO> Listings { get; set; }
         public string CurrentUserId { get; set; }
 
         public List<SelectListItem> FuelTypeOptions { get; set; }
@@ -76,6 +83,7 @@ namespace VehicleFinder.Pages
 
             var filter = new ListingFilterDTO
             {
+                SearchQuery = SearchQuery,
                 Title = Title,
                 Brand = Brand,
                 Model = Model,
@@ -96,8 +104,11 @@ namespace VehicleFinder.Pages
                 ShifterType = ShifterType
             };
 
-            Listings = await _listingService.GetListingsByFilterAsync(filter);
-            Listings = SortListings(Listings, SortBy);
+            int pageSize = 10;
+            Listings = await _listingService.GetPaginatedListingsByFilterAsync(filter, PageIndex, pageSize);
+
+            //Listings = await _listingService.GetListingsByFilterAsync(filter);
+            //Listings = SortListings(Listings, SortBy);
 
             FuelTypeOptions = GetEnumSelectList<FuelType>(FuelType);
             BodyShapeOptions = GetEnumSelectList<BodyShape>(BodyShape);

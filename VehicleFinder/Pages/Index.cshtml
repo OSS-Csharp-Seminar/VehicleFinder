@@ -5,179 +5,195 @@
     ViewData["Title"] = "Home page";
 }
 
-<h1 class="display-4 text-center my-4">Welcome to VehicleFinder</h1>
+<h1 class="display-4 text-center my-4">Welcome to Vehicle Finder</h1>
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-3">
-            <div class="sidebar bg-light p-3">
-                <h2>Filters</h2>
-                <form method="get">
-                    <!-- Sort By -->
+<div class="total">
+    <div class="sidebar">
+        <form method="get">
+            <div class="row mb-4">
+                <div class="search">
+                    <div class="form-group">
+                        <label for="searchQuery">Search</label>
+                        <input type="text" class="form-control" id="searchQuery" name="SearchQuery" value="@Model.SearchQuery" placeholder="Search by Title, Description, Brand, Model, or Engine Name" />
+                    </div>
+                </div>
+                <div class="sort">
                     <div class="form-group">
                         <label for="sortBy">Sort By</label>
-                        <select class="form-control" id="sortBy" name="sortBy">
+                        <select class="form-control" id="sortBy" name="SortBy">
                             <option value="">Select...</option>
-                            <option value="priceAsc" selected="@(Model.SortBy == "priceAsc" ? "selected" : null)">Price (Low to High)</option>
-                            <option value="priceDesc" selected="@(Model.SortBy == "priceDesc" ? "selected" : null)">Price (High to Low)</option>
-                            <option value="yearAsc" selected="@(Model.SortBy == "yearAsc" ? "selected" : null)">Year (Old to New)</option>
-                            <option value="yearDesc" selected="@(Model.SortBy == "yearDesc" ? "selected" : null)">Year (New to Old)</option>
-                            <option value="kilometersAsc" selected="@(Model.SortBy == "kilometersAsc" ? "selected" : null)">Kilometers (Low to High)</option>
-                            <option value="kilometersDesc" selected="@(Model.SortBy == "kilometersDesc" ? "selected" : null)">Kilometers (High to Low)</option>
-                            <option value="registrationAsc" selected="@(Model.SortBy == "registrationAsc" ? "selected" : null)">Registration (Old to New)</option>
-                            <option value="registrationDesc" selected="@(Model.SortBy == "registrationDesc" ? "selected" : null)">Registration (New to Old)</option>
-                            <option value="ownersAsc" selected="@(Model.SortBy == "ownersAsc" ? "selected" : null)">Owners (Fewest to Most)</option>
-                            <option value="ownersDesc" selected="@(Model.SortBy == "ownersDesc" ? "selected" : null)">Owners (Most to Fewest)</option>
-                            <option value="createdAsc" selected="@(Model.SortBy == "createdAsc" ? "selected" : null)">Created Date (Old to New)</option>
-                            <option value="createdDesc" selected="@(Model.SortBy == "createdDesc" ? "selected" : null)">Created Date (New to Old)</option>
+                            <option value="priceAsc" selected=@(Model.SortBy == "priceAsc" ? "selected" : null)>Price (Low to High)</option>
+                            <option value="priceDesc" selected=@(Model.SortBy == "priceDesc" ? "selected" : null)>Price (High to Low)</option>
+                            <option value="yearAsc" selected=@(Model.SortBy == "yearAsc" ? "selected" : null)>Year (Old to New)</option>
+                            <option value="yearDesc" selected=@(Model.SortBy == "yearDesc" ? "selected" : null)>Year (New to Old)</option>
+                            <option value="kilometersAsc" selected=@(Model.SortBy == "kilometersAsc" ? "selected" : null)>Kilometers (Low to High)</option>
+                            <option value="kilometersDesc" selected=@(Model.SortBy == "kilometersDesc" ? "selected" : null)>Kilometers (High to Low)</option>
+                            <option value="registrationAsc" selected=@(Model.SortBy == "registrationAsc" ? "selected" : null)>Registration (Old to New)</option>
+                            <option value="registrationDesc" selected=@(Model.SortBy == "registrationDesc" ? "selected" : null)>Registration (New to Old)</option>
+                            <option value="ownersAsc" selected=@(Model.SortBy == "ownersAsc" ? "selected" : null)>Owners (Fewest to Most)</option>
+                            <option value="ownersDesc" selected=@(Model.SortBy == "ownersDesc" ? "selected" : null)>Owners (Most to Fewest)</option>
+                            <option value="createdAsc" selected=@(Model.SortBy == "createdAsc" ? "selected" : null)>Created Date (Old to New)</option>
+                            <option value="createdDesc" selected=@(Model.SortBy == "createdDesc" ? "selected" : null)>Created Date (New to Old)</option>
                         </select>
                     </div>
+                </div>
+            </div>
 
-                    <!-- Filters -->
-                    <div class="form-group">
-                        <label for="title">Title</label>
-                        <input type="text" class="form-control" id="title" name="title" value="@Model.Title" placeholder="Search by Title" />
-                    </div>
+            <div class="row">
+                <div class="filters">
+                    <h2>Filters</h2>
                     <div class="form-group">
                         <label for="brand">Brand</label>
-                        <input type="text" class="form-control" id="brand" name="brand" value="@Model.Brand" placeholder="Vehicle Brand" />
-                    </div>
-                    <div class="form-group">
-                        <label for="model">Model</label>
-                        <input type="text" class="form-control" id="model" name="model" value="@Model.Model" placeholder="Vehicle Model" />
+                        <input type="text" class="form-control" id="brand" name="Brand" value="@Model.Brand" placeholder="Vehicle Brand" />
                     </div>
                     <div class="form-group">
                         <label for="yearMin">Min Manufacturing Year</label>
-                        <input type="number" class="form-control" id="yearMin" name="yearMin" value="@Model.YearMin" placeholder="Minimum Year" />
+                        <input type="number" class="form-control" id="yearMin" name="YearMin" value="@Model.YearMin" placeholder="Minimum Year" />
                     </div>
                     <div class="form-group">
                         <label for="yearMax">Max Manufacturing Year</label>
-                        <input type="number" class="form-control" id="yearMax" name="yearMax" value="@Model.YearMax" placeholder="Maximum Year" />
+                        <input type="number" class="form-control" id="yearMax" name="YearMax" value="@Model.YearMax" placeholder="Maximum Year" />
                     </div>
                     <div class="form-group">
                         <label for="priceMin">Min Price</label>
-                        <input type="number" class="form-control" id="priceMin" name="priceMin" value="@Model.PriceMin" placeholder="Minimum Price" />
+                        <input type="number" class="form-control" id="priceMin" name="PriceMin" value="@Model.PriceMin" placeholder="Minimum Price" />
                     </div>
                     <div class="form-group">
                         <label for="priceMax">Max Price</label>
-                        <input type="number" class="form-control" id="priceMax" name="priceMax" value="@Model.PriceMax" placeholder="Maximum Price" />
-                    </div>
-                    <div class="form-group">
-                        <label for="isSold">Is Sold</label>
-                        <select class="form-control" id="isSold" name="isSold">
-                            <option value="">Any</option>
-                            <option value="true" selected="@(Model.IsSold.HasValue && Model.IsSold.Value ? "selected" : null)">Yes</option>
-                            <option value="false" selected="@(Model.IsSold.HasValue && !Model.IsSold.Value ? "selected" : null)">No</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="enginename">Engine name</label>
-                        <input type="text" class="form-control" id="enginename" name="enginename" value="@Model.EngineName" placeholder="Search by engine name" />
+                        <input type="number" class="form-control" id="priceMax" name="PriceMax" value="@Model.PriceMax" placeholder="Maximum Price" />
                     </div>
                     <div class="form-group">
                         <label for="fuelType">Fuel Type</label>
-                        <select class="form-control" id="fuelType" name="fuelType">
+                        <select class="form-control" id="fuelType" name="FuelType">
                             <option value="">Any</option>
                             @foreach (var option in Model.FuelTypeOptions)
                             {
-                                <option value="@option.Value" selected="@(option.Selected ? "selected" : null)">@option.Text</option>
+                                <option value="@option.Value" selected=@(option.Selected ? "selected" : null)>@option.Text</option>
                             }
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="horsepowerMin">Min Horsepower</label>
-                        <input type="number" class="form-control" id="horsepowerMin" name="horsepowerMin" value="@Model.HorsepowerMin" placeholder="Minimum Horsepower" />
+                        <input type="number" class="form-control" id="horsepowerMin" name="HorsepowerMin" value="@Model.HorsepowerMin" placeholder="Minimum Horsepower" />
                     </div>
                     <div class="form-group">
                         <label for="horsepowerMax">Max Horsepower</label>
-                        <input type="number" class="form-control" id="horsepowerMax" name="horsepowerMax" value="@Model.HorsepowerMax" placeholder="Maximum Horsepower" />
+                        <input type="number" class="form-control" id="horsepowerMax" name="HorsepowerMax" value="@Model.HorsepowerMax" placeholder="Maximum Horsepower" />
                     </div>
                     <div class="form-group">
                         <label for="doorCount">Door Count</label>
-                        <input type="number" class="form-control" id="doorCount" name="doorCount" value="@Model.DoorCount" placeholder="Door Count" />
+                        <input type="number" class="form-control" id="doorCount" name="DoorCount" value="@Model.DoorCount" placeholder="Door Count" />
                     </div>
                     <div class="form-group">
                         <label for="seatCount">Seat Count</label>
-                        <input type="number" class="form-control" id="seatCount" name="seatCount" value="@Model.SeatCount" placeholder="Seat Count" />
+                        <input type="number" class="form-control" id="seatCount" name="SeatCount" value="@Model.SeatCount" placeholder="Seat Count" />
                     </div>
                     <div class="form-group">
                         <label for="bodyShape">Body Shape</label>
-                        <select class="form-control" id="bodyShape" name="bodyShape">
+                        <select class="form-control" id="bodyShape" name="BodyShape">
                             <option value="">Any</option>
                             @foreach (var option in Model.BodyShapeOptions)
                             {
-                                <option value="@option.Value" selected="@(option.Selected ? "selected" : null)">@option.Text</option>
+                                <option value="@option.Value" selected=@(option.Selected ? "selected" : null)>@option.Text</option>
                             }
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="acType">AC Type</label>
-                        <select class="form-control" id="acType" name="acType">
+                        <select class="form-control" id="acType" name="ACType">
                             <option value="">Any</option>
                             @foreach (var option in Model.ACTypeOptions)
                             {
-                                <option value="@option.Value" selected="@(option.Selected ? "selected" : null)">@option.Text</option>
+                                <option value="@option.Value" selected=@(option.Selected ? "selected" : null)>@option.Text</option>
                             }
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="drivetrainType">Drivetrain Type</label>
-                        <select class="form-control" id="drivetrainType" name="drivetrainType">
+                        <select class="form-control" id="drivetrainType" name="DrivetrainType">
                             <option value="">Any</option>
                             @foreach (var option in Model.DrivetrainTypeOptions)
                             {
-                                <option value="@option.Value" selected="@(option.Selected ? "selected" : null)">@option.Text</option>
+                                <option value="@option.Value" selected=@(option.Selected ? "selected" : null)>@option.Text</option>
                             }
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="shifterType">Shifter Type</label>
-                        <select class="form-control" id="shifterType" name="shifterType">
+                        <select class="form-control" id="shifterType" name="ShifterType">
                             <option value="">Any</option>
                             @foreach (var option in Model.ShifterTypeOptions)
                             {
-                                <option value="@option.Value" selected="@(option.Selected ? "selected" : null)">@option.Text</option>
+                                <option value="@option.Value" selected=@(option.Selected ? "selected" : null)>@option.Text</option>
                             }
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-block">Apply Filters</button>
-                </form>
+                    <div class="form-group">
+                        <label for="isSold">Is Sold</label>
+                        <select class="form-control" id="isSold" name="IsSold">
+                            <option value="">Any</option>
+                            <option value="true" selected=@(Model.IsSold.HasValue && Model.IsSold.Value ? "selected" : null)>Yes</option>
+                            <option value="false" selected=@(Model.IsSold.HasValue && !Model.IsSold.Value ? "selected" : null)>No</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-filter">Apply Filters and Search</button>
+                    <button type="button" class="btn btn-danger btn-filter" onclick="resetFilters()">Reset Filters and Search</button>
+                </div>
             </div>
-        </div>
-        <div class="col-md-9">
-            <h2>Listings</h2>
-            <div class="row">
-                @foreach (var listing in Model.Listings)
-                {
-                    <div class="col-md-6">
-                        <div class="card mb-4 shadow-sm">
-                            <div class="card-body">
-                                <h5 class="card-title">@listing.Title</h5>
-                                <p class="card-text">@listing.Description</p>
-                                <ul class="list-unstyled">
-                                    <li><strong>Price:</strong> $@listing.Price</li>
-                                    <li><strong>Kilometers:</strong> @listing.Vehicle.Kilometers km</li>
-                                    <li><strong>Registration Until:</strong> @listing.Vehicle.RegistrationUntil</li>
-                                    <li><strong>Number of Previous Owners:</strong> @listing.Vehicle.NumberOfPreviousOwners</li>
-                                    <li><strong>Is Sold:</strong> @(listing.IsSold ? "Yes" : "No")</li>
-                                    <li><strong>Created Date:</strong> @listing.CreationDate.ToString("yyyy-MM-dd")</li>
-                                </ul>
-                                <a asp-area="Listing" asp-page="/ListingDetails" asp-route-id="@listing.Id" class="btn btn-primary">View Details</a>
-                                @if (Model.CurrentUserId == listing.UserId && listing.IsSold == false)
-                                {
-                                    <a asp-area="Listing" asp-page="/EditListing" asp-route-id="@listing.Id" class="btn btn-warning">Edit</a>
-                                    <button class="btn btn-danger" onclick="confirmMarkAsSold('@listing.Id')">Mark as Sold</button>
-                                }
+        </form>
+    </div>
+    <div class="content-main">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Listings</h2>
+                <div class="row">
+                    @foreach (var listing in Model.Listings)
+                    {
+                        <div class="col-md-6">
+                            <div class="card mb-4 shadow-sm">
+                                <div class="card-body">
+                                    <h5 class="card-title">@listing.Title</h5>
+                                    <p class="card-text">@listing.Description</p>
+                                    <ul class="list-unstyled">
+                                        <li><strong>Price:</strong> $@listing.Price</li>
+                                        <li><strong>Kilometers:</strong> @listing.Vehicle.Kilometers km</li>
+                                        <li><strong>Year built:</strong> @listing.Vehicle.ManufacturingYear</li>
+                                        <li><strong>Registration Until:</strong> @listing.Vehicle.RegistrationUntil</li>
+                                        <li><strong>Number of Previous Owners:</strong> @listing.Vehicle.NumberOfPreviousOwners</li>
+                                        <li><strong>Is Sold:</strong> @(listing.IsSold ? "Yes" : "No")</li>
+                                        <li><strong>Created Date:</strong> @listing.CreationDate.ToString("yyyy-MM-dd")</li>
+                                    </ul>
+                                    <a asp-area="Listing" asp-page="/ListingDetails" asp-route-id="@listing.Id" class="btn btn-primary">View Details</a>
+                                    @if (Model.CurrentUserId == listing.UserId && listing.IsSold == false)
+                                    {
+                                        <a asp-area="Listing" asp-page="/EditListing" asp-route-id="@listing.Id" class="btn btn-warning">Edit</a>
+                                        <button class="btn btn-danger" onclick="confirmMarkAsSold('@listing.Id')">Mark as Sold</button>
+                                    }
+                                </div>
                             </div>
                         </div>
-                    </div>
-                }
+                    }
+                </div>
+                <nav aria-label="Page navigation">
+                    <ul class="pagination">
+                        <li class="page-item @(Model.Listings.HasPreviousPage ? "" : "disabled")">
+                            <a class="page-link" href="?PageIndex=@(Model.PageIndex - 1)&SearchQuery=@Model.SearchQuery&SortBy=@Model.SortBy">Previous</a>
+                        </li>
+                        @for (int i = 1; i <= Model.Listings.TotalPages; i++)
+                        {
+                            <li class="page-item @(Model.PageIndex == i ? "active" : "")">
+                                <a class="page-link" href="?PageIndex=@i&SearchQuery=@Model.SearchQuery&SortBy=@Model.SortBy">@i</a>
+                            </li>
+                        }
+                        <li class="page-item @(Model.Listings.HasNextPage ? "" : "disabled")">
+                            <a class="page-link" href="?PageIndex=@(Model.PageIndex + 1)&SearchQuery=@Model.SearchQuery&SortBy=@Model.SortBy">Next</a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
         </div>
     </div>
 </div>
-
-<!-- Modal for delete confirmation -->
 <div class="modal fade" id="confirmMarkAsSoldModal" tabindex="-1" aria-labelledby="confirmMarkAsSoldModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -223,5 +239,50 @@
                 }
             });
         });
+        function resetFilters() {
+            window.location.href = '/';
+        }
     </script>
 }
+<style>
+    .total {
+        display: flex;
+    }
+
+    .sidebar {
+        width: 270px;
+        margin-right: 15px;
+        padding: 10px;
+        background: gray;
+        border-radius: 0.5rem;
+        box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
+    }
+
+    .search {
+        font-weight: bold;
+    }
+
+    .sort {
+        font-weight: bold;
+    }
+
+    .filters {
+        width: 260px;
+        font-weight: bold;
+    }
+
+    .content-main {
+        flex: 1;
+        background: ;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        border: black solid 2px;
+        box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
+    }
+
+    .btn-filter{
+        margin-top: 10px;
+        width: 100%;
+    }
+
+</style>

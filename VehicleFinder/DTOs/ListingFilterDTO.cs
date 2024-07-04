@@ -4,6 +4,7 @@ namespace VehicleFinder.DTOs
 {
     public class ListingFilterDTO
     {
+        public string SearchQuery { get; set; } = string.Empty;
         public string Title { get; set; } = string.Empty;
         public string Brand { get; set; } = string.Empty;
         public string Model { get; set; } = string.Empty;

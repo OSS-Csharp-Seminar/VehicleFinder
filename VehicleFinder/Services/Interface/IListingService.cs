@@ -1,6 +1,7 @@
 ﻿using VehicleFinder.DTOs;
 using VehicleFinder.DTOs.BodyDTO;
 using VehicleFinder.DTOs.ListingDTO;
+using VehicleFinder.Helper;
 
 namespace VehicleFinder.Services
 {
@@ -15,5 +16,6 @@ namespace VehicleFinder.Services
         Task<bool> UpdateListingAsync(string id, CreateListingDTO listingDto);
         Task<bool> UpdateListingAsync(UpdateGeneralListingDTO listingDto);
         Task<bool> DeleteListingAsync(string id);
+        Task<PaginatedList<GetListingDTO>> GetPaginatedListingsByFilterAsync(ListingFilterDTO filter, int pageIndex, int pageSize);
     }
 }

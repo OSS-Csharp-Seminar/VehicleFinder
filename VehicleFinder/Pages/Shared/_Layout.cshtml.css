@@ -8,9 +8,12 @@ a.navbar-brand {
 }
 
 a {
-  color: #0077cc;
+    color: #0077cc;
 }
-
+.container {
+    max-width: 100% !important;
+    
+}
 .btn-primary {
   color: #fff;
   background-color: #1b6ec2;

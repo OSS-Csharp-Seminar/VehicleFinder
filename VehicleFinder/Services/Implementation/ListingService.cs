@@ -1,17 +1,15 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using System.Threading.Tasks;
 using System.Transactions;
 using VehicleFinder.DTOs;
 using VehicleFinder.DTOs.BodyDTO;
 using VehicleFinder.DTOs.EngineDTO;
-using VehicleFinder.DTOs.General;
 using VehicleFinder.DTOs.ListingDTO;
 using VehicleFinder.DTOs.VehicleDTO;
 using VehicleFinder.Entities;
+using VehicleFinder.Helper;
 using VehicleFinder.Infrastructure.Repositories;
 using VehicleFinder.Infrastructure.Repositories.Interfaces;
-using VehicleFinder.Services.Interface;
 
 namespace VehicleFinder.Services
 {
@@ -175,7 +173,6 @@ namespace VehicleFinder.Services
             }
             catch (DbUpdateConcurrencyException)
             {
-                // Handle concurrency exception if needed
                 return false;
             }
         }
@@ -235,5 +232,13 @@ namespace VehicleFinder.Services
 
             return generalListing;
         }
+
+        public async Task<PaginatedList<GetListingDTO>> GetPaginatedListingsByFilterAsync(ListingFilterDTO filter, int pageIndex, int pageSize)
+        {
+            var paginatedListings = await _listingRepository.GetPaginatedListingsByFilterAsync(filter, pageIndex, pageSize);
+            var listingDTOs = _mapper.Map<IEnumerable<GetListingDTO>>(paginatedListings);
+            return new PaginatedList<GetListingDTO>(listingDTOs.ToList(), paginatedListings.TotalCount, pageIndex, pageSize);
+        }
+
     }
 }
