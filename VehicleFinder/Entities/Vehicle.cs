@@ -6,7 +6,7 @@ namespace VehicleFinder.Entities
 {
     public class Vehicle : BEntity
     {
-        public string Brand { get; set; } = string.Empty;
+        public CarManufacturer Brand { get; set; }
         public string Model { get; set; } = string.Empty;
         public int ManufacturingYear { get; set; }
         public DateOnly RegistrationUntil { get; set; }

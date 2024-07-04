@@ -7,7 +7,7 @@ namespace VehicleFinder.DTOs.VehicleDTO
     public class CreateVehicleDTO
     {
         [Required]
-        public string Brand { get; set; }
+        public CarManufacturer Brand { get; set; }
 
         [Required]
         public string Model { get; set; }

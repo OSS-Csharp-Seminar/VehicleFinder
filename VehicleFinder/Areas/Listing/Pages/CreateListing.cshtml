@@ -29,13 +29,11 @@
             <span asp-validation-for="GeneralListing.Listing.Price" class="text-danger"></span>
         </div>
     </div>
-
-    <!-- Vehicle Information -->
     <h3 class="mt-4 mb-3">Vehicle Information</h3>
     <div class="form-group row">
         <label asp-for="GeneralListing.Vehicle.Brand" class="col-sm-2 col-form-label">Brand:</label>
         <div class="col-sm-10">
-            <input asp-for="GeneralListing.Vehicle.Brand" class="form-control mb-3" />
+            <select asp-for="GeneralListing.Vehicle.Brand" class="form-control mb-3" asp-items="Html.GetEnumSelectList<VehicleFinder.Enums.CarManufacturer>()"></select>
             <span asp-validation-for="GeneralListing.Vehicle.Brand" class="text-danger"></span>
         </div>
     </div>

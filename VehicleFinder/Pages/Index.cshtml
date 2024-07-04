@@ -44,7 +44,13 @@
                     <h2>Filters</h2>
                     <div class="form-group">
                         <label for="brand">Brand</label>
-                        <input type="text" class="form-control" id="brand" name="Brand" value="@Model.Brand" placeholder="Vehicle Brand" />
+                        <select class="form-control" id="brand" name="brand">
+                            <option value="">Any</option>
+                            @foreach (var option in Model.CarManufacturers)
+                            {
+                                <option value="@option.Value" selected=@(option.Selected ? "selected" : null)>@option.Text</option>
+                            }
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="yearMin">Min Manufacturing Year</label>
@@ -276,14 +282,14 @@
 
     .content-main {
         flex: 1;
-        background: ;
+        background:;
         padding: 1rem;
         border-radius: 0.5rem;
         border: black solid 2px;
         box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
     }
 
-    .btn-filter{
+    .btn-filter {
         margin-top: 10px;
         width: 100%;
     }

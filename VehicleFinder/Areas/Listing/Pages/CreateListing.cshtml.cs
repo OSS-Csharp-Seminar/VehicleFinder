@@ -55,7 +55,7 @@ namespace VehicleFinder.Areas.Listing.Pages
                 },
                 Vehicle = new CreateVehicleDTO
                 {
-                    Brand = "Default Brand",
+                    Brand = CarManufacturer.Abarth,
                     Model = "Default Model",
                     ManufacturingYear = DateTime.Now.Year,
                     RegistrationUntil = DateOnly.FromDateTime(DateTime.Now.AddYears(1)),

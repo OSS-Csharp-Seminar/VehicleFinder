@@ -35,6 +35,8 @@ namespace VehicleFinder.Infrastructure
 
             modelBuilder.Entity<Vehicle>().HasOne(b => b.Body).WithOne().HasForeignKey<Vehicle>(b => b.BodyId);
 
+            modelBuilder.Entity<Vehicle>().Property(v => v.Brand).HasConversion(v => v.ToString(), v => (CarManufacturer)Enum.Parse(typeof(CarManufacturer), v));
+
             modelBuilder.Entity<Vehicle>()
                 .Property(v => v.ShifterType)
                 .HasConversion(

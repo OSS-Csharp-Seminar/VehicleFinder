@@ -32,7 +32,6 @@ namespace VehicleFinder.Infrastructure.Repositories
                 var searchQueryLower = filter.SearchQuery.ToLower();
                 query = query.Where(l => l.Title.ToLower().Contains(searchQueryLower) ||
                                           l.Description.ToLower().Contains(searchQueryLower) ||
-                                          l.Vehicle.Brand.ToLower().Contains(searchQueryLower) ||
                                           l.Vehicle.Model.ToLower().Contains(searchQueryLower) ||
                                           l.Vehicle.Engine.Name.ToLower().Contains(searchQueryLower));
             }
@@ -124,9 +123,12 @@ namespace VehicleFinder.Infrastructure.Repositories
                 var searchQueryLower = filter.SearchQuery.ToLower();
                 query = query.Where(l => l.Title.ToLower().Contains(searchQueryLower) ||
                                           l.Description.ToLower().Contains(searchQueryLower) ||
-                                          l.Vehicle.Brand.ToLower().Contains(searchQueryLower) ||
                                           l.Vehicle.Model.ToLower().Contains(searchQueryLower) ||
                                           l.Vehicle.Engine.Name.ToLower().Contains(searchQueryLower));
+            }
+            if (filter.Brand.HasValue)
+            {
+                query = query.Where(l => l.Vehicle.Brand == filter.Brand.Value);
             }
 
             if (filter.YearMin.HasValue)

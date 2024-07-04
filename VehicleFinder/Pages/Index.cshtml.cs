@@ -25,7 +25,7 @@ namespace VehicleFinder.Pages
         [BindProperty(SupportsGet = true)]
         public string Title { get; set; }
         [BindProperty(SupportsGet = true)]
-        public string Brand { get; set; }
+        public CarManufacturer? Brand { get; set; }
         [BindProperty(SupportsGet = true)]
         public string Model { get; set; }
         [BindProperty(SupportsGet = true)]
@@ -68,12 +68,12 @@ namespace VehicleFinder.Pages
         [BindProperty(SupportsGet = true)]
         public int PageIndex { get; set; } = 1;
         public PaginatedList<GetListingDTO> Listings { get; set; }
-        //public IEnumerable<GetListingDTO> Listings { get; set; }
         public string CurrentUserId { get; set; }
 
         public List<SelectListItem> FuelTypeOptions { get; set; }
         public List<SelectListItem> BodyShapeOptions { get; set; }
         public List<SelectListItem> ACTypeOptions { get; set; }
+        public List<SelectListItem> CarManufacturers { get; set; }
         public List<SelectListItem> DrivetrainTypeOptions { get; set; }
         public List<SelectListItem> ShifterTypeOptions { get; set; }
 
@@ -107,14 +107,12 @@ namespace VehicleFinder.Pages
             int pageSize = 10;
             Listings = await _listingService.GetPaginatedListingsByFilterAsync(filter, PageIndex, pageSize);
 
-            //Listings = await _listingService.GetListingsByFilterAsync(filter);
-            //Listings = SortListings(Listings, SortBy);
-
             FuelTypeOptions = GetEnumSelectList<FuelType>(FuelType);
             BodyShapeOptions = GetEnumSelectList<BodyShape>(BodyShape);
             ACTypeOptions = GetEnumSelectList<ACType>(ACType);
             DrivetrainTypeOptions = GetEnumSelectList<DrivetrainType>(DrivetrainType);
             ShifterTypeOptions = GetEnumSelectList<ShifterType>(ShifterType);
+            CarManufacturers = GetEnumSelectList<CarManufacturer>(Brand);
         }
 
         private IEnumerable<GetListingDTO> SortListings(IEnumerable<GetListingDTO> listings, string sortBy)
