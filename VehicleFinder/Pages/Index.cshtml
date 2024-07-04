@@ -14,7 +14,7 @@
                 <div class="search">
                     <div class="form-group">
                         <label for="searchQuery">Search</label>
-                        <input type="text" class="form-control" id="searchQuery" name="SearchQuery" value="@Model.SearchQuery" placeholder="Search by Title, Description, Brand, Model, or Engine Name" />
+                        <input type="text" class="form-control" id="searchQuery" name="SearchQuery" value="@Model.SearchQuery" placeholder="Search by name..." />
                     </div>
                 </div>
                 <div class="sort">
@@ -253,9 +253,12 @@
         width: 270px;
         margin-right: 15px;
         padding: 10px;
-        background: gray;
+        background: rgb(189,232,238);
+        background: rgb(76,198,215);
+        background: linear-gradient(90deg, rgba(76,198,215,1) 0%, rgba(0,201,255,1) 100%);
         border-radius: 0.5rem;
         box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
+        max-height: 1300px;
     }
 
     .search {
