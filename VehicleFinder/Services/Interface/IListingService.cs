@@ -15,6 +15,7 @@ namespace VehicleFinder.Services
         Task<bool> UpdateListingAsync(string id, CreateListingDTO listingDto);
         Task<bool> UpdateListingAsync(UpdateGeneralListingDTO listingDto);
         Task<bool> DeleteListingAsync(string id);
-        Task<PaginatedList<GetListingDTO>> GetPaginatedListingsByFilterAsync(ListingFilterDTO filter, int pageIndex, int pageSize);
+        Task<PaginatedList<GetListingDTO>> GetPaginatedListingsByFilterAsync(ListingFilterDTO filter, int pageIndex, int pageSize, string sortBy);
+ 
     }
 }

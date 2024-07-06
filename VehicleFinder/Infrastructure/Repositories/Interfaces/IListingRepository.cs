@@ -7,7 +7,7 @@ namespace VehicleFinder.Infrastructure.Repositories
     public interface IListingRepository
     {
         Task<IEnumerable<Listing>> GetListingsAsync();
-        Task<PaginatedList<Listing>> GetPaginatedListingsByFilterAsync(ListingFilterDTO filter, int pageIndex, int pageSize);
+        Task<PaginatedList<Listing>> GetPaginatedListingsByFilterAsync(ListingFilterDTO filter, int pageIndex, int pageSize, string sortBy);
         Task<Listing> GetListingByIdAsync(string id);
         Task AddListingAsync(Listing listing);
         Task UpdateListingAsync(Listing listing);

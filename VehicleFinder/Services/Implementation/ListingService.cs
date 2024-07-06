@@ -226,9 +226,9 @@ namespace VehicleFinder.Services
             return generalListing;
         }
 
-        public async Task<PaginatedList<GetListingDTO>> GetPaginatedListingsByFilterAsync(ListingFilterDTO filter, int pageIndex, int pageSize)
+        public async Task<PaginatedList<GetListingDTO>> GetPaginatedListingsByFilterAsync(ListingFilterDTO filter, int pageIndex, int pageSize, string sortBy)
         {
-            var paginatedListings = await _listingRepository.GetPaginatedListingsByFilterAsync(filter, pageIndex, pageSize);
+            var paginatedListings = await _listingRepository.GetPaginatedListingsByFilterAsync(filter, pageIndex, pageSize, sortBy);
             var listingDTOs = _mapper.Map<IEnumerable<GetListingDTO>>(paginatedListings);
             return new PaginatedList<GetListingDTO>(listingDTOs.ToList(), paginatedListings.TotalCount, pageIndex, pageSize);
         }

@@ -105,12 +105,7 @@ namespace VehicleFinder.Pages
             };
 
             int pageSize = 10;
-            Listings = await _listingService.GetPaginatedListingsByFilterAsync(filter, PageIndex, pageSize);
-            if (Listings != null)
-            {
-                Listings = new PaginatedList<GetListingDTO>(SortListings(Listings, SortBy).ToList(), Listings.TotalCount, PageIndex, pageSize);
-            }
-
+            Listings = await _listingService.GetPaginatedListingsByFilterAsync(filter, PageIndex, pageSize, SortBy);
 
             FuelTypeOptions = GetEnumSelectList<FuelType>(FuelType);
             BodyShapeOptions = GetEnumSelectList<BodyShape>(BodyShape);
@@ -119,27 +114,6 @@ namespace VehicleFinder.Pages
             ShifterTypeOptions = GetEnumSelectList<ShifterType>(ShifterType);
             CarManufacturers = GetEnumSelectList<CarManufacturer>(Brand);
         }
-
-        private IEnumerable<GetListingDTO> SortListings(IEnumerable<GetListingDTO> listings, string sortBy)
-        {
-            return sortBy switch
-            {
-                "priceAsc" => listings.OrderBy(l => l.Price),
-                "priceDesc" => listings.OrderByDescending(l => l.Price),
-                "yearAsc" => listings.OrderBy(l => l.Vehicle.ManufacturingYear),
-                "yearDesc" => listings.OrderByDescending(l => l.Vehicle.ManufacturingYear),
-                "kilometersAsc" => listings.OrderBy(l => l.Vehicle.Kilometers),
-                "kilometersDesc" => listings.OrderByDescending(l => l.Vehicle.Kilometers),
-                "registrationAsc" => listings.OrderBy(l => l.Vehicle.RegistrationUntil),
-                "registrationDesc" => listings.OrderByDescending(l => l.Vehicle.RegistrationUntil),
-                "ownersAsc" => listings.OrderBy(l => l.Vehicle.NumberOfPreviousOwners),
-                "ownersDesc" => listings.OrderByDescending(l => l.Vehicle.NumberOfPreviousOwners),
-                "createdAsc" => listings.OrderBy(l => l.CreationDate),
-                "createdDesc" => listings.OrderByDescending(l => l.CreationDate),
-                _ => listings,
-            };
-        }
-
 
         private List<SelectListItem> GetEnumSelectList<TEnum>(TEnum? selectedValue) where TEnum : struct
         {

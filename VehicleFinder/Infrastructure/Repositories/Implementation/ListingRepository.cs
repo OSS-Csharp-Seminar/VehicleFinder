@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Globalization;
 using VehicleFinder.DTOs;
 using VehicleFinder.Entities;
 using VehicleFinder.Helper;
@@ -19,7 +20,7 @@ namespace VehicleFinder.Infrastructure.Repositories
             return await _context.Listings.ToListAsync();
         }
 
-        public async Task<PaginatedList<Listing>> GetPaginatedListingsByFilterAsync(ListingFilterDTO filter, int pageIndex, int pageSize)
+        public async Task<PaginatedList<Listing>> GetPaginatedListingsByFilterAsync(ListingFilterDTO filter, int pageIndex, int pageSize, string sortBy)
         {
             var query = _context.Listings
                                 .Include(l => l.Vehicle)
@@ -27,6 +28,24 @@ namespace VehicleFinder.Infrastructure.Repositories
                                 .Include(l => l.Vehicle)
                                 .ThenInclude(v => v.Body)
                                 .AsQueryable();
+
+            query = sortBy switch
+            {
+                "priceAsc" => query.OrderBy(l => l.Price),
+                "priceDesc" => query.OrderByDescending(l => l.Price),
+                "yearAsc" => query.OrderBy(l => l.Vehicle.ManufacturingYear),
+                "yearDesc" => query.OrderByDescending(l => l.Vehicle.ManufacturingYear),
+                "kilometersAsc" => query.OrderBy(l => l.Vehicle.Kilometers),
+                "kilometersDesc" => query.OrderByDescending(l => l.Vehicle.Kilometers),
+                "registrationAsc" => query.OrderBy(l => l.Vehicle.RegistrationUntil),
+                "registrationDesc" => query.OrderByDescending(l => l.Vehicle.RegistrationUntil),
+                "ownersAsc" => query.OrderBy(l => l.Vehicle.NumberOfPreviousOwners),
+                "ownersDesc" => query.OrderByDescending(l => l.Vehicle.NumberOfPreviousOwners),
+                "createdAsc" => query.OrderBy(l => l.CreationDate),
+                "createdDesc" => query.OrderByDescending(l => l.CreationDate),
+                _ => query,
+            };
+
 
             if (!string.IsNullOrEmpty(filter.SearchQuery))
             {
