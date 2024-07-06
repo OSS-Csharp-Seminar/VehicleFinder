@@ -107,6 +107,20 @@ namespace VehicleFinder.Areas.Listing.Pages
                 return Challenge();
             }
 
+            if (!IsNewEngine && (SelectedEngineId == null || string.IsNullOrEmpty(SelectedEngineId)))
+            {
+                _logger.LogWarning("Engine selection is invalid");
+
+                EngineList = (await _engineService.GetAllEnginesAsync()).Select(e => new SelectListItem
+                {
+                    Value = e.Id.ToString(),
+                    Text = e.Name
+                }).ToList();
+
+                ModelState.AddModelError(string.Empty, "Please select an engine.");
+                return Page();
+            }
+
             GeneralListing.Listing.UserId = user.Id;
             GeneralListing.Listing.CreationDate = DateTime.UtcNow;
             GeneralListing.Listing.IsSold = false;
