@@ -104,7 +104,7 @@ namespace VehicleFinder.Pages
                 ShifterType = ShifterType
             };
 
-            int pageSize = 10;
+            int pageSize = 6;
             Listings = await _listingService.GetPaginatedListingsByFilterAsync(filter, PageIndex, pageSize, SortBy);
 
             FuelTypeOptions = GetEnumSelectList<FuelType>(FuelType);

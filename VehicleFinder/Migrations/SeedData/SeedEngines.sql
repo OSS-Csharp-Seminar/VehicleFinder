@@ -171,3 +171,75 @@ WHERE u."Id" IN (
     'b5b4d9cf-5cb7-43c1-ae2b-04c65d828d18',
     '8e724bf6-e6b0-41f4-b4ef-8f2061a09887'
 );
+
+INSERT INTO "Bodies"(
+    "Id", "DoorCount", "SeatCount", "DrivetrainType", "ACType", "Color", "BodyShape")
+VALUES 
+('1e92a733-40b8-4f3b-874d-210f7b829e60', 4, 5, 'FWD', 'Manual', 'Red', 'Sedan'),
+('2b67a4c8-119d-4be2-bb1c-4df1cc98a9fa', 2, 2, 'RWD', 'Automatic', 'Blue', 'Coupe'),
+('3a2cb9a3-5421-4784-9500-f9b3739d7d64', 5, 7, 'AWD', 'None', 'Green', 'SUV'),
+('5e4b826b-3477-4c99-b087-9f1a19d1f3f2', 4, 5, 'FWD', 'Automatic', 'Black', 'Wagon'),
+('7d2c947d-4e93-4b43-8e39-5e2fb0e56d2e', 3, 5, 'RWD', 'Manual', 'White', 'Hatchback'),
+('8b3dca32-7a1d-4cbf-812b-3c5e7f55f7cb', 2, 4, 'AWD', 'Manual', 'Silver', 'Convertible'),
+('4b3d2a53-1ab2-4e96-8900-bd38cbfa635f', 4, 8, 'FWD', 'Automatic', 'Gray', 'Van'),
+('9a3eb8e6-d8cb-47f3-8fbc-c2a7a09f5fb4', 2, 2, 'RWD', 'None', 'Yellow', 'Pickup'),
+('ae4d9c6f-1944-4d2f-908f-c6b2a1ef5d80', 4, 5, 'AWD', 'Automatic', 'Blue', 'Sedan'),
+('bd59a212-86c6-45bc-8888-3db7e2e5e7af', 3, 4, 'FWD', 'None', 'Green', 'Coupe'),
+('cb67dbb3-1f96-4e41-8a5d-94b3a2b9e8fa', 5, 7, 'RWD', 'Manual', 'Black', 'SUV'),
+('df78e3e4-0b4e-4a8d-9d6e-8a4c5bb8d8d7', 4, 5, 'AWD', 'Automatic', 'White', 'Wagon'),
+('ef82e5f5-2b5d-482e-9f6b-9b5b2b4c2c9f', 3, 5, 'FWD', 'None', 'Red', 'Hatchback'),
+('fa91f8c6-3b6f-4e3f-9b7b-8b7e2b4d2c9b', 2, 4, 'RWD', 'Manual', 'Blue', 'Convertible'),
+('0b93e9c7-4b6b-4e3f-8b8b-9b8e3b4d2e9d', 4, 8, 'AWD', 'Automatic', 'Gray', 'Van'),
+('1b94a2d8-5b7b-5e4f-9b9c-8c8f3b5d2d9f', 2, 2, 'FWD', 'None', 'Yellow', 'Pickup'),
+('2c95b3e9-6b8b-6e5f-8c9d-8d8f4b6d2e9f', 4, 5, 'RWD', 'Manual', 'Silver', 'Sedan'),
+('3d96c4f0-7b9b-7e6f-9d8e-8e8f5b7e3f9f', 3, 4, 'AWD', 'Automatic', 'Black', 'Coupe'),
+('4e97d501-8b9b-8e7f-8d9e-9f9f6c8f4f9f', 5, 7, 'FWD', 'Manual', 'Green', 'SUV'),
+('5f98e612-9b9c-9e8f-9e8e-9f9e7d9f5g9f', 4, 5, 'RWD', 'None', 'White', 'Wagon'),
+('6a99f723-ab9c-ae9f-ae8e-af8f8e9e6g9f', 3, 5, 'AWD', 'Automatic', 'Red', 'Hatchback'),
+('7ba0a834-bb9d-beaf-be9e-bf9e8f9e7h9f', 2, 4, 'FWD', 'Manual', 'Blue', 'Convertible'),
+('8c9b8a45-cb9e-cebf-ceaf-cf9f9e9e8i9f', 4, 8, 'RWD', 'None', 'Gray', 'Van'),
+('9d9b9a56-db9f-decf-debf-df9f9f9f9j9f', 2, 2, 'AWD', 'Automatic', 'Yellow', 'Pickup'),
+('ae9ba667-ebaf-efdf-efcf-ef9f9f9f9k9f', 4, 5, 'FWD', 'Manual', 'Silver', 'Sedan'),
+('bf9cb778-fbb0-ffef-ffdf-ff9f9f9f9l9f', 3, 4, 'RWD', 'Automatic', 'Black', 'Coupe'),
+('cf9db889-0bb1-0f0f-0fef-0f9f9f9f9m9f', 5, 7, 'AWD', 'None', 'Green', 'SUV'),
+('df9eb99a-1bc2-1f1f-1f0f-1f9f9f9f9n9f', 4, 5, 'FWD', 'Automatic', 'White', 'Wagon'),
+('ef9fc0ab-2cd3-2f2f-2f1f-2f9f9f9f9o9f', 3, 5, 'RWD', 'None', 'Red', 'Hatchback'),
+('ff9ed1bc-3de4-3f3f-3f2f-3f9f9f9f9p9f', 2, 4, 'AWD', 'Manual', 'Blue', 'Convertible');
+
+INSERT INTO "Vehicles"(
+    "Id", "Brand", "Model", "ManufacturingYear", "RegistrationUntil", "Kilometers", "NumberOfPreviousOwners", "ShifterType", "GearCount", "AverageConsumption", "EngineId", "BodyId")
+VALUES 
+('fa23bc87-4d72-49f1-b24a-b6e28e0c12a5', 'VW', 'Golf', 2022, '2026-07-31', 15000, 1, 'Manual', 6, 5.5, '3a8f6227-8c3f-4b0a-a2c8-3c4e4c570ef0', '1e92a733-40b8-4f3b-874d-210f7b829e60'),
+('fd91ba9d-8c25-4014-8a36-ead362327cc2', 'VW', 'Passat', 2021, '2025-05-15', 30000, 2, 'Automatic', 8, 6.0, '5e423ec1-7d77-4f39-a815-4d51c9941b88', '2b67a4c8-119d-4be2-bb1c-4df1cc98a9fa'),
+('fc0f2a18-fd02-456b-9200-96067ecf07ff', 'VW', 'Tiguan', 2023, '2027-11-10', 10000, 1, 'Manual', 6, 5.8, 'da0ae4b8-18b3-482a-bd85-7757262c8331', '3a2cb9a3-5421-4784-9500-f9b3739d7d64'),
+('bf7eb2c8-2784-4118-906b-9b0e9a4b9fcb', 'VW', 'Arteon', 2020, '2024-12-20', 45000, 2, 'Automatic', 7, 4.5, '9b135501-5411-4679-9e33-4398b6ff3f95', '5e4b826b-3477-4c99-b087-9f1a19d1f3f2'),
+('8f1a96e2-1b87-40f0-81c7-25c3b9d9f9f2', 'VW', 'Golf R', 2021, '2025-08-30', 32000, 3, 'Automatic', 8, 8.5, '8a6a5b72-3ef7-4a9a-a145-f682bd4698cf', '7d2c947d-4e93-4b43-8e39-5e2fb0e56d2e'),
+('1d3c7f8a-cf71-41ab-b7d2-3d6f3c61e3f3', 'VW', 'ID.3', 2024, '2028-01-01', 5000, 1, 'Automatic', 1, 0.0, 'fc7f1081-56c0-4c48-bdbd-5e10f3486f3d', '8b3dca32-7a1d-4cbf-812b-3c5e7f55f7cb'),
+
+('5d1c098c-7d8f-432e-828f-44e28a2c1f5f', 'Toyota', 'Corolla', 2022, '2026-04-30', 20000, 1, 'Automatic', 8, 3.8, '5ae7d48d-0d10-48cf-942b-36d02080e59e', '4b3d2a53-1ab2-4e96-8900-bd38cbfa635f'),
+('0e7dc8a5-9b0f-419c-bfb3-6c8f8e0f5f6f', 'Toyota', 'Camry', 2020, '2024-06-15', 50000, 2, 'Automatic', 8, 4.0, '3e3f9c02-d7fa-4bfa-a5bc-682c0ecbd2a5', '9a3eb8e6-d8cb-47f3-8fbc-c2a7a09f5fb4'),
+('8b6fca7d-3f2e-4d7c-8a1c-3d4f7c6e3e4e', 'Toyota', 'Yaris', 2021, '2025-02-28', 25000, 1, 'Manual', 6, 4.5, '761aead3-6fa8-44cf-99f7-25d135c9e6a1', 'ae4d9c6f-1944-4d2f-908f-c6b2a1ef5d80'),
+('8d6fbb8f-4c7d-43c9-84e2-7c1e6f4c8d7f', 'Toyota', 'Land Cruiser', 2019, '2023-11-25', 70000, 3, 'Automatic', 8, 5.5, '46d84e0c-6e10-4a17-9c8d-21f907a91d26', 'bd59a212-86c6-45bc-8888-3db7e2e5e7af'),
+('2b8fcd9e-5f4b-456f-813c-8b2c7d6f4e6d', 'Ford', 'Fiesta', 2023, '2027-07-19', 12000, 1, 'Manual', 6, 5.0, '1c54b92d-9b11-4b2d-b49f-d8a44e4d3282', 'cb67dbb3-1f96-4e41-8a5d-94b3a2b9e8fa'),
+('4f1dc99b-8e5f-4d7f-8c2e-1c2d5e4e5e3f', 'Ford', 'Focus', 2021, '2025-10-14', 35000, 2, 'Automatic', 8, 6.2, 'e5a2341a-8c76-4e53-8c9b-06c431c1ef7c', 'df78e3e4-0b4e-4a8d-9d6e-8a4c5bb8d8d7'),
+('3e7dca8f-7c4e-4e2f-823e-5d4e8c6e8e5e', 'Ford', 'Kuga', 2022, '2026-03-23', 18000, 1, 'Manual', 6, 5.3, '3e0c7d96-2dd3-4fc5-84b6-4f1a5f5f0455', 'ef82e5f5-2b5d-482e-9f6b-9b5b2b4c2c9f'),
+('5c3dcfb8-8f7e-419b-832c-7d8f9e2f4f3f', 'Ford', 'Mustang', 2020, '2024-12-05', 47000, 2, 'Automatic', 10, 10.0, '3af1542e-e7d0-44bb-9238-ea502f5d83e5', 'fa91f8c6-3b6f-4e3f-9b7b-8b7e2b4d2c9b'),
+('6f8eab8f-9f3e-4f7e-841c-9c5e3e4d9e6e', 'Ford', 'Mustang Mach-E', 2023, '2027-09-01', 8000, 1, 'Automatic', 1, 0.0, 'ed10e1d8-490e-41ff-81d3-d845ad965231', '0b93e9c7-4b6b-4e3f-8b8b-9b8e3b4d2e9d');
+
+INSERT INTO "Listings"(
+    "Id", "CreationDate", "Title", "Description", "Price", "IsSold", "UserId", "VehicleId", "ContactNumber"
+) VALUES 
+('1b60cb99-f8d8-4d5f-8b77-9c6e30d5d49e', CURRENT_TIMESTAMP, 'VW Golf 2022', 'VW Golf, 2022, Manual, 6-speed, Fuel Efficiency: 5.5 L/100 km', 22000, false, '3b67a3ea-d965-45eb-bb12-6e47426b6c43', 'fa23bc87-4d72-49f1-b24a-b6e28e0c12a5', '1234567891'),
+('2d60db99-e3c4-4f5b-8b37-3f2e60d9d56e', CURRENT_TIMESTAMP, 'VW Passat 2021', 'VW Passat, 2021, Automatic, 8-speed, Fuel Efficiency: 6.0 L/100 km', 55000, false, '6cfb5f70-8235-4b8a-8db0-268cbe9d431f', 'fd91ba9d-8c25-4014-8a36-ead362327cc2', '1234567892'),
+('3d70db99-f7c8-4e6c-8b6f-2d7e60f9d56f', CURRENT_TIMESTAMP, 'VW Tiguan 2023', 'VW Tiguan, 2023, Manual, 6-speed, Fuel Efficiency: 5.8 L/100 km', 14000, false, 'a4d62d85-b453-4a72-9264-fdbd45697eb4', 'fc0f2a18-fd02-456b-9200-96067ecf07ff', '1234567893'),
+('4e80cb99-d8e8-4c5d-8b17-4e6e40f9d57f', CURRENT_TIMESTAMP, 'VW Arteon 2020', 'VW Arteon, 2020, Automatic, 7-speed, Fuel Efficiency: 4.5 L/100 km', 29000, false, 'b5b4d9cf-5cb7-43c1-ae2b-04c65d828d18', 'bf7eb2c8-2784-4118-906b-9b0e9a4b9fcb', '1234567894'),
+('5f90cb99-e9e8-4b5d-8c17-5e7f60e9d68f', CURRENT_TIMESTAMP, 'VW Golf R 2021', 'VW Golf R, 2021, Automatic, 8-speed, Fuel Efficiency: 8.5 L/100 km', 6000, false, '8e724bf6-e6b0-41f4-b4ef-8f2061a09887', '8f1a96e2-1b87-40f0-81c7-25c3b9d9f9f2', '1234567895'),
+('6fa0cb99-f8d8-4c5d-8b27-6f8f50f9d78e', CURRENT_TIMESTAMP, 'VW ID.3 2024', 'VW ID.3, 2024, Automatic, Electric, 0 L/100 km', 26000, false, '3b67a3ea-d965-45eb-bb12-6e47426b6c43', '1d3c7f8a-cf71-41ab-b7d2-3d6f3c61e3f3', '1234567891'),
+('7fb0cb99-f8d8-4c5d-8b17-7f9f70d9d79e', CURRENT_TIMESTAMP, 'Toyota Corolla 2022', 'Toyota Corolla, 2022, Automatic, 8-speed, Fuel Efficiency: 3.8 L/100 km', 46000, false, '6cfb5f70-8235-4b8a-8db0-268cbe9d431f', '5d1c098c-7d8f-432e-828f-44e28a2c1f5f', '1234567892'),
+('8fc0cb99-f9e8-4c5d-8b27-8fae80d9d80e', CURRENT_TIMESTAMP, 'Toyota Camry 2020', 'Toyota Camry, 2020, Automatic, 8-speed, Fuel Efficiency: 4.0 L/100 km', 19000, false, 'a4d62d85-b453-4a72-9264-fdbd45697eb4', '0e7dc8a5-9b0f-419c-bfb3-6c8f8e0f5f6f', '1234567893'),
+('9fd0cb99-f8e8-4c5d-8b17-9fbf90d9d81e', CURRENT_TIMESTAMP, 'Toyota Yaris 2021', 'Toyota Yaris, 2021, Manual, 6-speed, Fuel Efficiency: 4.5 L/100 km', 13000, false, 'b5b4d9cf-5cb7-43c1-ae2b-04c65d828d18', '8b6fca7d-3f2e-4d7c-8a1c-3d4f7c6e3e4e', '1234567894'),
+('af00cb99-f8e8-4c5d-8b17-0f0fa0d9d82e', CURRENT_TIMESTAMP, 'Toyota Land Cruiser 2019', 'Toyota Land Cruiser, 2019, Automatic, 8-speed, Fuel Efficiency: 5.5 L/100 km', 24000, false, '8e724bf6-e6b0-41f4-b4ef-8f2061a09887', '8d6fbb8f-4c7d-43c9-84e2-7c1e6f4c8d7f', '1234567895'),
+('bf10cb99-f8d8-4c5d-8b17-1f1fb0d9d83e', CURRENT_TIMESTAMP, 'Ford Fiesta 2023', 'Ford Fiesta, 2023, Manual, 6-speed, Fuel Efficiency: 5.0 L/100 km', 36000, false, '3b67a3ea-d965-45eb-bb12-6e47426b6c43', '2b8fcd9e-5f4b-456f-813c-8b2c7d6f4e6d', '1234567891'),
+('cf20cb99-f8e8-4c5d-8b17-2f2fb0d9d84e', CURRENT_TIMESTAMP, 'Ford Focus 2021', 'Ford Focus, 2021, Automatic, 8-speed, Fuel Efficiency: 6.2 L/100 km', 41000, false, '6cfb5f70-8235-4b8a-8db0-268cbe9d431f', '4f1dc99b-8e5f-4d7f-8c2e-1c2d5e4e5e3f', '1234567892'),
+('df30cb99-f9e8-4c5d-8b17-3f3fb0d9d85e', CURRENT_TIMESTAMP, 'Ford Kuga 2022', 'Ford Kuga, 2022, Manual, 6-speed, Fuel Efficiency: 5.3 L/100 km', 18000, false, 'a4d62d85-b453-4a72-9264-fdbd45697eb4', '3e7dca8f-7c4e-4e2f-823e-5d4e8c6e8e5e', '1234567893'),
+('ef40cb99-f8e8-4c5d-8b17-4f4fe0d9d86e', CURRENT_TIMESTAMP, 'Ford Mustang 2020', 'Ford Mustang, 2020, Automatic, 10-speed, Fuel Efficiency: 10.0 L/100 km', 29000, false, 'b5b4d9cf-5cb7-43c1-ae2b-04c65d828d18', '5c3dcfb8-8f7e-419b-832c-7d8f9e2f4f3f', '1234567894');

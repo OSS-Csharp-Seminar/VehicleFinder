@@ -68,34 +68,8 @@ namespace VehicleFinder.Migrations
                     { "3a667f1f-8d45-48ca-b9c5-c97aeecfdf8f", "8fa245bf-2259-4607-811a-394cd66a100c" },
                     { "bb9d7fb3-39cf-4e0b-aee7-07a4c9dfc806", "9b2f410e-b8b6-4357-a220-f4bc52339178" }
                 });
-
-            ExecuteSqlScript(migrationBuilder);
         }
 
-        private void ExecuteSqlScript(MigrationBuilder migrationBuilder)
-        {
-            // Get the directory of the current file
-            var currentDirectory = Directory.GetCurrentDirectory();
-
-            // Construct the full path to your SQL script relative to the current directory
-            var relativePath = Path.Combine("Migrations", "SeedData", "SeedEngines.sql");
-            var sqlScriptPath = Path.Combine(currentDirectory, relativePath);
-
-            // Check if the file exists before attempting to read it
-            if (File.Exists(sqlScriptPath))
-            {
-                // Read the SQL script content
-                var sqlScript = File.ReadAllText(sqlScriptPath);
-
-                // Execute the SQL script using migrationBuilder
-                migrationBuilder.Sql(sqlScript);
-            }
-            else
-            {
-                // Handle the case where the SQL script file does not exist
-                throw new FileNotFoundException($"SQL script file not found at path: {sqlScriptPath}");
-            }
-        }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)

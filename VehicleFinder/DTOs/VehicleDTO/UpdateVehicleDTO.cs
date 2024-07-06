@@ -39,7 +39,7 @@ namespace VehicleFinder.DTOs.VehicleDTO
 
         [Required]
         [Range(0.00, 50.0, ErrorMessage = "Consumption should be between 0 and 50L per 100km.")]
-        public decimal AverageConsumption { get; set; }
+        public double AverageConsumption { get; set; }
 
         public string? EngineId { get; set; }
 
