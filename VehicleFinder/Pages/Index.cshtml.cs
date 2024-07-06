@@ -106,6 +106,11 @@ namespace VehicleFinder.Pages
 
             int pageSize = 10;
             Listings = await _listingService.GetPaginatedListingsByFilterAsync(filter, PageIndex, pageSize);
+            if (Listings != null)
+            {
+                Listings = new PaginatedList<GetListingDTO>(SortListings(Listings, SortBy).ToList(), Listings.TotalCount, PageIndex, pageSize);
+            }
+
 
             FuelTypeOptions = GetEnumSelectList<FuelType>(FuelType);
             BodyShapeOptions = GetEnumSelectList<BodyShape>(BodyShape);
