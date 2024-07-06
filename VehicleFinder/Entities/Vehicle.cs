@@ -15,7 +15,6 @@ namespace VehicleFinder.Entities
         public ShifterType ShifterType { get; set; }
         public int GearCount { get; set; }
         public decimal AverageConsumption { get; set; }
-
         public string EngineId { get; set; }
         public Engine? Engine { get; set; }
         public string BodyId { get; set; }

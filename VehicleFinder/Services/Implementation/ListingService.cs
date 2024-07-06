@@ -37,13 +37,6 @@ namespace VehicleFinder.Services
             return listingDTOs;
         }
 
-        public async Task<IEnumerable<GetListingDTO>> GetListingsByFilterAsync(ListingFilterDTO filter)
-        {
-            var listings = await _listingRepository.GetListingsByFilterAsync(filter);
-            var listingDTOs = _mapper.Map<IEnumerable<GetListingDTO>>(listings);
-            return listingDTOs;
-        }
-
         public async Task<GetListingDTO> GetListingByIdAsync(string id)
         {
             var listing = await _listingRepository.GetListingByIdAsync(id);

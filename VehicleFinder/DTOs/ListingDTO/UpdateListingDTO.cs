@@ -14,6 +14,9 @@ namespace VehicleFinder.DTOs.ListingDTO
         public string Description { get; set; }
 
         [Required]
+        public string ContactNumber { get; set; }
+
+        [Required]
         [Range(0, double.MaxValue, ErrorMessage = "Price must be a positive number.")]
         public float Price { get; set; }
 

@@ -51,6 +51,7 @@ namespace VehicleFinder.Areas.Listing.Pages
                 {
                     Title = "Default Title",
                     Description = "Default Description",
+                    ContactNumber = "0991001000",
                     Price = 20000
                 },
                 Vehicle = new CreateVehicleDTO

@@ -8,7 +8,6 @@ namespace VehicleFinder.Services
     public interface IListingService
     {
         Task<IEnumerable<GetListingDTO>> GetListingsAsync();
-        Task<IEnumerable<GetListingDTO>> GetListingsByFilterAsync(ListingFilterDTO filter);
         Task<GetListingDTO> GetListingByIdAsync(string id);
         Task<CreateListingDTO> CreateListingAsync(CreateListingDTO listingDto);
         Task<GetGeneralListingDTO> GetGeneralListingByIdAsync(string id);
