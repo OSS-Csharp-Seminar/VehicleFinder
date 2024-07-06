@@ -9,7 +9,7 @@
 
 <div class="total">
     <div class="sidebar">
-        <form method="get">
+        <form id="filterForm" method="get">
             <div class="row mb-4">
                 <div class="search">
                     <div class="form-group">
@@ -248,6 +248,11 @@
         function resetFilters() {
             window.location.href = '/';
         }
+        document.addEventListener('DOMContentLoaded', (event) => {
+            document.getElementById('sortBy').addEventListener('change', function () {
+                document.getElementById('filterForm').submit();
+            });
+        });
     </script>
 }
 <style>
