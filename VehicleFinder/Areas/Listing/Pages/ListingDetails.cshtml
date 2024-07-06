@@ -12,7 +12,9 @@
     <div class="listing-details">
         <h2>@Model.GeneralListing.Listing.Title</h2>
         <p>@Model.GeneralListing.Listing.Description</p>
-        <p><strong>Contact number:</strong> @Model.GeneralListing.Listing.ContactNumber</p>
+        <p><strong>Contact number:</strong> @(string.IsNullOrEmpty(Model.GeneralListing.Listing.ContactNumber) ? "No contact number" : Model.GeneralListing.Listing.ContactNumber)</p>
+        <p><strong>Price:</strong> @Model.GeneralListing.Listing.Price.ToString("C", System.Globalization.CultureInfo.GetCultureInfo("fr-FR"))</p>
+
        
 
         <h3>Vehicle Details</h3>

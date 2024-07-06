@@ -10,6 +10,7 @@ using VehicleFinder.Entities;
 using VehicleFinder.Enums;
 using VehicleFinder.Services;
 using VehicleFinder.Services.Interface;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace VehicleFinder.Areas.Listing.Pages
 {
@@ -34,11 +35,21 @@ namespace VehicleFinder.Areas.Listing.Pages
 
         [BindProperty]
         public CreateGeneralListingDTO GeneralListing { get; set; }
+        [BindProperty]
+        public string? SelectedEngineId { get; set; }
+        [BindProperty]
+        public bool IsNewEngine { get; set; }
+        public List<SelectListItem> EngineList { get; set; }
 
-        public IActionResult OnGet()
+
+        public async Task<IActionResult> OnGetAsync()
         {
-
             InitializeDefaultCreateGeneralListing();
+            EngineList = (await _engineService.GetAllEnginesAsync()).Select(e => new SelectListItem
+            {
+                Value = e.Id.ToString(),
+                Text = e.Name
+            }).ToList();
 
             return Page();
         }
@@ -116,9 +127,18 @@ namespace VehicleFinder.Areas.Listing.Pages
             try
             {
                 _logger.LogInformation("Creating engine");
-                var engineId = await _engineService.CreateEngineAsync(GeneralListing.Engine);
-                GeneralListing.Vehicle.EngineId = engineId;
-                _logger.LogInformation("Engine created with ID: {EngineId}", engineId);
+                if (IsNewEngine)
+                {
+                    var engineId = await _engineService.CreateEngineAsync(GeneralListing.Engine);
+                    GeneralListing.Vehicle.EngineId = engineId;
+                    _logger.LogInformation("Engine created with ID: {EngineId}", engineId);
+                }
+                else
+                {
+                    GeneralListing.Vehicle.EngineId = SelectedEngineId;
+
+                    _logger.LogInformation("Engine selected with ID: {SelectedEngineId}", SelectedEngineId);
+                }
 
                 _logger.LogInformation("Creating body");
                 var bodyId = await _bodyService.CreateBodyAsync(GeneralListing.Body);

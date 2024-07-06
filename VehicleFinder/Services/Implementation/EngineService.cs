@@ -19,6 +19,17 @@ namespace VehicleFinder.Services.Implementation
             _mapper = mapper;
             _engineRepository = engineRepository;
         }
+        public async Task<IEnumerable<GetEngineDTO>> GetAllEnginesAsync()
+        {
+            var engines = await _engineRepository.GetAllEnginesAsync();
+
+            if (engines == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            return _mapper.Map<IEnumerable<GetEngineDTO>>(engines);
+        }
 
         public async Task<string> CreateEngineAsync(CreateEngineDTO model)
         {
