@@ -95,7 +95,7 @@
     <div class="form-group row">
         <label asp-for="GeneralListing.Vehicle.AverageConsumption" class="col-sm-2 col-form-label">Average Consumption:</label>
         <div class="col-sm-10">
-            <input asp-for="GeneralListing.Vehicle.AverageConsumption" class="form-control mb-3" />
+            <input asp-for="GeneralListing.Vehicle.AverageConsumption" type="number" step="0.1" class="form-control mb-3" />
             <span asp-validation-for="GeneralListing.Vehicle.AverageConsumption" class="text-danger"></span>
         </div>
     </div>
