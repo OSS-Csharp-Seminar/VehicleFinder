@@ -14,7 +14,7 @@
     <input type="hidden" asp-for="UpdateGeneralListing.Vehicle.BodyId" />
     <input type="hidden" asp-for="UpdateGeneralListing.Engine.Id" />
     <input type="hidden" asp-for="UpdateGeneralListing.Body.Id" />
-   
+
     <div class="form-group row">
         <label asp-for="UpdateGeneralListing.Listing.Title" class="col-sm-2 col-form-label">Title:</label>
         <div class="col-sm-10">
@@ -32,7 +32,7 @@
     <div class="form-group row">
         <label asp-for="UpdateGeneralListing.Listing.ContactNumber" class="col-sm-2 col-form-label">Contact number:</label>
         <div class="col-sm-10">
-            <textarea asp-for="UpdateGeneralListing.Listing.ContactNumber" class="form-control mb-3"></textarea>
+            <input asp-for="UpdateGeneralListing.Listing.ContactNumber" class="form-control mb-3"></input>
             <span asp-validation-for="UpdateGeneralListing.Listing.ContactNumber" class="text-danger"></span>
         </div>
     </div>

@@ -170,8 +170,6 @@ namespace VehicleFinder.Services
             }
         }
 
-
-
         public async Task<bool> DeleteListingAsync(string id)
         {
             var listing = await _listingRepository.GetListingByIdAsync(id);

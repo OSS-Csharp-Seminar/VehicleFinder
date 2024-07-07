@@ -58,6 +58,7 @@ namespace VehicleFinder.Areas.Listing.Pages
                     Id = listing.Listing.Id,
                     Title = listing.Listing.Title,
                     Description = listing.Listing.Description,
+                    ContactNumber = listing.Listing.ContactNumber,
                     Price = listing.Listing.Price,
                     CreationDate = listing.Listing.CreationDate,
                     IsSold = listing.Listing.IsSold,
