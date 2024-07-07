@@ -1,4 +1,4 @@
-﻿@page
+@page
 @model VehicleFinder.Pages.IndexModel
 @using VehicleFinder.Enums
 @{
@@ -142,6 +142,9 @@
                             <option value="false" selected=@(Model.IsSold.HasValue && !Model.IsSold.Value ? "selected" : null)>No</option>
                         </select>
                     </div>
+                    
+                    <input type="hidden" id="pageIndexInput" name="PageIndex"/>
+
                     <button type="submit" class="btn btn-primary btn-filter">Apply Filters and Search</button>
                     <button type="button" class="btn btn-danger btn-filter" onclick="resetFilters()">Reset Filters and Search</button>
                 </div>
@@ -183,16 +186,16 @@
                 <nav aria-label="Page navigation">
                     <ul class="pagination">
                         <li class="page-item @(Model.Listings.HasPreviousPage ? "" : "disabled")">
-                            <a class="page-link" href="?PageIndex=@(Model.PageIndex - 1)&SearchQuery=@Model.SearchQuery&SortBy=@Model.SortBy">Previous</a>
+                            <button class="page-link" onclick="changePage(@(Model.PageIndex - 1))">Previous</button>
                         </li>
                         @for (int i = 1; i <= Model.Listings.TotalPages; i++)
                         {
                             <li class="page-item @(Model.PageIndex == i ? "active" : "")">
-                                <a class="page-link" href="?PageIndex=@i&SearchQuery=@Model.SearchQuery&SortBy=@Model.SortBy">@i</a>
+                                <button class="page-link" onclick="changePage(@i)">@i</button>
                             </li>
                         }
                         <li class="page-item @(Model.Listings.HasNextPage ? "" : "disabled")">
-                            <a class="page-link" href="?PageIndex=@(Model.PageIndex + 1)&SearchQuery=@Model.SearchQuery&SortBy=@Model.SortBy">Next</a>
+                            <button class="page-link" onclick="changePage(@(Model.PageIndex + 1))">Next</button>
                         </li>
                     </ul>
                 </nav>
@@ -228,6 +231,17 @@
                 keyboard: false
             });
             myModal.show();
+        }
+
+        function changePage(pageIndex) {
+            let formElement = document.getElementById("filterForm");
+            let pageIndexElement = document.getElementById("pageIndexInput");
+
+            if (formElement && pageIndexElement) {
+                pageIndexElement.value = pageIndex;
+                formElement.submit();
+            }
+
         }
 
         document.getElementById('confirmMarkAsSoldButton').addEventListener('click', function () {
