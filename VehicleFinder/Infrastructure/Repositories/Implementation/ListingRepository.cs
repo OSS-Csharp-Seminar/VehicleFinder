@@ -29,23 +29,6 @@ namespace VehicleFinder.Infrastructure.Repositories
                                 .ThenInclude(v => v.Body)
                                 .AsQueryable();
 
-            query = sortBy switch
-            {
-                "priceAsc" => query.OrderBy(l => l.Price),
-                "priceDesc" => query.OrderByDescending(l => l.Price),
-                "yearAsc" => query.OrderBy(l => l.Vehicle.ManufacturingYear),
-                "yearDesc" => query.OrderByDescending(l => l.Vehicle.ManufacturingYear),
-                "kilometersAsc" => query.OrderBy(l => l.Vehicle.Kilometers),
-                "kilometersDesc" => query.OrderByDescending(l => l.Vehicle.Kilometers),
-                "registrationAsc" => query.OrderBy(l => l.Vehicle.RegistrationUntil),
-                "registrationDesc" => query.OrderByDescending(l => l.Vehicle.RegistrationUntil),
-                "ownersAsc" => query.OrderBy(l => l.Vehicle.NumberOfPreviousOwners),
-                "ownersDesc" => query.OrderByDescending(l => l.Vehicle.NumberOfPreviousOwners),
-                "createdAsc" => query.OrderBy(l => l.CreationDate),
-                "createdDesc" => query.OrderByDescending(l => l.CreationDate),
-                _ => query,
-            };
-
 
             if (!string.IsNullOrEmpty(filter.SearchQuery))
             {
@@ -129,6 +112,23 @@ namespace VehicleFinder.Infrastructure.Repositories
             {
                 query = query.Where(l => l.Vehicle.ShifterType == filter.ShifterType.Value);
             }
+
+            query = sortBy switch
+            {
+                "priceAsc" => query.OrderBy(l => l.Price),
+                "priceDesc" => query.OrderByDescending(l => l.Price),
+                "yearAsc" => query.OrderBy(l => l.Vehicle.ManufacturingYear),
+                "yearDesc" => query.OrderByDescending(l => l.Vehicle.ManufacturingYear),
+                "kilometersAsc" => query.OrderBy(l => l.Vehicle.Kilometers),
+                "kilometersDesc" => query.OrderByDescending(l => l.Vehicle.Kilometers),
+                "registrationAsc" => query.OrderBy(l => l.Vehicle.RegistrationUntil),
+                "registrationDesc" => query.OrderByDescending(l => l.Vehicle.RegistrationUntil),
+                "ownersAsc" => query.OrderBy(l => l.Vehicle.NumberOfPreviousOwners),
+                "ownersDesc" => query.OrderByDescending(l => l.Vehicle.NumberOfPreviousOwners),
+                "createdAsc" => query.OrderBy(l => l.CreationDate),
+                "createdDesc" => query.OrderByDescending(l => l.CreationDate),
+                _ => query,
+            };
 
             return await PaginatedList<Listing>.CreateAsync(query.AsNoTracking(), pageIndex, pageSize);
         }
